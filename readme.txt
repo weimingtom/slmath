@@ -108,6 +108,7 @@ v1.8.0 (2010-10-21):
 * vcproj: simplified lib dir structure (lib/vs2008/x64/slmath-Debug.lib, etc.)
 * random: better seed
 * Moved testing framework and tests from core to separate project (samples/test)
+* Moved from SourceForge to Google Code
 
 v1.7.9 (2010-09-12):
 * frameFromNormal: vec3(1,1,1) caused the function to fail (thanks Loren Hoffman for finding the bug!)
