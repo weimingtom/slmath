@@ -59,7 +59,7 @@ mkdirR( $basedir );
 $files = file( 'package.lst' );
 foreach ($files as $file)
 {
-	$file = trim($file);
+	$file = str_replace( '\\', '/', trim($file) );
 	
 	$dst = $basedir;
 	$dirname = dirname( $file );
