@@ -18,7 +18,7 @@ function mkdirR( $path, $sep='/' )
 	}
 }
 
-/** Copies source file(s) to destination directory. Supports * as wildcard. */
+/** Copies source file(s) to destination directory. Supports * as source wildcard. */
 function copyFiles( $src, $dest, $sep='/' )
 {
 	if ( substr($dest,-1) != $sep )
@@ -42,14 +42,17 @@ function copyFiles( $src, $dest, $sep='/' )
 	}
 }
 
-// first line: slmath ver. VERSION
-$readme = file('readme.txt');
-if ( 1 != preg_match( '/slmath ver\. (.+)\s/', $readme[0], $m ) )
+// grab project name from cwd
+$proj = basename(getcwd());
+
+// first line: $proj ver. VERSION
+$readme = file( 'readme.txt' );
+if ( 1 != preg_match( '/'.$proj.' ver\. (.+)\s/', $readme[0], $m ) )
 	die( "Version grab from readme.txt failed" );
 $ver = trim($m[1]);
 
 // target dir for package
-$basedir = "slmath-$ver/";
+$basedir = "$proj-$ver/";
 mkdirR( $basedir );
 
 // package files listed in package.lst
@@ -70,6 +73,6 @@ foreach ($files as $file)
 	copyFiles( $file, $dst );
 }
 chdir( $basedir );
-system( "pkzip -add -dir slmath-$ver.zip" );
+system( "pkzip -add -dir $proj-$ver.zip" );
 
 ?>
