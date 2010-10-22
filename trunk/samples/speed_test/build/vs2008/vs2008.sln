@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vs2008", "vs2008.vcproj", "{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6} = {E38266B4-21FE-49D9-A886-C6ACED60EEA6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slmath", "..\..\..\..\build\vs2008\slmath\slmath.vcproj", "{E38266B4-21FE-49D9-A886-C6ACED60EEA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Debug|Win32.Build.0 = Debug|Win32
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Debug|x64.ActiveCfg = Debug|x64
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Debug|x64.Build.0 = Debug|x64
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Release|Win32.ActiveCfg = Release|Win32
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Release|Win32.Build.0 = Release|Win32
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Release|x64.ActiveCfg = Release|x64
+		{F9A0CE6F-BE82-44F1-B56E-E1D383517E65}.Release|x64.Build.0 = Release|x64
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Debug|Win32.Build.0 = Debug|Win32
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Debug|x64.ActiveCfg = Debug|x64
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Debug|x64.Build.0 = Debug|x64
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Release|Win32.ActiveCfg = Release|Win32
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Release|Win32.Build.0 = Release|Win32
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Release|x64.ActiveCfg = Release|x64
+		{E38266B4-21FE-49D9-A886-C6ACED60EEA6}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
