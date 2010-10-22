@@ -11,9 +11,8 @@ have used the lib on iPhone, Linux, N-Gage and Symbian S60.
 The code is licensed under BSD/MIT, so as free/liberal as it gets.
 
 The library also contains a simple testing framework 
-(see include\slmath\testframework.h), which is meant for 
-unit/regression testing of the slmath library, but it can be used 
-for testing other stuff as well.
+(see samples/test), which is meant for unit/regression testing 
+of the slmath library, but it can be used for testing other stuff as well.
 
 
 Documentation
@@ -97,10 +96,8 @@ Note that SWIG/Lua compatibility is 'experimental feature'.
 Version Control (Subversion)
 ---------------------------
 
-Hostname: https://slmath.googlecode.com/svn/trunk/
-Port: 443
-Protocol: HTTPS
-Repository Path: /svnroot/slmath
+To checkout from Google Code:
+svn co https://slmath.googlecode.com/svn/trunk/
 
 
 Changes
@@ -110,7 +107,6 @@ v1.8.0 (2010-10-21):
 * VS2003 support (Thanks to Peter Ingebretson <peter at ingebretson.net>!)
 * vcproj: simplified lib dir structure (lib/vs2008/x64/slmath-Debug.lib, etc.)
 * random: better seed
-* lua_test and speed_test untested in this release
 * Moved testing framework and tests from core to separate project (samples/test)
 
 v1.7.9 (2010-09-12):
