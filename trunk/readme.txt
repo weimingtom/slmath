@@ -96,11 +96,10 @@ svn co https://slmath.googlecode.com/svn/trunk/
 Changes
 --------
 
-* SIMD transpose(mat4)
-
 v1.8.1 (2011-02-10):
 * perspectiveFovLH fixed, [2][2] was + instead of - (thanks to Brad Johnston for finding the bug)
 * added Visual Studio 2010 project files
+* SIMD transpose(mat4)
 * SWIG-related code removed
 
 v1.8.0 (2010-10-21):
