@@ -4,12 +4,9 @@ build/vs2003/slmath/slmath.sln
 build/vs2003/slmath/slmath.vcproj
 build/vs2008/slmath/slmath.sln
 build/vs2008/slmath/slmath.vcproj
+build/vs2010/slmath/slmath.sln
+build/vs2010/slmath/slmath.vcproj
 documentation/doxygen.project
 documentation/slmath.chm
 include/slmath/*
-samples/test/test.cpp
-samples/test/build/vs2008
-samples/test/build/vs2008/vs2008.sln
-samples/test/build/vs2008/vs2008.vcproj
 source/*
-swig/slmath.i
