@@ -44,6 +44,17 @@ double opsM( double t, uint64_t n )
 	return double(n)/double(t)/1e6;
 }
 
+/** Helper determinant calculation for non-slmath libs */
+template <class T> float det4( const T& m )
+{
+	return
+		m(0,3) * m(1,2) * m(2,1) * m(3,0) - m(0,2) * m(1,3) * m(2,1) * m(3,0) - m(0,3) * m(1,1) * m(2,2) * m(3,0)+m(0,1) * m(1,3) * m(2,2) * m(3,0) +
+		m(0,2) * m(1,1) * m(2,3) * m(3,0) - m(0,1) * m(1,2) * m(2,3) * m(3,0) - m(0,3) * m(1,2) * m(2,0) * m(3,1)+m(0,2) * m(1,3) * m(2,0) * m(3,1) +
+		m(0,3) * m(1,0) * m(2,2) * m(3,1) - m(0,0) * m(1,3) * m(2,2) * m(3,1) - m(0,2) * m(1,0) * m(2,3) * m(3,1)+m(0,0) * m(1,2) * m(2,3) * m(3,1) +
+		m(0,3) * m(1,1) * m(2,0) * m(3,2) - m(0,1) * m(1,3) * m(2,0) * m(3,2) - m(0,3) * m(1,0) * m(2,1) * m(3,2)+m(0,0) * m(1,3) * m(2,1) * m(3,2) +
+		m(0,1) * m(1,0) * m(2,3) * m(3,2) - m(0,0) * m(1,1) * m(2,3) * m(3,2) - m(0,2) * m(1,1) * m(2,0) * m(3,3)+m(0,1) * m(1,2) * m(2,0) * m(3,3) +
+		m(0,2) * m(1,0) * m(2,1) * m(3,3) - m(0,0) * m(1,2) * m(2,1) * m(3,3) - m(0,1) * m(1,0) * m(2,2) * m(3,3)+m(0,0) * m(1,1) * m(2,2) * m(3,3);
+}
 
 SLMATH_USING()
 
@@ -56,17 +67,15 @@ SLMATH_USING()
 using namespace Eigen;
 
 inline Matrix4f toEigen( const slmath::mat4& m ) {Matrix4f b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
+#endif
 
-template <class T> float det4( const T& m )
-{
-	return
-		m(0,3) * m(1,2) * m(2,1) * m(3,0) - m(0,2) * m(1,3) * m(2,1) * m(3,0) - m(0,3) * m(1,1) * m(2,2) * m(3,0)+m(0,1) * m(1,3) * m(2,2) * m(3,0) +
-		m(0,2) * m(1,1) * m(2,3) * m(3,0) - m(0,1) * m(1,2) * m(2,3) * m(3,0) - m(0,3) * m(1,2) * m(2,0) * m(3,1)+m(0,2) * m(1,3) * m(2,0) * m(3,1) +
-		m(0,3) * m(1,0) * m(2,2) * m(3,1) - m(0,0) * m(1,3) * m(2,2) * m(3,1) - m(0,2) * m(1,0) * m(2,3) * m(3,1)+m(0,0) * m(1,2) * m(2,3) * m(3,1) +
-		m(0,3) * m(1,1) * m(2,0) * m(3,2) - m(0,1) * m(1,3) * m(2,0) * m(3,2) - m(0,3) * m(1,0) * m(2,1) * m(3,2)+m(0,0) * m(1,3) * m(2,1) * m(3,2) +
-		m(0,1) * m(1,0) * m(2,3) * m(3,2) - m(0,0) * m(1,1) * m(2,3) * m(3,2) - m(0,2) * m(1,1) * m(2,0) * m(3,3)+m(0,1) * m(1,2) * m(2,0) * m(3,3) +
-		m(0,2) * m(1,0) * m(2,1) * m(3,3) - m(0,0) * m(1,2) * m(2,1) * m(3,3) - m(0,1) * m(1,0) * m(2,2) * m(3,3)+m(0,0) * m(1,1) * m(2,2) * m(3,3);
-}
+// optional XNA Math benchmarking
+#define TEST_XNA
+#ifdef TEST_XNA
+#include <xnamath.h>
+
+inline XMMATRIX toXNA( const slmath::mat4& m ) {XMMATRIX b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
+inline XMVECTOR toXNA( const slmath::vec4& v ) {return *(XMVECTOR*)&v;}
 #endif
 
 
@@ -83,28 +92,48 @@ void test1()
 	printf( "vector += scalar * vector\n--------------------------------------------------------------\n" );
 	for ( int n = 0 ; n < 3 ; ++n )
 	{
-		vec4 y0 = vec4(0);
-		const vec4 x0 = vec4(1.0012345f);
-		const float alpha0 = 1.000001f;
-		tick();
-		for ( size_t i = 0 ; i < n_reps ; ++i )
 		{
-			y0 += alpha0 * x0;
+			vec4 y0 = vec4(0);
+			const vec4 x0 = vec4(1.0012345f);
+			const float alpha0 = 1.000001f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				y0 += alpha0 * x0;
+			}
+			double time0 = tick();
+			printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), length(y0) );
 		}
-		double time0 = tick();
-		printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), length(y0) );
+
+#ifdef TEST_XNA
+		{
+			XMVECTOR y0 = toXNA( vec4(0) );
+			const XMVECTOR x0 = toXNA( vec4(1.0012345f) );
+			const float alpha1 = 1.000001f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				y0 += alpha1 * x0;
+			}
+			double time1 = tick();
+			XMVECTORF32 res = *(XMVECTORF32*)&XMVector4Length(y0);
+			printf( "  ops (XNAMath) = %.1f (res=%g)\n", opsM(time1,n_reps), res.f[0] );
+		}
+#endif
 
 #ifdef TEST_EIGEN
-		Vector4f y1; y1[0] = 0.f; y1[1] = 0.f; y1[2] = 0.f; y1[3] = 0.f;
-		Vector4f x1; x1[0] = 1.0012345f; x1[1] = 1.0012345f; x1[2] = 1.0012345f; x1[3] = 1.0012345f;
-		const float alpha1 = 1.000001f;
-		tick();
-		for ( size_t i = 0 ; i < n_reps ; ++i )
 		{
-			y1 += alpha1 * x1;
+			Vector4f y1; y1[0] = 0.f; y1[1] = 0.f; y1[2] = 0.f; y1[3] = 0.f;
+			Vector4f x1; x1[0] = 1.0012345f; x1[1] = 1.0012345f; x1[2] = 1.0012345f; x1[3] = 1.0012345f;
+			const float alpha1 = 1.000001f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				y1 += alpha1 * x1;
+			}
+			double time1 = tick();
+			printf( "  ops (Eigen) = %.1f (res=%g)\n", opsM(time1,n_reps), sqrtf(y1.dot(y1)) );
 		}
-		float time1 = tick();
-		printf( "  ops (Eigen) = %.1f (res=%g)\n", opsM(time1,n_reps), sqrtf(y1.dot(y1)) );
 #endif
 	}
 }
@@ -123,30 +152,51 @@ void test2()
 	for ( int n = 0 ; n < 3 ; ++n )
 	{
 		const mat4 a0 = rotationX( 1.0012345f ) * rotationY( 1.0012345f );
-		mat4 b0 = a0;
-
-		tick();
-		for ( size_t i = 0 ; i < n_reps ; ++i )
+		
 		{
-			b0 = a0 * b0 * a0;
-			if ( ((i+1) & 255) == 0 )
-				b0 = a0;
+			mat4 b0 = a0;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				b0 = a0 * b0 * a0;
+				if ( ((i+1) & 255) == 0 )
+					b0 = a0;
+			}
+			double time0 = tick();
+			printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), det(b0) );
 		}
-		double time0 = tick();
-		printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), det(b0) );
+
+#ifdef TEST_XNA
+		{
+			XMMATRIX a0_ = toXNA(a0);
+			XMMATRIX a1 = a0_;
+			XMMATRIX b1 = a0_;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				b1 = a1 * b1 * a1;
+				if ( ((i+1) & 255) == 0 )
+					b1 = a0_;
+			}
+			double time1 = tick();
+			printf( "  ops (XNAMath) = %.1f (res=%g)\n", opsM(time1,n_reps), det4(b1) );
+		}
+#endif
 
 #ifdef TEST_EIGEN
-		Matrix4f a1 = toEigen(a0);
-		Matrix4f b1 = toEigen(a0);
-		tick();
-		for ( size_t i = 0 ; i < n_reps ; ++i )
 		{
-			b1 = a1 * b1 * a1;
-			if ( ((i+1) & 255) == 0 )
-				b1 = toEigen(a0);
+			Matrix4f a1 = toEigen(a0);
+			Matrix4f b1 = toEigen(a0);
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				b1 = a1 * b1 * a1;
+				if ( ((i+1) & 255) == 0 )
+					b1 = toEigen(a0);
+			}
+			float time1 = tick();
+			printf( "  ops (Eigen) = %.1f (res=%g)\n", opsM(time1,n_reps), det4(b1) );
 		}
-		float time1 = tick();
-		printf( "  ops (Eigen) = %g (res=%g)\n", ops(time1,n_reps), det4(b1) );
 #endif
 	}
 }

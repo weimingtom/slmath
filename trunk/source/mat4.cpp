@@ -162,7 +162,7 @@ mat4& mat4::operator*=( const mat4& o )
 	return *this = *this * o;
 }
 
-mat4 mat4::operator*( const mat4& o ) const
+inline mat4 mat4::operator*( const mat4& o ) const
 {
 	assert( check(o) );
 	assert( check(*this) );
