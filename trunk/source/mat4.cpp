@@ -303,13 +303,13 @@ mat4 perspectiveFovLH( float fovy, float aspect, float znear, float zfar )
 
 	float y = cot( fovy * .5f );
 	float x = y / aspect;
-	float zdist = (znear-zfar);
+	float zdist = zfar - znear;
 	float zfar_per_zdist = zfar / zdist;
 
 	mat4 m;
 	m[0] = vec4(x,		  0,        0,					   0 );
 	m[1] = vec4(0,        y,        0,					   0 );
-	m[2] = vec4(0,        0,        -zfar_per_zdist,       1 );
+	m[2] = vec4(0,        0,        zfar_per_zdist,        1 );
 	m[3] = vec4(0,        0,        -znear*zfar_per_zdist, 0 );
 	return m;
 }
