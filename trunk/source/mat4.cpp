@@ -162,13 +162,13 @@ mat4& mat4::operator*=( const mat4& o )
 	return *this = *this * o;
 }
 
-inline mat4 mat4::operator*( const mat4& o ) const
+mat4 mat4::operator*( const mat4& o ) const
 {
 	assert( check(o) );
 	assert( check(*this) );
 	mat4 res;
 
-	#define VTMP(A,i) SLMATH_MUL_PS( m_m128[A], SLMATH_LOAD_PS1(&o[i][A]) )
+	#define VTMP(i,j) SLMATH_MUL_PS( m_m128[i], SLMATH_LOAD_PS1(&o[j][i]) )
 	m128_t* const o128 = res.m128();
 	o128[0] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,0),VTMP(1,0)), SLMATH_ADD_PS(VTMP(2,0),VTMP(3,0)) );
 	o128[1] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,1),VTMP(1,1)), SLMATH_ADD_PS(VTMP(2,1),VTMP(3,1)) );
@@ -183,6 +183,34 @@ inline mat4 mat4::operator*( const mat4& o ) const
 mat4 transpose( const mat4& m )
 {
 	mat4 res;
+
+#ifdef SLMATH_SSE2_MSVC
+    
+	const m128_t* const mp = m.m128();
+	m128_t* const resp = res.m128();
+    m128_t tmp0 = _mm_shuffle_ps(mp[0], mp[1], 0x44);
+    m128_t tmp2 = _mm_shuffle_ps(mp[0], mp[1], 0xEE);
+    m128_t tmp1 = _mm_shuffle_ps(mp[2], mp[3], 0x44);
+    m128_t tmp3 = _mm_shuffle_ps(mp[2], mp[3], 0xEE);
+	resp[0] = _mm_shuffle_ps(tmp0, tmp1, 0x88);
+    resp[1] = _mm_shuffle_ps(tmp0, tmp1, 0xDD);
+    resp[2] = _mm_shuffle_ps(tmp2, tmp3, 0x88);
+    resp[3] = _mm_shuffle_ps(tmp2, tmp3, 0xDD);
+
+#ifdef _DEBUG
+	mat4 ref;
+	for ( size_t j = 0 ; j < 4 ; ++j )
+	{
+		ref[0][j] = m[j][0];
+		ref[1][j] = m[j][1];
+		ref[2][j] = m[j][2];
+		ref[3][j] = m[j][3];
+	}
+	assert( ref == res );
+#endif // _DEBUG
+
+#else
+	
 	for ( size_t j = 0 ; j < 4 ; ++j )
 	{
 		res[0][j] = m[j][0];
@@ -190,6 +218,9 @@ mat4 transpose( const mat4& m )
 		res[2][j] = m[j][2];
 		res[3][j] = m[j][3];
 	}
+
+#endif
+
 	return res;
 }
 

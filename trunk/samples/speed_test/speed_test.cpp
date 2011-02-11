@@ -138,7 +138,7 @@ void test1()
 	}
 }
 
-// matrix * matrix
+// matrix * matrix * matrix
 void test2()
 {
 #ifdef _DEBUG
@@ -159,6 +159,7 @@ void test2()
 			for ( size_t i = 0 ; i < n_reps ; ++i )
 			{
 				b0 = a0 * b0 * a0;
+				b0 = transpose(b0);
 				if ( ((i+1) & 255) == 0 )
 					b0 = a0;
 			}
@@ -175,6 +176,7 @@ void test2()
 			for ( size_t i = 0 ; i < n_reps ; ++i )
 			{
 				b1 = a1 * b1 * a1;
+				b1 = XMMatrixTranspose(b1);
 				if ( ((i+1) & 255) == 0 )
 					b1 = a0_;
 			}
