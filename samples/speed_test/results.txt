@@ -1,4 +1,4 @@
-Win7 64bit / i5-450 2.4GHz, No SIMD (SLMATH_SIMD)
+Win7 64bit / i5-450 2.4GHz, SIMD (SLMATH_SIMD)
 
 --------------------------------------------------------------
 vector += scalar * vector
