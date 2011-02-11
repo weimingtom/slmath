@@ -321,10 +321,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\slmath_lua.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\source\vec2.cpp"
 				>
 			</File>
@@ -407,10 +403,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\slmath_lua.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\include\slmath\slmath_pp.h"
 				>
 			</File>
@@ -451,10 +443,6 @@
 		</Filter>
 		<File
 			RelativePath="..\..\..\readme.txt"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\swig\slmath.i"
 			>
 		</File>
 	</Files>

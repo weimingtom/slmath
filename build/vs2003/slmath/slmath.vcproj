@@ -133,9 +133,6 @@
 				RelativePath="..\..\..\source\runtime_checks.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\source\slmath_lua.cpp">
-			</File>
-			<File
 				RelativePath="..\..\..\source\vec2.cpp">
 			</File>
 			<File
@@ -196,9 +193,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\include\slmath\slmath_configure.h">
-			</File>
-			<File
-				RelativePath="..\..\..\include\slmath\slmath_lua.h">
 			</File>
 			<File
 				RelativePath="..\..\..\include\slmath\slmath_pp.h">
