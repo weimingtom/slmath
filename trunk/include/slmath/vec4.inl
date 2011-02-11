@@ -147,12 +147,12 @@ inline float& vec4::operator[]( size_t i )
 
 inline vec3& vec4::xyz()
 {
-	return *(vec3*)this;
+	return *(vec3*)&x;
 }
 
 inline const vec3& vec4::xyz() const
 {
-	return *(const vec3*)this;
+	return *(const vec3*)&x;
 }
 
 inline vec4 vec4::operator*( const vec4& o ) const
