@@ -1,5 +1,12 @@
 #include <slmath/slmath.h>
 #include <stdio.h>
+#include <vector>
+
+struct A
+{
+	int				a;
+	slmath::vec4	x;
+};
 
 // __rdtsc() in <intrin.h>
 // timeGetTime() in <windows.h>/<mmsystem.h>
@@ -209,6 +216,32 @@ int main( int argc, char* argv[] )
 	{
 		printf( "slmath was compiled for CPU features not supported by this platform\n" );
 		return 1;
+	}
+
+	// memory alignment test
+	std::vector<char*> allocs;
+	for ( size_t i = 0 ; i < 100000 ; ++i )
+	{
+		if ( !(i&1) )
+		{
+			char* mem = new char[ rand() % 100 + 1 ];
+			allocs.push_back(mem);
+		}
+		else
+		{
+			A* obj = new A();
+			size_t addr = size_t(obj);
+			assert( (addr&0xF) == 0 );
+		}
+
+		if ( allocs.size() > 100 )
+		{
+			while ( allocs.size() > 0 )
+			{
+				delete[] allocs.back();
+				allocs.pop_back();
+			}
+		}
 	}
 
 	// init s_freqInv
