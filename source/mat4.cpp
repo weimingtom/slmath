@@ -605,40 +605,36 @@ mat4 frameFromNormal( const vec3& z )
 	return m;
 }
 
-mat4 orthoRH( float w, float h, float znear, float zfar )
+/**
+ * Orthonormal projection setup implementation for LH/RH.
+ * @param handedness 1.f for RH, -1.f for LH 
+ */
+static inline mat4 ortho( float w, float h, float znear, float zfar, float sign )
 {
 	assert( w > FLT_MIN );
 	assert( h > FLT_MIN );
 	assert( znear > FLT_MIN );
 	assert( fabsf(znear-zfar) > FLT_MIN );
 
-	const float dz = znear - zfar;
+	const float dz = (znear - zfar) * sign;
 	const float dzi = 1.f/dz;
 
 	mat4 m;
 	m[0] = vec4( 2.f/w, 0, 0, 0 );
 	m[1] = vec4( 0, 2.f/h, 0, 0 );
 	m[2] = vec4( 0, 0, dzi, 0 );
-	m[3] = vec4( 0, 0, znear*dzi, 1.f );
+	m[3] = vec4( 0, 0, znear*dzi * sign, 1.f );
 	return m;
+}
+
+mat4 orthoRH( float w, float h, float znear, float zfar )
+{
+	return ortho( w, h, znear, zfar, 1.f );
 }
 
 mat4 orthoLH( float w, float h, float znear, float zfar )
 {
-	assert( w > FLT_MIN );
-	assert( h > FLT_MIN );
-	assert( znear > FLT_MIN );
-	assert( fabsf(znear-zfar) > FLT_MIN );
-
-	const float dz = zfar - znear;
-	const float dzi = 1.f/dz;
-
-	mat4 m;
-	m[0] = vec4( 2.f/w, 0, 0, 0 );
-	m[1] = vec4( 0, 2.f/h, 0, 0 );
-	m[2] = vec4( 0, 0, dzi, 0 );
-	m[3] = vec4( 0, 0, -znear*dzi, 1.f );
-	return m;
+	return ortho( w, h, znear, zfar, -1.f );
 }
 
 mat4 outerProduct( const vec4& a, const vec4& b )
