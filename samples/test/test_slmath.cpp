@@ -104,6 +104,17 @@ static bool test_mat4( char* testid )
 	v1b = fromToRotation( v0.xyz(), v1.xyz() ) * v0;
 	TEST( distance(v1,v1b) < 1e-5f );
 
+	// determinant
+	random randval( 1234 );
+	mat4 det_m0;
+	for ( size_t i = 0 ; i < 16 ; ++i )
+		det_m0[i/4][i&3] = randomFloat(randval);
+	assert( fabsf(0.021621689f-det(det_m0)) < 1e-12f );
+
+	// inverse
+	const mat4 m = translation( vec3(1.f,2.f,3.f) ) * fromToRotation( normalize(vec3(1.f,2.f,3.f)), normalize(vec3(4.f,1.f,3.f)) );
+	const mat4 im = inverse(m);
+
 	// test: angle-axis
 	mat4 r1( radians(80.f), vec3(1,0,0) );
 	mat4 r1b = rotationX( radians(80.f) );
