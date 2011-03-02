@@ -242,24 +242,24 @@ mat4 inverse( const mat4& m0 )
 
 	mat4 res;
 	res[0][0] = min_a;
-	res[0][1] = -min_b;
-	res[0][2] = min_c;
-	res[0][3] = -min_d;
-	res[1][0] = -DET3(b,c,d,j,k,l,n,o,p);
+	res[1][0] = -min_b;
+	res[2][0] = min_c;
+	res[3][0] = -min_d;
+	res[0][1] = -DET3(b,c,d,j,k,l,n,o,p);
 	res[1][1] = DET3(a,c,d,i,k,l,m,o,p);
-	res[1][2] = -DET3(a,b,d,i,j,l,m,n,p);
-	res[1][3] = DET3(a,b,c,i,j,k,m,n,o);
-	res[2][0] = DET3(b,c,d,f,g,h,n,o,p);
-	res[2][1] = -DET3(a,c,d,e,g,h,m,o,p);
+	res[2][1] = -DET3(a,b,d,i,j,l,m,n,p);
+	res[3][1] = DET3(a,b,c,i,j,k,m,n,o);
+	res[0][2] = DET3(b,c,d,f,g,h,n,o,p);
+	res[1][2] = -DET3(a,c,d,e,g,h,m,o,p);
 	res[2][2] = DET3(a,b,d,e,f,h,m,n,p);
-	res[2][3] = -DET3(a,b,c,e,f,g,m,n,o);
-	res[3][0] = -DET3(b,c,d,f,g,h,j,k,l);
-	res[3][1] = DET3(a,c,d,e,g,h,i,k,l);
-	res[3][2] = -DET3(a,b,d,e,f,h,i,j,l);
+	res[3][2] = -DET3(a,b,c,e,f,g,m,n,o);
+	res[0][3] = -DET3(b,c,d,f,g,h,j,k,l);
+	res[1][3] = DET3(a,c,d,e,g,h,i,k,l);
+	res[2][3] = -DET3(a,b,d,e,f,h,i,j,l);
 	res[3][3] = DET3(a,b,c,e,f,g,i,j,k);
-	return transpose(res) * (1.f/det_m);
+	return res * (1.f/det_m);
 /*
-	res = transpose(res) * (1.f/det_m);
+	res *= (1.f/det_m);
 	mat4 res2;
 	res2[0][0] = m0[1][2]*m0[2][3]*m0[3][1] - m0[1][3]*m0[2][2]*m0[3][1] + m0[1][3]*m0[2][1]*m0[3][2] - m0[1][1]*m0[2][3]*m0[3][2] - m0[1][2]*m0[2][1]*m0[3][3] + m0[1][1]*m0[2][2]*m0[3][3];
 	res2[0][1] = m0[0][3]*m0[2][2]*m0[3][1] - m0[0][2]*m0[2][3]*m0[3][1] - m0[0][3]*m0[2][1]*m0[3][2] + m0[0][1]*m0[2][3]*m0[3][2] + m0[0][2]*m0[2][1]*m0[3][3] - m0[0][1]*m0[2][2]*m0[3][3];
