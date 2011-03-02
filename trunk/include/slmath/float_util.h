@@ -111,18 +111,16 @@ float	degrees( float rad );
  * @param s Width of the kernel. Radius of the kernel is (s-1)/2. s must be at least 1.
  * @param o Standard deviation. Pass in 0.f to use default formula: ((s-1)*0.5 - 1)*0.3 + 0.8.
  * @param kernel [out] Array of size [s] receiving filter weights
- * @param kernelsize Size of the output buffer. Must be at least s*s.
  */
-void	getGaussianBlurKernel1D( int s, float o, float* kernel, size_t kernelsize );
+void	getGaussianBlurKernel1D( int s, float o, float* kernel );
 
 /**
  * Calculates 2D Gaussian blur filter kernel with specified size.
  * @param s Width of the kernel. Radius of the kernel is (s-1)/2. s must be at least 1.
  * @param o Standard deviation. Pass in 0.f to use default formula: ((s-1)*0.5 - 1)*0.3 + 0.8.
  * @param kernel [out] Array of size [s*s] receiving filter weights
- * @param kernelsize Size of the output buffer. Must be at least s*s.
  */
-void	getGaussianBlurKernel2D( int s, float o, float* kernel, size_t kernelsize );
+void	getGaussianBlurKernel2D( int s, float o, float* kernel );
 
 /** 
  * Converts angle from degrees to radians.

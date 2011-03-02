@@ -16,48 +16,19 @@ float smoothstep( float edge0, float edge1, float v )
 	return t*t*(3.f - 2.f*t);
 }
 
-void getGaussianBlurKernel1D( int s, float o, float* kernel, size_t kernelsize )
+static void getGaussianBlurKernel( int s, int rows, float o, float* kernel )
 {
 	assert( s >= 1 );
+	assert( rows >= 1 );
 	assert( o >= 0.f );
-	assert( kernelsize >= size_t(s) ); kernelsize=kernelsize;
 	assert( kernel );
 
 	if ( 0.f == o )
 		o = ((float(s)-1.f)*.5f - 1.f)*.3f + .8f;
-	const int r = (s-1)/2;
+	const int r = (rows-1)/2;
 	float sum = 0.f;
 
-	for ( int i = 0 ; i < s ; ++i )
-	{
-		const float d = fabsf( float(i-r) );
-		const float f = 1.f/(2.506628274631000502415765284811f*o*o) * exp( -d*d/(2.f*o*o) );
-		kernel[i] = f;
-		sum += f;
-	}
-
-	assert( sum > FLT_MIN );
-	if ( sum > FLT_MIN )
-	{
-		const float inv_sum = 1.f/sum;
-		for ( size_t i = 0 ; i < size_t(s) ; ++i )
-			kernel[i] *= inv_sum;
-	}
-}
-
-void getGaussianBlurKernel2D( int s, float o, float* kernel, size_t kernelsize )
-{
-	assert( s >= 1 );
-	assert( o >= 0.f );
-	assert( kernelsize >= size_t(s*s) ); kernelsize=kernelsize;
-	assert( kernel );
-
-	if ( 0.f == o )
-		o = ((float(s)-1.f)*.5f - 1.f)*.3f + .8f;
-	const int r = (s-1)/2;
-	float sum = 0.f;
-
-	for ( int j = 0 ; j < s ; ++j )
+	for ( int j = 0 ; j < rows ; ++j )
 	{
 		const float dy = float(j-r);
 		for ( int i = 0 ; i < s ; ++i )
@@ -73,10 +44,20 @@ void getGaussianBlurKernel2D( int s, float o, float* kernel, size_t kernelsize )
 	if ( sum > FLT_MIN )
 	{
 		const float inv_sum = 1.f/sum;
-		const size_t s2 = s*s;
+		const size_t s2 = s*rows;
 		for ( size_t i = 0 ; i < s2 ; ++i )
 			kernel[i] *= inv_sum;
 	}
+}
+
+void getGaussianBlurKernel1D( int s, float o, float* kernel )
+{
+	getGaussianBlurKernel( s, 1, o, kernel );
+}
+
+void getGaussianBlurKernel2D( int s, float o, float* kernel )
+{
+	getGaussianBlurKernel( s, s, o, kernel );
 }
 
 bool check( const float* v, size_t n )
