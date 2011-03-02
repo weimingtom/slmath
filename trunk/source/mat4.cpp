@@ -1,6 +1,11 @@
 #include <slmath/mat4.h>
 #include <slmath/quat.h>
 
+// for computing matrix minors
+#define DET2(a,b,c,d) ( a*d-b*c )
+#define DET3(a,b,c, d,e,f, g,h,i) ( a*DET2(e,f,h,i) - b*DET2(d,f,g,i) + c*DET2(d,e,g,h) )
+#define DET4(a,b,c,d, e,f,g,h, i,j,k,l, m,n,o,p) ( a*DET3(f,g,h,j,k,l,n,o,p) - b*DET3(e,g,h,i,k,l,m,o,p) + c*DET3(e,f,h,i,j,l,m,n,p) - d*DET3(e,f,g,i,j,k,m,n,o) )
+
 SLMATH_BEGIN()
 
 bool check( const mat4& v )
@@ -197,18 +202,6 @@ mat4 transpose( const mat4& m )
     resp[2] = _mm_shuffle_ps(tmp2, tmp3, 0x88);
     resp[3] = _mm_shuffle_ps(tmp2, tmp3, 0xDD);
 
-#ifdef _DEBUG
-	mat4 ref;
-	for ( size_t j = 0 ; j < 4 ; ++j )
-	{
-		ref[0][j] = m[j][0];
-		ref[1][j] = m[j][1];
-		ref[2][j] = m[j][2];
-		ref[3][j] = m[j][3];
-	}
-	assert( ref == res );
-#endif // _DEBUG
-
 #else
 	
 	for ( size_t j = 0 ; j < 4 ; ++j )
@@ -227,43 +220,69 @@ mat4 transpose( const mat4& m )
 float det( const mat4& m )
 {
 	assert( check(m) );
-	return
-		m[0][3] * m[1][2] * m[2][1] * m[3][0] - m[0][2] * m[1][3] * m[2][1] * m[3][0] - m[0][3] * m[1][1] * m[2][2] * m[3][0]+m[0][1] * m[1][3] * m[2][2] * m[3][0] +
-		m[0][2] * m[1][1] * m[2][3] * m[3][0] - m[0][1] * m[1][2] * m[2][3] * m[3][0] - m[0][3] * m[1][2] * m[2][0] * m[3][1]+m[0][2] * m[1][3] * m[2][0] * m[3][1] +
-		m[0][3] * m[1][0] * m[2][2] * m[3][1] - m[0][0] * m[1][3] * m[2][2] * m[3][1] - m[0][2] * m[1][0] * m[2][3] * m[3][1]+m[0][0] * m[1][2] * m[2][3] * m[3][1] +
-		m[0][3] * m[1][1] * m[2][0] * m[3][2] - m[0][1] * m[1][3] * m[2][0] * m[3][2] - m[0][3] * m[1][0] * m[2][1] * m[3][2]+m[0][0] * m[1][3] * m[2][1] * m[3][2] +
-		m[0][1] * m[1][0] * m[2][3] * m[3][2] - m[0][0] * m[1][1] * m[2][3] * m[3][2] - m[0][2] * m[1][1] * m[2][0] * m[3][3]+m[0][1] * m[1][2] * m[2][0] * m[3][3] +
-		m[0][2] * m[1][0] * m[2][1] * m[3][3] - m[0][0] * m[1][2] * m[2][1] * m[3][3] - m[0][1] * m[1][0] * m[2][2] * m[3][3]+m[0][0] * m[1][1] * m[2][2] * m[3][3];
+	return DET4( m[0][0],m[0][1],m[0][2],m[0][3], m[1][0],m[1][1],m[1][2],m[1][3], m[2][0],m[2][1],m[2][2],m[2][3], m[3][0],m[3][1],m[3][2],m[3][3] );
 }
 
-mat4 inverse( const mat4& m )
+mat4 inverse( const mat4& m0 )
 {
-	assert( check(m) );
+	assert( check(m0) );
+
+	const float* const mp = &m0[0][0];
+	const float a = mp[0];	const float b = mp[1];	const float c = mp[2];	const float d = mp[3];
+	const float e = mp[4];	const float f = mp[5];	const float g = mp[6];	const float h = mp[7];
+	const float i = mp[8];	const float j = mp[9];	const float k = mp[10];	const float l = mp[11];
+	const float m = mp[12];	const float n = mp[13];	const float o = mp[14];	const float p = mp[15];
+	
+	const float min_a = DET3(f,g,h,j,k,l,n,o,p);
+	const float min_b = DET3(e,g,h,i,k,l,m,o,p);
+	const float min_c = DET3(e,f,h,i,j,l,m,n,p);
+	const float min_d = DET3(e,f,g,i,j,k,m,n,o);
+	const float det_m = a*min_a - b*min_b + c*min_c - d*min_d;
+	assert( det_m > FLT_MIN || det_m < -FLT_MIN ); // invertible?
 
 	mat4 res;
-	res[0][0] = m[1][2]*m[2][3]*m[3][1] - m[1][3]*m[2][2]*m[3][1] + m[1][3]*m[2][1]*m[3][2] - m[1][1]*m[2][3]*m[3][2] - m[1][2]*m[2][1]*m[3][3] + m[1][1]*m[2][2]*m[3][3];
-	res[0][1] = m[0][3]*m[2][2]*m[3][1] - m[0][2]*m[2][3]*m[3][1] - m[0][3]*m[2][1]*m[3][2] + m[0][1]*m[2][3]*m[3][2] + m[0][2]*m[2][1]*m[3][3] - m[0][1]*m[2][2]*m[3][3];
-	res[0][2] = m[0][2]*m[1][3]*m[3][1] - m[0][3]*m[1][2]*m[3][1] + m[0][3]*m[1][1]*m[3][2] - m[0][1]*m[1][3]*m[3][2] - m[0][2]*m[1][1]*m[3][3] + m[0][1]*m[1][2]*m[3][3];
-	res[0][3] = m[0][3]*m[1][2]*m[2][1] - m[0][2]*m[1][3]*m[2][1] - m[0][3]*m[1][1]*m[2][2] + m[0][1]*m[1][3]*m[2][2] + m[0][2]*m[1][1]*m[2][3] - m[0][1]*m[1][2]*m[2][3];
-	res[1][0] = m[1][3]*m[2][2]*m[3][0] - m[1][2]*m[2][3]*m[3][0] - m[1][3]*m[2][0]*m[3][2] + m[1][0]*m[2][3]*m[3][2] + m[1][2]*m[2][0]*m[3][3] - m[1][0]*m[2][2]*m[3][3];
-	res[1][1] = m[0][2]*m[2][3]*m[3][0] - m[0][3]*m[2][2]*m[3][0] + m[0][3]*m[2][0]*m[3][2] - m[0][0]*m[2][3]*m[3][2] - m[0][2]*m[2][0]*m[3][3] + m[0][0]*m[2][2]*m[3][3];
-	res[1][2] = m[0][3]*m[1][2]*m[3][0] - m[0][2]*m[1][3]*m[3][0] - m[0][3]*m[1][0]*m[3][2] + m[0][0]*m[1][3]*m[3][2] + m[0][2]*m[1][0]*m[3][3] - m[0][0]*m[1][2]*m[3][3];
-	res[1][3] = m[0][2]*m[1][3]*m[2][0] - m[0][3]*m[1][2]*m[2][0] + m[0][3]*m[1][0]*m[2][2] - m[0][0]*m[1][3]*m[2][2] - m[0][2]*m[1][0]*m[2][3] + m[0][0]*m[1][2]*m[2][3];
-	res[2][0] = m[1][1]*m[2][3]*m[3][0] - m[1][3]*m[2][1]*m[3][0] + m[1][3]*m[2][0]*m[3][1] - m[1][0]*m[2][3]*m[3][1] - m[1][1]*m[2][0]*m[3][3] + m[1][0]*m[2][1]*m[3][3];
-	res[2][1] = m[0][3]*m[2][1]*m[3][0] - m[0][1]*m[2][3]*m[3][0] - m[0][3]*m[2][0]*m[3][1] + m[0][0]*m[2][3]*m[3][1] + m[0][1]*m[2][0]*m[3][3] - m[0][0]*m[2][1]*m[3][3];
-	res[2][2] = m[0][1]*m[1][3]*m[3][0] - m[0][3]*m[1][1]*m[3][0] + m[0][3]*m[1][0]*m[3][1] - m[0][0]*m[1][3]*m[3][1] - m[0][1]*m[1][0]*m[3][3] + m[0][0]*m[1][1]*m[3][3];
-	res[2][3] = m[0][3]*m[1][1]*m[2][0] - m[0][1]*m[1][3]*m[2][0] - m[0][3]*m[1][0]*m[2][1] + m[0][0]*m[1][3]*m[2][1] + m[0][1]*m[1][0]*m[2][3] - m[0][0]*m[1][1]*m[2][3];
-	res[3][0] = m[1][2]*m[2][1]*m[3][0] - m[1][1]*m[2][2]*m[3][0] - m[1][2]*m[2][0]*m[3][1] + m[1][0]*m[2][2]*m[3][1] + m[1][1]*m[2][0]*m[3][2] - m[1][0]*m[2][1]*m[3][2];
-	res[3][1] = m[0][1]*m[2][2]*m[3][0] - m[0][2]*m[2][1]*m[3][0] + m[0][2]*m[2][0]*m[3][1] - m[0][0]*m[2][2]*m[3][1] - m[0][1]*m[2][0]*m[3][2] + m[0][0]*m[2][1]*m[3][2];
-	res[3][2] = m[0][2]*m[1][1]*m[3][0] - m[0][1]*m[1][2]*m[3][0] - m[0][2]*m[1][0]*m[3][1] + m[0][0]*m[1][2]*m[3][1] + m[0][1]*m[1][0]*m[3][2] - m[0][0]*m[1][1]*m[3][2];
-	res[3][3] = m[0][1]*m[1][2]*m[2][0] - m[0][2]*m[1][1]*m[2][0] + m[0][2]*m[1][0]*m[2][1] - m[0][0]*m[1][2]*m[2][1] - m[0][1]*m[1][0]*m[2][2] + m[0][0]*m[1][1]*m[2][2];
-	const float D = det(m);
-	assert( D > FLT_MIN || D < -FLT_MIN );  // not invertible?
-	res *= 1.f/D;
-
-	assert( check(res) );
+	res[0][0] = min_a;
+	res[0][1] = -min_b;
+	res[0][2] = min_c;
+	res[0][3] = -min_d;
+	res[1][0] = -DET3(b,c,d,j,k,l,n,o,p);
+	res[1][1] = DET3(a,c,d,i,k,l,m,o,p);
+	res[1][2] = -DET3(a,b,d,i,j,l,m,n,p);
+	res[1][3] = DET3(a,b,c,i,j,k,m,n,o);
+	res[2][0] = DET3(b,c,d,f,g,h,n,o,p);
+	res[2][1] = -DET3(a,c,d,e,g,h,m,o,p);
+	res[2][2] = DET3(a,b,d,e,f,h,m,n,p);
+	res[2][3] = -DET3(a,b,c,e,f,g,m,n,o);
+	res[3][0] = -DET3(b,c,d,f,g,h,j,k,l);
+	res[3][1] = DET3(a,c,d,e,g,h,i,k,l);
+	res[3][2] = -DET3(a,b,d,e,f,h,i,j,l);
+	res[3][3] = DET3(a,b,c,e,f,g,i,j,k);
+	return transpose(res) * (1.f/det_m);
+/*
+	res = transpose(res) * (1.f/det_m);
+	mat4 res2;
+	res2[0][0] = m0[1][2]*m0[2][3]*m0[3][1] - m0[1][3]*m0[2][2]*m0[3][1] + m0[1][3]*m0[2][1]*m0[3][2] - m0[1][1]*m0[2][3]*m0[3][2] - m0[1][2]*m0[2][1]*m0[3][3] + m0[1][1]*m0[2][2]*m0[3][3];
+	res2[0][1] = m0[0][3]*m0[2][2]*m0[3][1] - m0[0][2]*m0[2][3]*m0[3][1] - m0[0][3]*m0[2][1]*m0[3][2] + m0[0][1]*m0[2][3]*m0[3][2] + m0[0][2]*m0[2][1]*m0[3][3] - m0[0][1]*m0[2][2]*m0[3][3];
+	res2[0][2] = m0[0][2]*m0[1][3]*m0[3][1] - m0[0][3]*m0[1][2]*m0[3][1] + m0[0][3]*m0[1][1]*m0[3][2] - m0[0][1]*m0[1][3]*m0[3][2] - m0[0][2]*m0[1][1]*m0[3][3] + m0[0][1]*m0[1][2]*m0[3][3];
+	res2[0][3] = m0[0][3]*m0[1][2]*m0[2][1] - m0[0][2]*m0[1][3]*m0[2][1] - m0[0][3]*m0[1][1]*m0[2][2] + m0[0][1]*m0[1][3]*m0[2][2] + m0[0][2]*m0[1][1]*m0[2][3] - m0[0][1]*m0[1][2]*m0[2][3];
+	res2[1][0] = m0[1][3]*m0[2][2]*m0[3][0] - m0[1][2]*m0[2][3]*m0[3][0] - m0[1][3]*m0[2][0]*m0[3][2] + m0[1][0]*m0[2][3]*m0[3][2] + m0[1][2]*m0[2][0]*m0[3][3] - m0[1][0]*m0[2][2]*m0[3][3];
+	res2[1][1] = m0[0][2]*m0[2][3]*m0[3][0] - m0[0][3]*m0[2][2]*m0[3][0] + m0[0][3]*m0[2][0]*m0[3][2] - m0[0][0]*m0[2][3]*m0[3][2] - m0[0][2]*m0[2][0]*m0[3][3] + m0[0][0]*m0[2][2]*m0[3][3];
+	res2[1][2] = m0[0][3]*m0[1][2]*m0[3][0] - m0[0][2]*m0[1][3]*m0[3][0] - m0[0][3]*m0[1][0]*m0[3][2] + m0[0][0]*m0[1][3]*m0[3][2] + m0[0][2]*m0[1][0]*m0[3][3] - m0[0][0]*m0[1][2]*m0[3][3];
+	res2[1][3] = m0[0][2]*m0[1][3]*m0[2][0] - m0[0][3]*m0[1][2]*m0[2][0] + m0[0][3]*m0[1][0]*m0[2][2] - m0[0][0]*m0[1][3]*m0[2][2] - m0[0][2]*m0[1][0]*m0[2][3] + m0[0][0]*m0[1][2]*m0[2][3];
+	res2[2][0] = m0[1][1]*m0[2][3]*m0[3][0] - m0[1][3]*m0[2][1]*m0[3][0] + m0[1][3]*m0[2][0]*m0[3][1] - m0[1][0]*m0[2][3]*m0[3][1] - m0[1][1]*m0[2][0]*m0[3][3] + m0[1][0]*m0[2][1]*m0[3][3];
+	res2[2][1] = m0[0][3]*m0[2][1]*m0[3][0] - m0[0][1]*m0[2][3]*m0[3][0] - m0[0][3]*m0[2][0]*m0[3][1] + m0[0][0]*m0[2][3]*m0[3][1] + m0[0][1]*m0[2][0]*m0[3][3] - m0[0][0]*m0[2][1]*m0[3][3];
+	res2[2][2] = m0[0][1]*m0[1][3]*m0[3][0] - m0[0][3]*m0[1][1]*m0[3][0] + m0[0][3]*m0[1][0]*m0[3][1] - m0[0][0]*m0[1][3]*m0[3][1] - m0[0][1]*m0[1][0]*m0[3][3] + m0[0][0]*m0[1][1]*m0[3][3];
+	res2[2][3] = m0[0][3]*m0[1][1]*m0[2][0] - m0[0][1]*m0[1][3]*m0[2][0] - m0[0][3]*m0[1][0]*m0[2][1] + m0[0][0]*m0[1][3]*m0[2][1] + m0[0][1]*m0[1][0]*m0[2][3] - m0[0][0]*m0[1][1]*m0[2][3];
+	res2[3][0] = m0[1][2]*m0[2][1]*m0[3][0] - m0[1][1]*m0[2][2]*m0[3][0] - m0[1][2]*m0[2][0]*m0[3][1] + m0[1][0]*m0[2][2]*m0[3][1] + m0[1][1]*m0[2][0]*m0[3][2] - m0[1][0]*m0[2][1]*m0[3][2];
+	res2[3][1] = m0[0][1]*m0[2][2]*m0[3][0] - m0[0][2]*m0[2][1]*m0[3][0] + m0[0][2]*m0[2][0]*m0[3][1] - m0[0][0]*m0[2][2]*m0[3][1] - m0[0][1]*m0[2][0]*m0[3][2] + m0[0][0]*m0[2][1]*m0[3][2];
+	res2[3][2] = m0[0][2]*m0[1][1]*m0[3][0] - m0[0][1]*m0[1][2]*m0[3][0] - m0[0][2]*m0[1][0]*m0[3][1] + m0[0][0]*m0[1][2]*m0[3][1] + m0[0][1]*m0[1][0]*m0[3][2] - m0[0][0]*m0[1][1]*m0[3][2];
+	res2[3][3] = m0[0][1]*m0[1][2]*m0[2][0] - m0[0][2]*m0[1][1]*m0[2][0] + m0[0][2]*m0[1][0]*m0[2][1] - m0[0][0]*m0[1][2]*m0[2][1] - m0[0][1]*m0[1][0]*m0[2][2] + m0[0][0]*m0[1][1]*m0[2][2];
+	res2 *= 1.f/det_m;
+	mat4 dres = res2-res;
+	float diff = length(dres[0])+length(dres[1])+length(dres[2])+length(dres[3]);
+	assert( diff < 1e-6f );
 	return res;
-	
+*/
 }
 
 mat4::mat4( const quat& q )
@@ -325,44 +344,38 @@ mat4 scaling( float s )
 	return tm;
 }
 
-mat4 perspectiveFovLH( float fovy, float aspect, float znear, float zfar )
-{
-	assert( aspect > 0.001f );
-	assert( fabsf(zfar-znear) > 1e-6f );
-	assert( fovy >= radians(.1f) );
-	assert( fovy <= radians(179.f) );
-
-	float y = cot( fovy * .5f );
-	float x = y / aspect;
-	float zdist = zfar - znear;
-	float zfar_per_zdist = zfar / zdist;
-
-	mat4 m;
-	m[0] = vec4(x,		  0,        0,					   0 );
-	m[1] = vec4(0,        y,        0,					   0 );
-	m[2] = vec4(0,        0,        zfar_per_zdist,        1 );
-	m[3] = vec4(0,        0,        -znear*zfar_per_zdist, 0 );
-	return m;
-}
-
-mat4 perspectiveFovRH( float fovy, float aspect, float znear, float zfar )
+/** 
+ * Perspective projection matrix.
+ * @param handedness 1.f for RH, -1.f for LH 
+ */
+static mat4 perspectiveFov( float fovy, float aspect, float znear, float zfar, float handedness )
 {
 	assert( aspect > 0.001f );
 	assert( fabsf(zfar-znear) > 1e-6f );
 	assert( fovy >= radians(0.1f) );
 	assert( fovy <= radians(179.f) );
 
-	float y = cot( fovy * .5f );
-	float x = y / aspect;
-	float zdist = (znear-zfar);
-	float zfar_per_zdist = zfar / zdist;
+	const float y = cot( fovy * .5f );
+	const float x = y / aspect;
+	const float zdist = (znear-zfar)*handedness;
+	const float zfar_per_zdist = zfar / zdist;
 
 	mat4 m;
-	m[0] = vec4(x,		  0,        0,					   0 );
-	m[1] = vec4(0,        y,        0,					   0 );
-	m[2] = vec4(0,        0,        zfar_per_zdist,       -1 );
-	m[3] = vec4(0,        0,        znear*zfar_per_zdist,  0 );
+	m[0] = vec4(x,		  0,        0,					   		0 );
+	m[1] = vec4(0,        y,        0,					   		0 );
+	m[2] = vec4(0,        0,        zfar_per_zdist,    	   		-1.f*handedness );
+	m[3] = vec4(0,        0,        znear*zfar_per_zdist*handedness,  0 );
 	return m;
+}
+
+mat4 perspectiveFovLH( float fovy, float aspect, float znear, float zfar )
+{
+	return perspectiveFov(fovy,aspect,znear,zfar,-1.f);
+}
+
+mat4 perspectiveFovRH( float fovy, float aspect, float znear, float zfar )
+{
+	return perspectiveFov(fovy,aspect,znear,zfar,1.f);
 }
 
 mat4 rotationX( float a )
