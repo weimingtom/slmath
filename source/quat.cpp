@@ -1,6 +1,7 @@
 #include <slmath/quat.h>
 
 #define UNIT_QUATERNION_EPS 1e-3f
+#define ASSERT_IS_UNIT(Q) assert( fabsf(norm(Q)-1.f) < UNIT_QUATERNION_EPS )
 
 SLMATH_BEGIN()
 
@@ -103,7 +104,7 @@ quat inverse( const quat& q )
 
 quat exp( const quat& q )
 {
-	assert( fabsf(norm(q)-1.f) < UNIT_QUATERNION_EPS ); // normalize(q) before use this function
+	ASSERT_IS_UNIT( q ); // normalize(q) before use this function
 
 	const float a = length( q.xyzw().xyz() );
 	quat r( q.x, q.y, q.z, cosf(a) );
@@ -120,7 +121,7 @@ quat exp( const quat& q )
 
 quat log( const quat& q )
 {
-	assert( fabsf(norm(q)-1.f) < UNIT_QUATERNION_EPS ); // normalize(q) before use this function
+	ASSERT_IS_UNIT( q ); // normalize(q) before use this function
 
 	quat r( q.x, q.y, q.z, 0.f );
 	
@@ -142,7 +143,7 @@ quat log( const quat& q )
 
 quat pow( const quat& q, float n )
 {
-	assert( fabsf(norm(q)-1.f) < UNIT_QUATERNION_EPS ); // normalize(q) before use this function
+	ASSERT_IS_UNIT( q ); // normalize(q) before use this function
 
 	const float a = length( q.xyzw().xyz() );
 	quat r( q.x, q.y, q.z, cosf(a*n) );
@@ -159,8 +160,8 @@ quat pow( const quat& q, float n )
 
 quat slerp( const quat& a, const quat& b, float u )
 {
-	assert( fabsf(norm(a)-1.f) < UNIT_QUATERNION_EPS ); // normalize(a) before use this function
-	assert( fabsf(norm(b)-1.f) < UNIT_QUATERNION_EPS ); // normalize(b) before use this function
+	ASSERT_IS_UNIT( a ); // normalize(q) before use this function
+	ASSERT_IS_UNIT( b ); // normalize(q) before use this function
 
 	const float c = clamp( dot(a,b), -1.f, 1.f );
 	const float angle = acosf(c);
@@ -181,7 +182,7 @@ quat slerp( const quat& a, const quat& b, float u )
 
 void toAngleAxis( const quat& q, float* angle, vec3* axis )
 {
-	assert( fabsf(norm(q)-1.f) < UNIT_QUATERNION_EPS ); // normalize(q) before use this function
+	ASSERT_IS_UNIT( q ); // normalize(q) before use this function
 
 	*angle = 2.f * acosf(q.w);
 	const float s = sqrtf(1.f-q.w*q.w);

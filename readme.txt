@@ -1,4 +1,4 @@
-slmath ver. 1.8.1
+slmath ver. 1.8.2
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -95,6 +95,9 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v1.8.2 (2011-03-02):
+* optimizations and internal refactoring
 
 v1.8.1 (2011-02-10):
 * perspectiveFovLH fixed, [2][2] was + instead of - (thanks to Brad Johnston for finding the bug)

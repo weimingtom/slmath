@@ -41,13 +41,7 @@ vec3 facenormal_ccw( const vec3& v0, const vec3& v1, const vec3& v2 )
 
 vec3 facenormal_cw( const vec3& v0, const vec3& v1, const vec3& v2 )
 {
-	vec3 a( v2.x-v0.x, v2.y-v0.y, v2.z-v0.z );
-	vec3 b( v1.x-v0.x, v1.y-v0.y, v1.z-v0.z );
-	vec3 res( a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x );
-	const float len = length(res);
-	assert( len >= FLT_MIN );
-	res *= 1.f/len;
-	return res;
+	return facenormal_ccw( v0, v2, v1 );
 }
 
 vec3 faceforward( const vec3& n, const vec3& i, const vec3& nref )
