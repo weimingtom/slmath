@@ -109,7 +109,7 @@ void test1()
 				y0 += alpha0 * x0;
 			}
 			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), length(y0) );
+			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), length(y0) );
 		}
 
 #ifdef TEST_XNA
@@ -124,7 +124,7 @@ void test1()
 			}
 			double time1 = tick();
 			XMVECTORF32 res = *(XMVECTORF32*)&XMVector4Length(y0);
-			printf( "  ops (XNAMath) = %.1f (res=%g)\n", opsM(time1,n_reps), res.f[0] );
+			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), res.f[0] );
 		}
 #endif
 
@@ -139,7 +139,7 @@ void test1()
 				y1 += alpha1 * x1;
 			}
 			double time1 = tick();
-			printf( "  ops (Eigen) = %.1f (res=%g)\n", opsM(time1,n_reps), sqrtf(y1.dot(y1)) );
+			printf( "  ops (Eigen) = %.1f (checksum=%g)\n", opsM(time1,n_reps), sqrtf(y1.dot(y1)) );
 		}
 #endif
 	}
@@ -155,7 +155,7 @@ void test2()
 #endif
 
 	printf( "--------------------------------------------------------------\n" );
-	printf( "matrix * matrix * matrix\n--------------------------------------------------------------\n" );
+	printf( "matrix * matrix * matrix\n-------------------------------------------------\n" );
 	for ( int n = 0 ; n < 3 ; ++n )
 	{
 		const mat4 a0 = rotationX( 1.0012345f ) * rotationY( 1.0012345f );
@@ -166,12 +166,12 @@ void test2()
 			for ( size_t i = 0 ; i < n_reps ; ++i )
 			{
 				b0 = a0 * b0 * a0;
-				b0 = transpose(b0);
+				//b0 = transpose(b0);
 				if ( ((i+1) & 255) == 0 )
 					b0 = a0;
 			}
 			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (res=%g)\n", opsM(time0,n_reps), det(b0) );
+			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), det(b0) );
 		}
 
 #ifdef TEST_XNA
@@ -183,12 +183,12 @@ void test2()
 			for ( size_t i = 0 ; i < n_reps ; ++i )
 			{
 				b1 = a1 * b1 * a1;
-				b1 = XMMatrixTranspose(b1);
+				//b1 = XMMatrixTranspose(b1);
 				if ( ((i+1) & 255) == 0 )
 					b1 = a0_;
 			}
 			double time1 = tick();
-			printf( "  ops (XNAMath) = %.1f (res=%g)\n", opsM(time1,n_reps), det4(b1) );
+			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), det4(b1) );
 		}
 #endif
 
@@ -199,12 +199,61 @@ void test2()
 			tick();
 			for ( size_t i = 0 ; i < n_reps ; ++i )
 			{
-				b1 = a1 * b1 * a1;
+				b1 = (a1 * b1 * a1).transpose();
 				if ( ((i+1) & 255) == 0 )
 					b1 = toEigen(a0);
 			}
 			float time1 = tick();
-			printf( "  ops (Eigen) = %.1f (res=%g)\n", opsM(time1,n_reps), det4(b1) );
+			printf( "  ops (Eigen) = %.1f (checksum=%g)\n", opsM(time1,n_reps), det4(b1) );
+		}
+#endif
+	}
+}
+
+// inverse(matrix)
+void test3()
+{
+#ifdef _DEBUG
+	const size_t n_reps = 1000;
+#else
+	const size_t n_reps = 10000;
+#endif
+
+	printf( "--------------------------------------------------------------\n" );
+	printf( "inverse(matrix)\n--------------------------------------------------------------\n" );
+	for ( int n = 0 ; n < 3 ; ++n )
+	{
+		const mat4 a0 = rotationX( 1.0012345f ) * rotationY( 1.0012345f );
+		float sumx;
+
+		{
+			mat4 b0 = a0;
+			sumx = 0.f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				b0 = inverse(a0);
+				sumx += b0[0][0];
+			}
+			double time0 = tick();
+			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), sumx );
+		}
+
+#ifdef TEST_XNA
+		{
+			XMMATRIX a0_ = toXNA(a0);
+			XMMATRIX a1 = a0_;
+			XMMATRIX b1 = a0_;
+			sumx = 0.f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				XMVECTOR det;
+				b1 = XMMatrixInverse(&det,b1);
+				sumx += b1.m[0][0];
+			}
+			double time1 = tick();
+			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), sumx );
 		}
 #endif
 	}
@@ -266,6 +315,7 @@ int main( int argc, char* argv[] )
 	}
 	s_freqInv = secs / (now()-freq0);
 
+	test3();
 	test1();
 	test2();
 	return 0;
