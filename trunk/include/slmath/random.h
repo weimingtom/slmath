@@ -14,7 +14,7 @@ SLMATH_BEGIN()
 /*@{*/
 
 /**
- * Random number seed value. Generator based on Mersenne Twister.
+ * Random number value. Generator based on Mersenne Twister.
  *
  * Note naming convention: This class is starting with small r since 
  * it is not initialized to any specific value by the default constructor.

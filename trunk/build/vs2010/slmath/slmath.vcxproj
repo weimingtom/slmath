@@ -37,7 +37,6 @@
     <ClInclude Include="..\..\..\include\slmath\mtrnd.h" />
     <ClInclude Include="..\..\..\include\slmath\quat.h" />
     <ClInclude Include="..\..\..\include\slmath\random.h" />
-    <ClInclude Include="..\..\..\include\slmath\random_util.h" />
     <ClInclude Include="..\..\..\include\slmath\runtime_checks.h" />
     <ClInclude Include="..\..\..\include\slmath\simd.h" />
     <ClInclude Include="..\..\..\include\slmath\slmath.h" />

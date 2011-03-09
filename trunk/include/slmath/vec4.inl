@@ -1,11 +1,5 @@
 inline vec4::vec4()
 {
-#if 0
-#ifdef _DEBUG
-	const int nan = -1;
-	w = z = y = x = *(const float*)&nan;
-#endif
-#endif
 }
 
 inline vec4::vec4( float v )
@@ -312,6 +306,9 @@ inline vec4 saturate( const vec4& v )
 
 inline bool check( const vec4& v )
 {
+#ifdef SLMATH_SIMD
+	assert( 0 == (reinterpret_cast<size_t>(&v.x)&0xF) ); // 16B aligned?
+#endif
 	return vecCheck( v );
 }
 
