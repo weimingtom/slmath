@@ -210,6 +210,43 @@ void test2()
 	}
 }
 
+void testMemAlign()
+{
+	// memory alignment test
+	std::vector<char*> allocs;
+	std::vector<A*> allocs2;
+	const size_t repcount = 100000;
+	for ( size_t i = 0 ; i < repcount ; ++i )
+	{
+		if ( !(i&1) )
+		{
+			char* mem = new char[ 100 + (rand() % 100 + 1) ];
+			allocs.push_back(mem);
+		}
+		else
+		{
+			A* obj = new A();
+			allocs2.push_back(obj);
+			obj->x = vec4(1.f,2.f,3.f,4.f);
+			obj->x *= 2.f;
+		}
+
+		if ( allocs.size() > 100 || i+1 == repcount )
+		{
+			while ( allocs.size() > 0 )
+			{
+				delete[] allocs.back();
+				allocs.pop_back();
+			}
+			while ( allocs2.size() > 0 )
+			{
+				delete allocs2.back();
+				allocs2.pop_back();
+			}
+		}
+	}
+}
+
 int main( int argc, char* argv[] )
 {
 	if ( !isValidCPU() )
@@ -218,31 +255,7 @@ int main( int argc, char* argv[] )
 		return 1;
 	}
 
-	// memory alignment test
-	std::vector<char*> allocs;
-	for ( size_t i = 0 ; i < 100000 ; ++i )
-	{
-		if ( !(i&1) )
-		{
-			char* mem = new char[ rand() % 100 + 1 ];
-			allocs.push_back(mem);
-		}
-		else
-		{
-			A* obj = new A();
-			size_t addr = size_t(obj);
-			assert( (addr&0xF) == 0 );
-		}
-
-		if ( allocs.size() > 100 )
-		{
-			while ( allocs.size() > 0 )
-			{
-				delete[] allocs.back();
-				allocs.pop_back();
-			}
-		}
-	}
+	testMemAlign();
 
 	// init s_freqInv
 	uint64_t freq0 = now();

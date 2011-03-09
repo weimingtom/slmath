@@ -379,10 +379,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\random_util.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\include\slmath\runtime_checks.h"
 				>
 			</File>

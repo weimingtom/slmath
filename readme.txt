@@ -1,4 +1,4 @@
-slmath ver. 1.8.2
+slmath ver. 1.8.3
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -95,6 +95,9 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v1.8.3 (2011-03-09):
+* 4-vectors and matrices check 16-byte alignment in SIMD + _DEBUG build 
 
 v1.8.2 (2011-03-02):
 * optimizations and internal refactoring

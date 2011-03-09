@@ -10,12 +10,7 @@ SLMATH_BEGIN()
 
 bool check( const mat4& v )
 {
-	for ( size_t i = 0 ; i < 4 ; ++i )
-	{
-		if ( !check(v[i]) )
-			return false;
-	}
-	return true;
+	return check( &v[0][0], 4*4 );
 }
 
 mat4::mat4( float d )
