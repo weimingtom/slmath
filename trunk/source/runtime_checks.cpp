@@ -57,4 +57,12 @@ bool isSSE2CPU()
 #endif
 }
 
+bool isValidCPU()
+{
+#ifdef SLMATH_SSE2_MSVC
+	return isSSE2CPU();
+#endif
+	return true;
+}
+
 SLMATH_END()
