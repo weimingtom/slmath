@@ -1,6 +1,27 @@
 #include <slmath/slmath.h>
 #include <stdio.h>
 #include <vector>
+#include <new>
+
+void* __cdecl operator new( size_t count )
+{
+	return _aligned_malloc( count, 16 );
+}
+
+void* __cdecl operator new[]( size_t count )
+{
+	return _aligned_malloc( count, 16 );
+}
+
+void __cdecl operator delete( void* p )
+{
+	return _aligned_free( p );
+}
+
+void __cdecl operator delete[]( void* p )
+{
+	return _aligned_free( p );
+}
 
 struct A
 {
@@ -99,19 +120,6 @@ void test1()
 	printf( "vector += scalar * vector\n--------------------------------------------------------------\n" );
 	for ( int n = 0 ; n < 3 ; ++n )
 	{
-		{
-			vec4 y0 = vec4(0);
-			const vec4 x0 = vec4(1.0012345f);
-			const float alpha0 = 1.000001f;
-			tick();
-			for ( size_t i = 0 ; i < n_reps ; ++i )
-			{
-				y0 += alpha0 * x0;
-			}
-			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), length(y0) );
-		}
-
 #ifdef TEST_XNA
 		{
 			XMVECTOR y0 = toXNA( vec4(0) );
@@ -127,6 +135,19 @@ void test1()
 			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), res.f[0] );
 		}
 #endif
+
+		{
+			vec4 y0 = vec4(0);
+			const vec4 x0 = vec4(1.0012345f);
+			const float alpha0 = 1.000001f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				y0 += alpha0 * x0;
+			}
+			double time0 = tick();
+			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), length(y0) );
+		}
 
 #ifdef TEST_EIGEN
 		{
@@ -159,20 +180,6 @@ void test2()
 	for ( int n = 0 ; n < 3 ; ++n )
 	{
 		const mat4 a0 = rotationX( 1.0012345f ) * rotationY( 1.0012345f );
-		
-		{
-			mat4 b0 = a0;
-			tick();
-			for ( size_t i = 0 ; i < n_reps ; ++i )
-			{
-				b0 = a0 * b0 * a0;
-				//b0 = transpose(b0);
-				if ( ((i+1) & 255) == 0 )
-					b0 = a0;
-			}
-			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), det(b0) );
-		}
 
 #ifdef TEST_XNA
 		{
@@ -191,6 +198,20 @@ void test2()
 			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), det4(b1) );
 		}
 #endif
+
+		{
+			mat4 b0 = a0;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				b0 = a0 * b0 * a0;
+				//b0 = transpose(b0);
+				if ( ((i+1) & 255) == 0 )
+					b0 = a0;
+			}
+			double time0 = tick();
+			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), det(b0) );
+		}
 
 #ifdef TEST_EIGEN
 		{
@@ -226,6 +247,24 @@ void test3()
 		const mat4 a0 = rotationX( 1.0012345f ) * rotationY( 1.0012345f );
 		float sumx;
 
+#ifdef TEST_XNA
+		{
+			XMMATRIX a0_ = toXNA(a0);
+			XMMATRIX a1 = a0_;
+			XMMATRIX b1 = a0_;
+			sumx = 0.f;
+			tick();
+			for ( size_t i = 0 ; i < n_reps ; ++i )
+			{
+				XMVECTOR det;
+				b1 = XMMatrixInverse(&det,a0_);
+				sumx += b1.m[0][0];
+			}
+			double time1 = tick();
+			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), sumx );
+		}
+#endif
+
 		{
 			mat4 b0 = a0;
 			sumx = 0.f;
@@ -238,24 +277,6 @@ void test3()
 			double time0 = tick();
 			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), sumx );
 		}
-
-#ifdef TEST_XNA
-		{
-			XMMATRIX a0_ = toXNA(a0);
-			XMMATRIX a1 = a0_;
-			XMMATRIX b1 = a0_;
-			sumx = 0.f;
-			tick();
-			for ( size_t i = 0 ; i < n_reps ; ++i )
-			{
-				XMVECTOR det;
-				b1 = XMMatrixInverse(&det,b1);
-				sumx += b1.m[0][0];
-			}
-			double time1 = tick();
-			printf( "  ops (XNAMath) = %.1f (checksum=%g)\n", opsM(time1,n_reps), sumx );
-		}
-#endif
 	}
 }
 
@@ -278,6 +299,7 @@ void testMemAlign()
 			allocs2.push_back(obj);
 			obj->x = vec4(1.f,2.f,3.f,4.f);
 			obj->x *= 2.f;
+			obj = obj;
 		}
 
 		if ( allocs.size() > 100 || i+1 == repcount )
@@ -315,9 +337,9 @@ int main( int argc, char* argv[] )
 	}
 	s_freqInv = secs / (now()-freq0);
 
-	test3();
 	test1();
 	test2();
+	//test3();
 	return 0;
 }
 
