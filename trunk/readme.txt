@@ -86,6 +86,33 @@ After that you can use the library, for example, by including in your code
 #include <slmath/vec2.h>
 
 
+Using SIMD on 32-bit builds (x86)
+----------------------------------
+
+32-bit C-runtime libs of Visual Studio don't guarantee memory alignment on 16-byte boundary in heap alloocation,
+so you need to align it yourself and use following as replacements for new/deletes:
+
+void* __cdecl operator new( size_t count )
+{
+    return _aligned_malloc( count, 16 );
+}
+
+void* __cdecl operator new[]( size_t count )
+{
+    return _aligned_malloc( count, 16 );
+}
+
+void __cdecl operator delete( void* p )
+{
+    return _aligned_free( p );
+}
+
+void __cdecl operator delete[]( void* p )
+{
+    return _aligned_free( p );
+}
+
+
 Version Control (Subversion)
 ---------------------------
 
