@@ -11,6 +11,12 @@
 #undef SLMATH_SUB_PS
 #undef SLMATH_LOAD_PS1
 
+#if (_MSC_VER >= 1300)
+	#define SLMATH_ALIGN16 __declspec(align(16))
+#else
+	#define SLMATH_ALIGN16
+#endif
+
 #if defined(SLMATH_SSE2_MSVC)
 	#include <xmmintrin.h>
 
@@ -18,7 +24,6 @@
 		typedef __m128 m128_t;
 	SLMATH_END()
 
-	#define SLMATH_ALIGN16 __declspec(align(16))
 	#define SLMATH_MUL_PS(A,B) _mm_mul_ps(A,B)
 	#define SLMATH_ADD_PS(A,B) _mm_add_ps(A,B)
 	#define SLMATH_SUB_PS(A,B) _mm_sub_ps(A,B)
@@ -32,17 +37,17 @@
 	#undef SLMATH_SIMD
 
 	SLMATH_BEGIN()
-		typedef struct m128_emu
+		SLMATH_ALIGN16 struct m128_emu
 		{
 			float m[4]; 
 			
 			m128_emu() {} 
 			m128_emu(float x) {m[0]=m[1]=m[2]=m[3]=x;} 
 			m128_emu(float x,float y,float z,float w) {m[0]=x;m[1]=y;m[2]=z;m[3]=w;} 
-		} m128_t;
+		};
+		typedef m128_emu m128_t;
 	SLMATH_END()
 
-	#define SLMATH_ALIGN16
 	#define SLMATH_MUL_PS(A,B) SLMATH_NS(m128_emu)( (A).m[0]*(B).m[0], (A).m[1]*(B).m[1], (A).m[2]*(B).m[2], (A).m[3]*(B).m[3] )
 	#define SLMATH_ADD_PS(A,B) SLMATH_NS(m128_emu)( (A).m[0]+(B).m[0], (A).m[1]+(B).m[1], (A).m[2]+(B).m[2], (A).m[3]+(B).m[3] )
 	#define SLMATH_SUB_PS(A,B) SLMATH_NS(m128_emu)( (A).m[0]-(B).m[0], (A).m[1]-(B).m[1], (A).m[2]-(B).m[2], (A).m[3]-(B).m[3] )

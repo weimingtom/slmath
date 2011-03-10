@@ -1,5 +1,20 @@
 #include <slmath/runtime_checks.h>
 
+// print some info messages about build settings
+#ifdef SLMATH_SSE2_MSVC
+	#pragma message( "slmath: Using SSE2 SIMD instructions" )
+#else
+	#pragma message( "slmath: Not SSE2 SIMD instructions" )
+#endif
+#ifdef SLMATH_MSVC_HAS_INTRIN_H
+	#pragma message( "slmath: Using <intrin.h>" )
+#else
+	#pragma message( "slmath: Not using <intrin.h>" )
+#endif
+#if (defined(SLMATH_MSVC_HAS_INTRIN_H) || defined(SLMATH_SSE2_MSVC)) && !defined(_M_X64)
+	#pragma message( "slmath: WARNING: 32-bit build, remember to use _aligned_malloc / _aligned_free" )
+#endif
+
 #ifdef SLMATH_SSE2_MSVC
 #ifdef SLMATH_MSVC_HAS_INTRIN_H
 #include <intrin.h>

@@ -29,16 +29,15 @@
 
 // Verify requested configuration for this build:
 // SSE2 extensions supported for Visual Studio 2005 and newer
-// (we *should* check CPU type at runtime also but we ignore it for now)
-#if (_MSC_VER >= 1500)
-	#if defined(SLMATH_SIMD) && (defined(_M_X64) || _M_IX86_FP >= 2)
+#if defined(SLMATH_SIMD)
+	#if (_MSC_VER >= 1500)
 		#define SLMATH_SSE2_MSVC
 		#define SLMATH_MSVC_HAS_INTRIN_H
+	#elif (_MSC_VER >= 1300)
+		// Enable SSE2 in Visual Studio 2003
+		// <intrin.h> is not available.
+		#define SLMATH_SSE2_MSVC
 	#endif
-#elif (_MSC_VER >= 1300)
-	// Enable SSE2 in Visual Studio 2003
-	// <intrin.h> is not available.
-	#define SLMATH_SSE2_MSVC
 #endif
 
 // Auto-link library on MSVC
