@@ -24,7 +24,10 @@ SLMATH_BEGIN()
  */
 template <class T> inline bool vecCheck( const T& v )
 {
-	return check( &v.x, T::SIZE );
+	for ( size_t i = 0 ; i < T::SIZE ; ++i )
+		if ( !check(v[i]) )
+			return false;
+	return true;
 }
 
 /*

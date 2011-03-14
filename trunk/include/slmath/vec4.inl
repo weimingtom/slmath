@@ -35,14 +35,7 @@ inline vec4& vec4::operator+=( const vec4& o )
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_ADD_PS( m128(), o.m128() );
-#else
-	x += o.x;
-	y += o.y;
-	z += o.z;
-	w += o.w;
-#endif
 	return *this;
 }
 
@@ -50,14 +43,7 @@ inline vec4& vec4::operator-=( const vec4& o )
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_SUB_PS( m128(), o.m128() );
-#else
-	x -= o.x;
-	y -= o.y;
-	z -= o.z;
-	w -= o.w;
-#endif
 	return *this;
 }
 
@@ -65,14 +51,7 @@ inline vec4& vec4::operator*=( float s )
 {
 	assert( check(s) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_MUL_PS( m128(), SLMATH_LOAD_PS1(&s) );
-#else
-	x *= s;
-	y *= s;
-	z *= s;
-	w *= s;
-#endif
 	return *this;
 }
 
@@ -80,14 +59,7 @@ inline vec4& vec4::operator*=( const vec4& o )
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_MUL_PS( m128(), o.m128() );
-#else
-	x *= o.x;
-	y *= o.y;
-	z *= o.z;
-	w *= o.w;
-#endif
 	return *this;
 }
 
@@ -99,14 +71,7 @@ inline vec4& vec4::operator/=( const vec4& o )
 	assert( fabsf(o.y) > FLT_MIN );
 	assert( fabsf(o.z) > FLT_MIN );
 	assert( fabsf(o.w) > FLT_MIN );
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_DIV_PS( m128(), o.m128() );
-#else
-	x /= o.x;
-	y /= o.y;
-	z /= o.z;
-	w /= o.w;
-#endif
 	return *this;
 }
 
@@ -115,11 +80,7 @@ inline vec4& vec4::operator/=( float s )
 	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
 	
 	const float invs = 1.f/s;
-#ifdef SLMATH_SIMD
 	m128() = SLMATH_MUL_PS( m128(), SLMATH_LOAD_PS1(&invs) );
-#else
-	*this *= invs;
-#endif
 	return *this;
 }
 
@@ -153,11 +114,7 @@ inline vec4 vec4::operator*( const vec4& o ) const
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_MUL_PS( m128(), o.m128() ) );
-#else
-	return vec4(x*o.x,y*o.y,z*o.z,w*o.w);
-#endif
 }
 
 inline vec4 vec4::operator/( const vec4& o ) const
@@ -168,54 +125,34 @@ inline vec4 vec4::operator/( const vec4& o ) const
 	assert( fabsf(o.y) > FLT_MIN );
 	assert( fabsf(o.z) > FLT_MIN );
 	assert( fabsf(o.w) > FLT_MIN );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_DIV_PS( m128(), o.m128() ) );
-#else
-	return vec4(x/o.x,y/o.y,z/o.z,w/o.w);
-#endif
 }
 
 inline vec4 vec4::operator+( const vec4& o ) const
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_ADD_PS( m128(), o.m128() ) );
-#else
-	return vec4(x+o.x,y+o.y,z+o.z,w+o.w);
-#endif
 }
 
 inline vec4 vec4::operator-( const vec4& o ) const
 {
 	assert( check(o) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_SUB_PS( m128(), o.m128() ) );
-#else
-	return vec4(x-o.x,y-o.y,z-o.z,w-o.w);
-#endif
 }
 
 inline vec4 vec4::operator-() const
 {
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_SUB_PS( SLMATH_SETZERO_PS(), m128() ) );
-#else
-	return vec4(-x,-y,-z,-w);
-#endif
 }
 
 inline vec4 vec4::operator*( float s ) const
 {
 	assert( check(s) );
 	assert( check(*this) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_MUL_PS( m128(), SLMATH_LOAD_PS1(&s) ) );
-#else
-	return vec4(x*s,y*s,z*s,w*s);
-#endif
 }
 
 inline const float& vec4::operator[]( size_t i ) const
@@ -241,11 +178,7 @@ inline vec4 operator*( float s, const vec4& v )
 {
 	assert( check(s) );
 	assert( check(v) );
-#ifdef SLMATH_SIMD
 	return vec4( SLMATH_MUL_PS( SLMATH_LOAD_PS1(&s), v.m128() ) );
-#else
-	return vec4(v.x*s,v.y*s,v.z*s,v.w*s);
-#endif
 }
 
 inline float length( const vec4& v )
