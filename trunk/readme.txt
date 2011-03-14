@@ -59,28 +59,14 @@ So it should be easy to port to almost any platform. It can be compiled even
 on a platform which doesn't support namespaces (e.g. BREW).
 
 
-Install (Visual Studio)
------------------------
+Install/usage 
+--------------
 
-1) Install library e.g. to "c:\slmath"
+There is no external dependencies so as long as the headers are found and cpps compiled, everything should be fine.
+Personally, I prefer using SLMATH environment variable pointing to the SLMATH directory, so I can just use 
+that as reference in Visual Studio project settings $(SLMATH)\include.
 
-2) Define SLMATH environment variable to point to c:\slmath
-   (Windows: My Computer -> Properties -> Advanced -> Environment Variables)
-   Restart Visual Studio.
-
-3) Start slmath\build\vs2008\slmath\slmath.sln and build all libraries
-
-4) Add "$(SLMATH)\include\" directory to your #include path: 
-  Can be done from menu Tools -> Projects and Solutions -> VC++ Directories -> 
-  Show directories for -> Include files. Then add "$(SLMATH)\include\" to the list.
-
-
-Usage in your project (Visual Studio)
--------------------------------------
-
-0) See Install first
-
-1) Add the slmath project file to your Solution, e.g. from "c:\slmath\build\vs2008\slmath\slmath.vcproj"
+Then you just add the slmath project file to your Solution, e.g. from "c:\slmath\build\vs2008\slmath\slmath.vcproj"
 
 After that you can use the library, for example, by including in your code 
 #include <slmath/vec2.h>
