@@ -2,19 +2,15 @@
 #define SLMATH_CONFIGURE_H
 
 /** Enable SIMD extensions (if supported by this platform) */
-#ifdef _M_X64
+#if defined(_M_X64) || (_M_IX86_FP == 2)
 #define SLMATH_SIMD
 #endif
 
-/** Enable namespace support, everything placed inside slmath namespace */
+/** Enable namespace support, everything placed inside 'slm' namespace */
 #define SLMATH_NAMESPACE
 
-/** 
- * Enable Lua scripting support. 
- * Requires: lua.h found on INCLUDE path.
- * @see luaopen_slmath
- */
-//#define SLMATH_LUA_SUPPORT
+/** Uncomment this if you wish to use old slmath namespace instead of slm */
+//#define slmath slm
 
 #endif // SLMATH_CONFIGURE_H
 
