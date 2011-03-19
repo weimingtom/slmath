@@ -113,6 +113,7 @@ v2.0.0 (2011-03-19):
 * simplified naming conventions: slmath -> slm
 * include e.g. <slm/vec3.h>
 * namespace is slm
+* immigration guide to 2.0 included
 
 v1.8.5 (2011-03-14):
 * cleaned up install instructions

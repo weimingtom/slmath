@@ -9,5 +9,5 @@ build/vs2010/slmath/slmath.sln
 build/vs2010/slmath/slmath.vcxproj
 documentation/doxygen.project
 documentation/slmath.chm
-include/slmath/*
+include/slm/*
 source/*
