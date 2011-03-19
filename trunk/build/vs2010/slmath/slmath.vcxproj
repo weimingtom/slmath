@@ -31,31 +31,31 @@
     <ClCompile Include="..\..\..\source\vec4.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\slmath\float_util.h" />
-    <ClInclude Include="..\..\..\include\slmath\intersect_util.h" />
-    <ClInclude Include="..\..\..\include\slmath\mat4.h" />
-    <ClInclude Include="..\..\..\include\slmath\mtrnd.h" />
-    <ClInclude Include="..\..\..\include\slmath\quat.h" />
-    <ClInclude Include="..\..\..\include\slmath\random.h" />
-    <ClInclude Include="..\..\..\include\slmath\runtime_checks.h" />
-    <ClInclude Include="..\..\..\include\slmath\simd.h" />
-    <ClInclude Include="..\..\..\include\slmath\slmath.h" />
-    <ClInclude Include="..\..\..\include\slmath\slmath_configure.h" />
-    <ClInclude Include="..\..\..\include\slmath\slmath_pp.h" />
-    <ClInclude Include="..\..\..\include\slmath\vec2.h" />
-    <ClInclude Include="..\..\..\include\slmath\vec3.h" />
-    <ClInclude Include="..\..\..\include\slmath\vec4.h" />
-    <ClInclude Include="..\..\..\include\slmath\vec_impl.h" />
+    <ClInclude Include="..\..\..\include\slm\float_util.h" />
+    <ClInclude Include="..\..\..\include\slm\intersect_util.h" />
+    <ClInclude Include="..\..\..\include\slm\mat4.h" />
+    <ClInclude Include="..\..\..\include\slm\mtrnd.h" />
+    <ClInclude Include="..\..\..\include\slm\quat.h" />
+    <ClInclude Include="..\..\..\include\slm\random.h" />
+    <ClInclude Include="..\..\..\include\slm\runtime_checks.h" />
+    <ClInclude Include="..\..\..\include\slm\simd.h" />
+    <ClInclude Include="..\..\..\include\slm\slmath.h" />
+    <ClInclude Include="..\..\..\include\slm\slmath_configure.h" />
+    <ClInclude Include="..\..\..\include\slm\slmath_pp.h" />
+    <ClInclude Include="..\..\..\include\slm\vec2.h" />
+    <ClInclude Include="..\..\..\include\slm\vec3.h" />
+    <ClInclude Include="..\..\..\include\slm\vec4.h" />
+    <ClInclude Include="..\..\..\include\slm\vec_impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\include\slmath\float_util.inl" />
-    <None Include="..\..\..\include\slmath\mat4.inl" />
-    <None Include="..\..\..\include\slmath\quat.inl" />
-    <None Include="..\..\..\include\slmath\random.inl" />
-    <None Include="..\..\..\include\slmath\runtime_checks.inl" />
-    <None Include="..\..\..\include\slmath\vec2.inl" />
-    <None Include="..\..\..\include\slmath\vec3.inl" />
-    <None Include="..\..\..\include\slmath\vec4.inl" />
+    <None Include="..\..\..\include\slm\float_util.inl" />
+    <None Include="..\..\..\include\slm\mat4.inl" />
+    <None Include="..\..\..\include\slm\quat.inl" />
+    <None Include="..\..\..\include\slm\random.inl" />
+    <None Include="..\..\..\include\slm\runtime_checks.inl" />
+    <None Include="..\..\..\include\slm\vec2.inl" />
+    <None Include="..\..\..\include\slm\vec3.inl" />
+    <None Include="..\..\..\include\slm\vec4.inl" />
     <None Include="..\..\..\readme.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
