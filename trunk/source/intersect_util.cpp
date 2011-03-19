@@ -1,4 +1,4 @@
-#include <slmath/intersect_util.h>
+#include <slm/intersect_util.h>
 
 SLMATH_BEGIN()
 

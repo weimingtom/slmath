@@ -1,4 +1,4 @@
-#include <slmath/runtime_checks.h>
+#include <slm/runtime_checks.h>
 
 // print some info messages about build settings
 #ifdef SLMATH_SSE2_MSVC
@@ -61,8 +61,9 @@ bool isValidCPU()
 {
 #ifdef SLMATH_SSE2_MSVC
 	return isSSE2CPU();
-#endif
+#else
 	return true;
+#endif
 }
 
 SLMATH_END()

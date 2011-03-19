@@ -1,7 +1,7 @@
 #ifndef SLMATH_VEC4_H
 #define SLMATH_VEC4_H
 
-#include <slmath/vec3.h>
+#include <slm/vec3.h>
 
 SLMATH_BEGIN()
 
@@ -70,7 +70,7 @@ public:
 	 * @param v0 The vector XYZ-components (0-3)
 	 * @param w0 The vector W-component (3)
 	 */
-	vec4( const slmath::vec3& v0, float w0 );
+	vec4( const vec3& v0, float w0 );
 
 #ifndef SWIG
 	/**
@@ -83,10 +83,10 @@ public:
 	void		set( float x0, float y0, float z0, float w0 );
 
 	/** Component wise addition. */
-	vec4&		operator+=( const slmath::vec4& o );
+	vec4&		operator+=( const vec4& o );
 
 	/** Component wise subtraction. */
-	vec4&		operator-=( const slmath::vec4& o );
+	vec4&		operator-=( const vec4& o );
 
 	/** Component wise scalar multiplication. */
 	vec4&		operator*=( float s );
@@ -95,10 +95,10 @@ public:
 	vec4&		operator/=( float s );
 
 	/** Component wise multiplication. */
-	vec4&		operator*=( const slmath::vec4& o );
+	vec4&		operator*=( const vec4& o );
 
 	/** Component wise division. */
-	vec4&		operator/=( const slmath::vec4& o );
+	vec4&		operator/=( const vec4& o );
 
 	/** Returns component at specified index. */
 	float&		operator[]( size_t i );
@@ -112,16 +112,16 @@ public:
 #endif
 
 	/** Component wise multiplication. */
-	vec4		operator*( const slmath::vec4& o ) const;
+	vec4		operator*( const vec4& o ) const;
 
 	/** Component wise division. */
-	vec4		operator/( const slmath::vec4& o ) const;
+	vec4		operator/( const vec4& o ) const;
 
 	/** Component wise addition. */
-	vec4		operator+( const slmath::vec4& o ) const;
+	vec4		operator+( const vec4& o ) const;
 
 	/** Component wise subtraction. */
-	vec4		operator-( const slmath::vec4& o ) const;
+	vec4		operator-( const vec4& o ) const;
 
 	/** Component wise subtraction. */
 	vec4		operator-() const;
@@ -136,13 +136,13 @@ public:
 	const float& operator[]( size_t i ) const;
 
 	/** Returns true if vectors are bitwise equal. */
-	bool		operator==( const slmath::vec4& o ) const;
+	bool		operator==( const vec4& o ) const;
 
 	/** Returns true if vectors are bitwise inequal. */
-	bool		operator!=( const slmath::vec4& o ) const;
+	bool		operator!=( const vec4& o ) const;
 
 	/** Returns sub-vector. */
-	const slmath::vec3&	xyz() const;
+	const vec3&	xyz() const;
 
 #ifndef SWIG
 	/** Returns 128bit scalar type. Internal use only. */
@@ -155,13 +155,13 @@ public:
  * Component wise scalar multiplication. 
  * @ingroup vec_util
  */
-vec4			operator*( float s, const slmath::vec4& v );
+vec4			operator*( float s, const vec4& v );
 
 /** 
  * Returns length of the vector. 
  * @ingroup vec_util
  */
-float			length( const slmath::vec4& v );
+float			length( const vec4& v );
 
 /** 
  * Returns dot product (inner product) of two vectors. 
@@ -170,31 +170,31 @@ float			length( const slmath::vec4& v );
  * @return a dot b
  * @ingroup vec_util
  */
-float			dot( const slmath::vec4& a, const slmath::vec4& b );
+float			dot( const vec4& a, const vec4& b );
 
 /** 
  * Returns the vector normalized to unit (1) length.
  * @ingroup vec_util
  */
-vec4			normalize( const slmath::vec4& v );
+vec4			normalize( const vec4& v );
 
 /**
  * Returns component wise maximum of two vectors.
  * @ingroup vec_util
  */
-vec4			max( const slmath::vec4& a, const slmath::vec4& b );
+vec4			max( const vec4& a, const vec4& b );
 
 /**
  * Returns component wise minimum of two vectors.
  * @ingroup vec_util
  */
-vec4			min( const slmath::vec4& a, const slmath::vec4& b );
+vec4			min( const vec4& a, const vec4& b );
 
 /**
  * Returns component wise absolute of the vector.
  * @ingroup vec_util
  */
-vec4			abs( const slmath::vec4& v );
+vec4			abs( const vec4& v );
 
 /** 
  * Returns linear blend between two values. Formula is x*(1-a)+y*a.
@@ -204,7 +204,7 @@ vec4			abs( const slmath::vec4& v );
  * @return x*(1-a)+y*a
  * @ingroup vec_util
  */
-slmath::vec4	mix( const slmath::vec4& x, const slmath::vec4& y, float a );
+vec4	mix( const vec4& x, const vec4& y, float a );
 
 /** 
  * Returns distance between two values. 
@@ -213,57 +213,57 @@ slmath::vec4	mix( const slmath::vec4& x, const slmath::vec4& y, float a );
  * @return Distance between p0 and p1, i.e. length(p1-p0).
  * @ingroup vec_util
  */
-float			distance( const slmath::vec4& p0, const slmath::vec4& p1 );
+float			distance( const vec4& p0, const vec4& p1 );
 
 /**
  * Returns value with components clamped between [min,max].
  * @ingroup vec_util
  */
-slmath::vec4	clamp( const slmath::vec4& v, const slmath::vec4& min, const slmath::vec4& max );
+vec4	clamp( const vec4& v, const vec4& min, const vec4& max );
 
 /**
  * Returns value with components clamped between [0,1].
  * @ingroup vec_util
  */
-slmath::vec4	saturate( const slmath::vec4& v );
+vec4	saturate( const vec4& v );
 
 /**
  * Returns true if all components are valid numbers.
  * @ingroup vec_util
  */
-bool			check( const slmath::vec4& v );
+bool			check( const vec4& v );
 
 /**
  * Returns negated vector. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec4	neg( const slmath::vec4& a );
+vec4	neg( const vec4& a );
 
 /**
  * Adds two vectors together. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec4	add( const slmath::vec4& a, const slmath::vec4& b );
+vec4	add( const vec4& a, const vec4& b );
 
 /**
  * Subtracts two vectors together. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec4	sub( const slmath::vec4& a, const slmath::vec4& b );
+vec4	sub( const vec4& a, const vec4& b );
 
 /**
  * Multiplies vector by scalar. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec4	mul( const slmath::vec4& a, float b );
+vec4	mul( const vec4& a, float b );
 
 /**
  * Multiplies vector by scalar. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec4	mul( float b, const slmath::vec4& a );
+vec4	mul( float b, const vec4& a );
 
-#include <slmath/vec4.inl>
+#include <slm/vec4.inl>
 
 SLMATH_END()
 

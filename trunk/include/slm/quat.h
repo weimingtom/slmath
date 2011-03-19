@@ -1,7 +1,7 @@
 #ifndef SLMATH_QUAT_H
 #define SLMATH_QUAT_H
 
-#include <slmath/mat4.h>
+#include <slm/mat4.h>
 
 SLMATH_BEGIN()
 
@@ -57,7 +57,7 @@ public:
 	 * @param a Angle in radians.
 	 * @param v Rotation axis.
 	 */
-	quat( float a, const slmath::vec3& v );
+	quat( float a, const vec3& v );
 
 	/** 
 	 * Constructs quaternion from rotation matrix.
@@ -65,28 +65,28 @@ public:
 	explicit quat( const mat4& m );
 
 	/** Component-wise addition. */
-	quat&		operator+=( const slmath::quat& o );
+	quat&		operator+=( const quat& o );
 	
 	/** Component-wise subtraction. */
-	quat&		operator-=( const slmath::quat& o );
+	quat&		operator-=( const quat& o );
 	
 	/** Component-wise scalar multiplication. */
 	quat&		operator*=( float s );
 	
 	/** Quaternion multiplication. */
-	quat&		operator*=( const slmath::quat& o );
+	quat&		operator*=( const quat& o );
 
 	/** Returns component at specified index. */
 	float&		operator[]( size_t i );
 
 	/** Quaternion multiplication. */
-	quat		operator*( const slmath::quat& o ) const;
+	quat		operator*( const quat& o ) const;
 
 	/** Component wise addition. */
-	quat		operator+( const slmath::quat& o ) const;
+	quat		operator+( const quat& o ) const;
 
 	/** Component wise subtraction. */
-	quat		operator-( const slmath::quat& o ) const;
+	quat		operator-( const quat& o ) const;
 
 	/** Component wise negate. */
 	quat		operator-() const;
@@ -98,14 +98,14 @@ public:
 	const float& operator[]( size_t i ) const;
 
 	/** Returns quaternion represented as 4-vector. */
-	const slmath::vec4&	xyzw() const;
+	const vec4&	xyzw() const;
 };
 
 /** 
  * Returns true if all components of the quaternion are valid numbers. 
  * @ingroup quat_util
  */
-bool		check( const slmath::quat& q );
+bool		check( const quat& q );
 
 /** 
  * Returns dot product of two quaternions. 
@@ -114,55 +114,55 @@ bool		check( const slmath::quat& q );
  * @return a dot b
  * @ingroup quat_util
  */
-float		dot( const slmath::quat& a, const slmath::quat& b );
+float		dot( const quat& a, const quat& b );
 
 /** 
  * Returns squared norm of the quaternion. 
  * @ingroup quat_util
  */
-float		normSquared( const slmath::quat& q );
+float		normSquared( const quat& q );
 
 /** 
  * Returns norm of the quaternion. 
  * @ingroup quat_util
  */
-float		norm( const slmath::quat& q );
+float		norm( const quat& q );
 
 /** 
  * Returns normalized quaternion.
  * @ingroup quat_util
  */
-quat		normalize( const slmath::quat& q );
+quat		normalize( const quat& q );
 
 /** 
  * Returns conjugate of quaternion. 
  * @ingroup quat_util
  */
-quat		conjugate( const slmath::quat& q );
+quat		conjugate( const quat& q );
 
 /** 
  * Returns inverse of quaternion. 
  * @ingroup quat_util
  */
-quat		inverse( const slmath::quat& q );
+quat		inverse( const quat& q );
 
 /** 
  * Returns exponent of unit quaternion. 
  * @ingroup quat_util
  */
-quat		exp( const slmath::quat& q );
+quat		exp( const quat& q );
 
 /** 
  * Returns logarithm of unit quaternion. 
  * @ingroup quat_util
  */
-quat		log( const slmath::quat& q );
+quat		log( const quat& q );
 
 /** 
  * Returns unit quaternion raised to power n. 
  * @ingroup quat_util
  */
-quat		pow( const slmath::quat& q, float n );
+quat		pow( const quat& q, float n );
 
 /** 
  * Returns spherical linear interpolation for unit quaternions. 
@@ -172,7 +172,7 @@ quat		pow( const slmath::quat& q, float n );
  * @return Interpolated quaternion.
  * @ingroup quat_util
  */
-quat		slerp( const slmath::quat& a, const slmath::quat& b, float u );
+quat		slerp( const quat& a, const quat& b, float u );
 
 /**
  * Converts unit quaternion to angle-axis representation.
@@ -181,9 +181,9 @@ quat		slerp( const slmath::quat& a, const slmath::quat& b, float u );
  * @param axis [out] Receives rotation axis.
  * @ingroup quat_util
  */
-void		toAngleAxis( const slmath::quat& q, float* angle, vec3* axis );
+void		toAngleAxis( const quat& q, float* angle, vec3* axis );
 
-#include <slmath/quat.inl>
+#include <slm/quat.inl>
 
 SLMATH_END()
 

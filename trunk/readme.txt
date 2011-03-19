@@ -1,4 +1,4 @@
-slmath ver. 1.8.5
+slmath ver. 2.0.0
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -69,7 +69,7 @@ that as reference in Visual Studio project settings $(SLMATH)\include.
 Then you just add the slmath project file to your Solution, e.g. from "c:\slmath\build\vs2008\slmath\slmath.vcproj"
 
 After that you can use the library, for example, by including in your code 
-#include <slmath/vec2.h>
+#include <slm/vec2.h>
 
 
 Using SIMD on 32-bit builds (x86)
@@ -108,6 +108,11 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.0.0 (2011-03-19):
+* simplified naming conventions: slmath -> slm
+* include e.g. <slm/vec3.h>
+* namespace is slm
 
 v1.8.5 (2011-03-14):
 * cleaned up install instructions
@@ -164,7 +169,7 @@ v1.7.6 (2009-09-04):
 v1.7.5 (2009-05-09):
 * SIMD implementation of mat4 and vec4 ops
 * Random number seed/function separation cleanup, renamed Random -> random
-* Removed <slmath/random_util.h>, use <slmath/random.h> instead
+* Removed <slm/random_util.h>, use <slm/random.h> instead
 * Random number generation inlines
 * Documentation cleanup
 
@@ -178,7 +183,7 @@ v1.7.3 (2009-05-08):
 
 v1.7.2 (2009-05-07):
 * Unified build naming conventions to avoid file conflicts
-* SIMD macros to separate header, <slmath/simd.h>
+* SIMD macros to separate header, <slm/simd.h>
 
 v1.7.1 (2009-05-04):
 * Reference documentation cleanup

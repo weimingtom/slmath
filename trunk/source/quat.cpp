@@ -1,4 +1,4 @@
-#include <slmath/quat.h>
+#include <slm/quat.h>
 
 #define UNIT_QUATERNION_EPS 1e-3f
 #define ASSERT_IS_UNIT(Q) assert( fabsf(norm(Q)-1.f) < UNIT_QUATERNION_EPS )

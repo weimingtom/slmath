@@ -1,7 +1,7 @@
 #ifndef SLMATH_RUNTIME_CHECKS_H
 #define SLMATH_RUNTIME_CHECKS_H
 
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 
 SLMATH_BEGIN()
 
@@ -19,7 +19,7 @@ bool isValidCPU();
 
 /*@}*/
 
-#include <slmath/runtime_checks.inl>
+#include <slm/runtime_checks.inl>
 
 SLMATH_END()
 

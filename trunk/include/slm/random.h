@@ -1,9 +1,9 @@
 #ifndef SLMATH_RANDOM_H
 #define SLMATH_RANDOM_H
 
-#include <slmath/float_util.h>
-#include <slmath/vec3.h>
-#include <slmath/mtrnd.h>
+#include <slm/float_util.h>
+#include <slm/vec3.h>
+#include <slm/mtrnd.h>
 
 SLMATH_BEGIN()
 
@@ -101,7 +101,7 @@ vec3	randomPointInSphere( random& seed );
  * @param out [out] Receives generated samples.
  * @param seed [inout] random number generator.
  */
-void	randomSamplePointsOnHemisphere( const slmath::vec3& normal, float angle, size_t n, vec3* out, random& seed );
+void	randomSamplePointsOnHemisphere( const vec3& normal, float angle, size_t n, vec3* out, random& seed );
 
 /**
  * Produces n stratified samples within hemisphere volume.
@@ -111,11 +111,11 @@ void	randomSamplePointsOnHemisphere( const slmath::vec3& normal, float angle, si
  * @param out [out] Receives generated samples.
  * @param seed [inout] random number generator.
  */
-void	randomSamplePointsInHemisphere( const slmath::vec3& normal, float angle, size_t n, vec3* out, random& seed );
+void	randomSamplePointsInHemisphere( const vec3& normal, float angle, size_t n, vec3* out, random& seed );
 
 /*@}*/
 
-#include <slmath/random.inl>
+#include <slm/random.inl>
 
 SLMATH_END()
 
