@@ -2,7 +2,9 @@
 #define SLMATH_CONFIGURE_H
 
 /** Enable SIMD extensions (if supported by this platform) */
+#ifdef _M_X64
 #define SLMATH_SIMD
+#endif
 
 /** Enable namespace support, everything placed inside slmath namespace */
 #define SLMATH_NAMESPACE

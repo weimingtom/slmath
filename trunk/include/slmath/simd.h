@@ -11,7 +11,7 @@
 #undef SLMATH_SUB_PS
 #undef SLMATH_LOAD_PS1
 
-#if (_MSC_VER >= 1300)
+#if ( (_MSC_VER >= 1300) && defined(SLMATH_SIMD) )
 	#define SLMATH_ALIGN16 __declspec(align(16))
 #else
 	#define SLMATH_ALIGN16
