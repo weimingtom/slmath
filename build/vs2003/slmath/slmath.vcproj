@@ -147,73 +147,73 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath="..\..\..\include\slmath\float_util.h">
+				RelativePath="..\..\..\include\slm\float_util.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\float_util.inl">
+				RelativePath="..\..\..\include\slm\float_util.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\intersect_util.h">
+				RelativePath="..\..\..\include\slm\intersect_util.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\mat4.h">
+				RelativePath="..\..\..\include\slm\mat4.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\mat4.inl">
+				RelativePath="..\..\..\include\slm\mat4.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\mtrnd.h">
+				RelativePath="..\..\..\include\slm\mtrnd.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\quat.h">
+				RelativePath="..\..\..\include\slm\quat.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\quat.inl">
+				RelativePath="..\..\..\include\slm\quat.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\random.h">
+				RelativePath="..\..\..\include\slm\random.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\random.inl">
+				RelativePath="..\..\..\include\slm\random.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\runtime_checks.h">
+				RelativePath="..\..\..\include\slm\runtime_checks.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\runtime_checks.inl">
+				RelativePath="..\..\..\include\slm\runtime_checks.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\simd.h">
+				RelativePath="..\..\..\include\slm\simd.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\slmath.h">
+				RelativePath="..\..\..\include\slm\slmath.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\slmath_configure.h">
+				RelativePath="..\..\..\include\slm\slmath_configure.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\slmath_pp.h">
+				RelativePath="..\..\..\include\slm\slmath_pp.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec2.h">
+				RelativePath="..\..\..\include\slm\vec2.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec2.inl">
+				RelativePath="..\..\..\include\slm\vec2.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec3.h">
+				RelativePath="..\..\..\include\slm\vec3.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec3.inl">
+				RelativePath="..\..\..\include\slm\vec3.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec4.h">
+				RelativePath="..\..\..\include\slm\vec4.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec4.inl">
+				RelativePath="..\..\..\include\slm\vec4.inl">
 			</File>
 			<File
-				RelativePath="..\..\..\include\slmath\vec_impl.h">
+				RelativePath="..\..\..\include\slm\vec_impl.h">
 			</File>
 		</Filter>
 		<Filter
