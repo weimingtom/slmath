@@ -1,4 +1,4 @@
-#include <slmath/vec4.h>
+#include <slm/vec4.h>
 
 SLMATH_BEGIN()
 

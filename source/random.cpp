@@ -1,4 +1,4 @@
-#include <slmath/random.h>
+#include <slm/random.h>
 #include <time.h>
 
 SLMATH_BEGIN()

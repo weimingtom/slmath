@@ -1,7 +1,7 @@
 #ifndef SLMATH_INTERSECT_UTIL_H
 #define SLMATH_INTERSECT_UTIL_H
 
-#include <slmath/vec3.h>
+#include <slm/vec3.h>
 
 SLMATH_BEGIN()
 
@@ -20,11 +20,11 @@ class intersectLineBox_Line
 {
 public:
 	/** Line segment start point. */
-	const slmath::vec3	o;
+	const vec3	o;
 	/** Vector from start point of the line segment to the end point. */
-	const slmath::vec3	d;
+	const vec3	d;
 	/** Component-wise one over delta (1/delta.x,1/delta.y,1/delta.z). */
-	const slmath::vec3	inv_d;
+	const vec3	inv_d;
 	/** Signs (+-) of the line segment direction per component. */
 	const int			signx;
 	/** Signs (+-) of the line segment direction per component. */
@@ -33,7 +33,7 @@ public:
 	const int			signz;
 
 	/** Sets ray origin and direction. Calculates intermediate values. */
-	intersectLineBox_Line( const slmath::vec3& origin, const slmath::vec3& direction );
+	intersectLineBox_Line( const vec3& origin, const vec3& direction );
 
 private:
 	intersectLineBox_Line();
@@ -55,7 +55,7 @@ private:
  * @param t [out] Relative distance (0,1) to intersection.
  * @return true if intersect.
  */
-bool	intersectLineTri( const slmath::vec3& o, const slmath::vec3& d, const slmath::vec3& v0, const slmath::vec3& v1, const slmath::vec3& v2, float* t );
+bool	intersectLineTri( const vec3& o, const vec3& d, const vec3& v0, const vec3& v1, const vec3& v2, float* t );
 
 /**
  * Finds if line segment and box intersect.
@@ -70,7 +70,7 @@ bool	intersectLineTri( const slmath::vec3& o, const slmath::vec3& d, const slmat
  * @param boxmax Maximum coordinates of the box.
  * @return true if intersect.
  */
-bool	intersectLineBox( const slmath::vec3& o, const slmath::vec3& d, const slmath::vec3& boxmin, const slmath::vec3& boxmax );
+bool	intersectLineBox( const vec3& o, const vec3& d, const vec3& boxmin, const vec3& boxmax );
 
 /*
  * Finds if line segment and box intersect.

@@ -1,4 +1,4 @@
-#include <slmath/float_util.h>
+#include <slm/float_util.h>
 
 SLMATH_BEGIN()
 

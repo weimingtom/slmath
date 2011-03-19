@@ -1,5 +1,5 @@
-#include <slmath/mat4.h>
-#include <slmath/quat.h>
+#include <slm/mat4.h>
+#include <slm/quat.h>
 
 // for computing matrix minors
 #define DET2(a,b,c,d) ( a*d-b*c )

@@ -1,7 +1,7 @@
 #ifndef SLMATH_MAT4_H
 #define SLMATH_MAT4_H
 
-#include <slmath/vec4.h>
+#include <slm/vec4.h>
 
 SLMATH_BEGIN()
 
@@ -40,25 +40,25 @@ public:
 	/**
 	 * Constructs rotation matrix from quaternion.
 	 */
-	explicit mat4( const slmath::quat& q );
+	explicit mat4( const quat& q );
 
 	/**
 	 * Constructs rotation matrix from angle-axis.
 	 * @param a Rotation angle in radians.
 	 * @param v Rotation axis.
 	 */
-	mat4( float a, const slmath::vec3& v );
+	mat4( float a, const vec3& v );
 
 	/** 
 	 * Constructs matrix from 4 column vectors.
 	 */
-	mat4( const slmath::vec4& c0, const slmath::vec4& c1, const slmath::vec4& c2, const slmath::vec4& c3 );
+	mat4( const vec4& c0, const vec4& c1, const vec4& c2, const vec4& c3 );
 
 	/** Sets ith column. */
-	void			set( size_t i, const slmath::vec4& v );
+	void			set( size_t i, const vec4& v );
 
 	/** Returns specified column vector (0-based index). */
-	slmath::vec4&	operator[]( size_t i );
+	vec4&	operator[]( size_t i );
 
 	/** Component wise addition. */
 	mat4&			operator+=( const mat4& o );
@@ -78,7 +78,7 @@ public:
 #endif
 
 	/** Returns ith column. */
-	const slmath::vec4&		get( size_t i ) const;
+	const vec4&		get( size_t i ) const;
 
 	/** Component wise equality. */
 	bool			operator==( const mat4& o ) const;
@@ -102,7 +102,7 @@ public:
 	mat4			operator*( const mat4& o ) const;
 
 	/** Returns specified column vector (0-based index). */
-	const slmath::vec4&		operator[]( size_t i ) const;
+	const vec4&		operator[]( size_t i ) const;
 
 #ifndef SWIG
 	/** 128-bit 4-vector storage access. */
@@ -123,7 +123,7 @@ private:
  * @param m Matrix multiplying column vector.
  * @ingroup mat_util
  */
-slmath::vec4	operator*( const mat4& m, const slmath::vec4& v );
+vec4	operator*( const mat4& m, const vec4& v );
 
 /** 
  * Transform row vector by matrix. 
@@ -131,7 +131,7 @@ slmath::vec4	operator*( const mat4& m, const slmath::vec4& v );
  * @param m Matrix multiplying column vector.
  * @ingroup mat_util
  */
-slmath::vec4	operator*( const slmath::vec4& v, const mat4& m );
+vec4	operator*( const vec4& v, const mat4& m );
 
 /** 
  * Transform column vector by matrix. 
@@ -140,7 +140,7 @@ slmath::vec4	operator*( const slmath::vec4& v, const mat4& m );
  * @param m Matrix multiplying column vector.
  * @ingroup mat_util
  */
-slmath::vec4	mul( const slmath::mat4& m, const slmath::vec4& v );
+vec4	mul( const mat4& m, const vec4& v );
 
 /** 
  * Transform row vector by matrix. 
@@ -148,7 +148,7 @@ slmath::vec4	mul( const slmath::mat4& m, const slmath::vec4& v );
  * @param m Matrix multiplying column vector.
  * @ingroup mat_util
  */
-slmath::vec4	mul( const slmath::vec4& v, const mat4& m );
+vec4	mul( const vec4& v, const mat4& m );
 
 /** 
  * Swaps column and row vectors with each other. 
@@ -156,7 +156,7 @@ slmath::vec4	mul( const slmath::vec4& v, const mat4& m );
  * @return Transposed matrix.
  * @ingroup mat_util
  */
-slmath::mat4	transpose( const slmath::mat4& m );
+mat4	transpose( const mat4& m );
 
 /** 
  * Returns inverse of the matrix.
@@ -164,19 +164,19 @@ slmath::mat4	transpose( const slmath::mat4& m );
  * @return Inverted matrix.
  * @ingroup mat_util
  */
-slmath::mat4	inverse( const slmath::mat4& m );
+mat4	inverse( const mat4& m );
 
 /**
  * Returns determinant of the matrix.
  * @ingroup mat_util
  */
-float			det( const slmath::mat4& m );
+float			det( const mat4& m );
 
 /** 
  * Returns true if all components of the matrix are valid numbers. 
  * @ingroup mat_util
  */
-bool			check( const slmath::mat4& v );
+bool			check( const mat4& v );
 
 /** 
  * Returns right-handed perspective projection transform.
@@ -187,7 +187,7 @@ bool			check( const slmath::mat4& v );
  * @param zfar Z-value at far view-plane. Distance to znear must be more than 1e-6.
  * @ingroup mat_util
  */
-slmath::mat4	perspectiveFovRH( float fovy, float aspect, float znear, float zfar );
+mat4	perspectiveFovRH( float fovy, float aspect, float znear, float zfar );
 
 /** 
  * Returns left-handed perspective projection transform.
@@ -198,7 +198,7 @@ slmath::mat4	perspectiveFovRH( float fovy, float aspect, float znear, float zfar
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	perspectiveFovLH( float fovy, float aspect, float znear, float zfar );
+mat4	perspectiveFovLH( float fovy, float aspect, float znear, float zfar );
 
 /**
  * Returns righ-handed orthographic projection matrix.
@@ -207,7 +207,7 @@ slmath::mat4	perspectiveFovLH( float fovy, float aspect, float znear, float zfar
  * @param znear Minimum Z-value of view volume.
  * @param zfar Maximum Z-value of view volume.
  */
-slmath::mat4	orthoRH( float w, float h, float znear, float zfar );
+mat4	orthoRH( float w, float h, float znear, float zfar );
 
 /**
  * Returns left-handed orthographic projection matrix.
@@ -216,13 +216,13 @@ slmath::mat4	orthoRH( float w, float h, float znear, float zfar );
  * @param znear Minimum Z-value of view volume.
  * @param zfar Maximum Z-value of view volume.
  */
-slmath::mat4	orthoLH( float w, float h, float znear, float zfar );
+mat4	orthoLH( float w, float h, float znear, float zfar );
 
 /**
  * Returns translation matrix.
  * @ingroup mat_util
  */
-slmath::mat4	translation( const slmath::vec3& t );
+mat4	translation( const vec3& t );
 
 /**
  * Returns rotation about X-axis.
@@ -230,7 +230,7 @@ slmath::mat4	translation( const slmath::vec3& t );
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	rotationX( float a );
+mat4	rotationX( float a );
 
 /**
  * Returns rotation about Y-axis.
@@ -238,7 +238,7 @@ slmath::mat4	rotationX( float a );
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	rotationY( float a );
+mat4	rotationY( float a );
 
 /**
  * Returns rotation about Z-axis.
@@ -246,14 +246,14 @@ slmath::mat4	rotationY( float a );
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	rotationZ( float a );
+mat4	rotationZ( float a );
 
 /**
  * Returns uniform scaling matrix.
  * @param s Uniform scale factor.
  * @ingroup mat_util
  */
-slmath::mat4	scaling( float s );
+mat4	scaling( float s );
 
 /**
  * Builds a right-handed inverse look-at (view-to-world) transformation matrix
@@ -264,7 +264,7 @@ slmath::mat4	scaling( float s );
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	targetAtRH( const slmath::vec3& eye, const slmath::vec3& at, const slmath::vec3& up );
+mat4	targetAtRH( const vec3& eye, const vec3& at, const vec3& up );
 
 /**
  * Builds a right-handed look-at (world-to-view) transformation matrix
@@ -275,7 +275,7 @@ slmath::mat4	targetAtRH( const slmath::vec3& eye, const slmath::vec3& at, const 
  * @return The transform.
  * @ingroup mat_util
  */
-slmath::mat4	lookAtRH( const slmath::vec3& eye, const slmath::vec3& at, const slmath::vec3& up );
+mat4	lookAtRH( const vec3& eye, const vec3& at, const vec3& up );
 
 /**
  * Creates right-handed world-to-cubemap-view transform for specified cube map face.
@@ -285,7 +285,7 @@ slmath::mat4	lookAtRH( const slmath::vec3& eye, const slmath::vec3& at, const sl
  * @see cubeMapProjectionRH
  * @ingroup mat_util
  */
-slmath::mat4	cubeMapViewRH( size_t face, const slmath::vec3& worldpos );
+mat4	cubeMapViewRH( size_t face, const vec3& worldpos );
 
 /**
  * Creates right-handed cubemap view-to-projection transform.
@@ -295,7 +295,7 @@ slmath::mat4	cubeMapViewRH( size_t face, const slmath::vec3& worldpos );
  * @see cubeMapViewRH
  * @ingroup mat_util
  */
-slmath::mat4	cubeMapProjectionRH( float znear, float zfar );
+mat4	cubeMapProjectionRH( float znear, float zfar );
 
 /**
  * Returns rotation matrix that rotates a vector to another vector.
@@ -307,7 +307,7 @@ slmath::mat4	cubeMapProjectionRH( float znear, float zfar );
  * Matrix to Rotate One Vector to Another", Journal of Graphics Tools, 4(4):1-4, 1999.
  * @ingroup mat_util
  */
-slmath::mat4	fromToRotation( const slmath::vec3& from, const slmath::vec3& to );
+mat4	fromToRotation( const vec3& from, const vec3& to );
 
 /**
  * Builds frame of reference from normal vector.
@@ -316,7 +316,7 @@ slmath::mat4	fromToRotation( const slmath::vec3& from, const slmath::vec3& to );
  * @return Transformation frame which has input normal as axis[2].
  * @ingroup mat_util
  */
-slmath::mat4	frameFromNormal( const slmath::vec3& normal );
+mat4	frameFromNormal( const vec3& normal );
 
 /**
  * Returns outer product (tensor product) of two vectors.
@@ -325,9 +325,9 @@ slmath::mat4	frameFromNormal( const slmath::vec3& normal );
  * @return Matrix resulting from outer product of vectors a and b.
  * @ingroup vec_util
  */
-slmath::mat4	outerProduct( const slmath::vec4& a, const slmath::vec4& b );
+mat4	outerProduct( const vec4& a, const vec4& b );
 
-#include <slmath/mat4.inl>
+#include <slm/mat4.inl>
 
 SLMATH_END()
 

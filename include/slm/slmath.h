@@ -14,17 +14,17 @@
  * @see https://sourceforge.net/projects/slmath/
  */
 
-#include <slmath/slmath_configure.h>
-#include <slmath/slmath_pp.h>
-#include <slmath/float_util.h>
-#include <slmath/intersect_util.h>
-#include <slmath/mat4.h>
-#include <slmath/vec2.h>
-#include <slmath/vec3.h>
-#include <slmath/vec4.h>
-#include <slmath/quat.h>
-#include <slmath/random.h>
-#include <slmath/runtime_checks.h>
+#include <slm/slmath_configure.h>
+#include <slm/slmath_pp.h>
+#include <slm/float_util.h>
+#include <slm/intersect_util.h>
+#include <slm/mat4.h>
+#include <slm/vec2.h>
+#include <slm/vec3.h>
+#include <slm/vec4.h>
+#include <slm/quat.h>
+#include <slm/random.h>
+#include <slm/runtime_checks.h>
 
 #endif
 

@@ -1,7 +1,7 @@
 #ifndef SLMATH_FLOAT_UTIL_H
 #define SLMATH_FLOAT_UTIL_H
 
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 
 SLMATH_BEGIN()
 
@@ -207,7 +207,7 @@ size_t	clamp( size_t v, size_t vmin, size_t vmax );
 
 /*@}*/
 
-#include <slmath/float_util.inl>
+#include <slm/float_util.inl>
 
 SLMATH_END()
 

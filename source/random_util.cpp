@@ -1,5 +1,5 @@
-#include <slmath/random.h>
-#include <slmath/float_util.h>
+#include <slm/random.h>
+#include <slm/float_util.h>
 #include <assert.h>
 
 SLMATH_BEGIN()

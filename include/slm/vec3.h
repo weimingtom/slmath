@@ -1,7 +1,7 @@
 #ifndef SLMATH_VEC3_H
 #define SLMATH_VEC3_H
 
-#include <slmath/vec2.h>
+#include <slm/vec2.h>
 
 SLMATH_BEGIN()
 
@@ -62,10 +62,10 @@ public:
 	void		set( float x0, float y0, float z0 );
 
 	/** Component wise addition. */
-	vec3&		operator+=( const slmath::vec3& o );
+	vec3&		operator+=( const vec3& o );
 
 	/** Component wise subtraction. */
-	vec3&		operator-=( const slmath::vec3& o );
+	vec3&		operator-=( const vec3& o );
 
 	/** Component wise scalar multiplication. */
 	vec3&		operator*=( float s );
@@ -74,10 +74,10 @@ public:
 	vec3&		operator/=( float s );
 
 	/** Component wise multiplication. */
-	vec3&		operator*=( const slmath::vec3& o );
+	vec3&		operator*=( const vec3& o );
 
 	/** Component wise division. */
-	vec3&		operator/=( const slmath::vec3& o );
+	vec3&		operator/=( const vec3& o );
 
 	/** Returns component at specified index. */
 	float&		operator[]( size_t i );
@@ -86,16 +86,16 @@ public:
 	vec2&		xy();
 
 	/** Component wise multiplication. */
-	vec3		operator*( const slmath::vec3& o ) const;
+	vec3		operator*( const vec3& o ) const;
 
 	/** Component wise division. */
-	vec3		operator/( const slmath::vec3& o ) const;
+	vec3		operator/( const vec3& o ) const;
 
 	/** Component wise addition. */
-	vec3		operator+( const slmath::vec3& o ) const;
+	vec3		operator+( const vec3& o ) const;
 
 	/** Component wise subtraction. */
-	vec3		operator-( const slmath::vec3& o ) const;
+	vec3		operator-( const vec3& o ) const;
 
 	/** Component wise subtraction. */
 	vec3		operator-() const;
@@ -110,10 +110,10 @@ public:
 	const float& operator[]( size_t i ) const;
 
 	/** Returns true if vectors are bitwise equal. */
-	bool		operator==( const slmath::vec3& o ) const;
+	bool		operator==( const vec3& o ) const;
 
 	/** Returns true if vectors are bitwise inequal. */
-	bool		operator!=( const slmath::vec3& o ) const;
+	bool		operator!=( const vec3& o ) const;
 
 	/** Returns sub-vector. */
 	const vec2&	xy() const;
@@ -124,19 +124,19 @@ public:
  * Returns cross product of two vectors. 
  * @ingroup vec_util
  */
-slmath::vec3	cross( const slmath::vec3& a, const slmath::vec3& b );
+vec3	cross( const vec3& a, const vec3& b );
 
 /**
  * Calculates triangle face normal when triangle is defined by counter-clock-wise points.
  * @ingroup vec_util
  */
-slmath::vec3	facenormal_ccw( const slmath::vec3& v0, const slmath::vec3& v1, const slmath::vec3& v2 );
+vec3	facenormal_ccw( const vec3& v0, const vec3& v1, const vec3& v2 );
 
 /**
  * Calculates triangle face normal when triangle is defined by clock-wise points.
  * @ingroup vec_util
  */
-slmath::vec3	facenormal_cw( const slmath::vec3& v0, const slmath::vec3& v1, const slmath::vec3& v2 );
+vec3	facenormal_cw( const vec3& v0, const vec3& v1, const vec3& v2 );
 
 /**
  * Refracts vector against specified normal using specified ratio of refraction indices.
@@ -150,7 +150,7 @@ slmath::vec3	facenormal_cw( const slmath::vec3& v0, const slmath::vec3& v1, cons
  * @return Refracted vector.
  * @ingroup vec_util
  */
-slmath::vec3	refract( const slmath::vec3& i, const slmath::vec3& n, float eta );
+vec3	refract( const vec3& i, const vec3& n, float eta );
 
 /**
  * Reflects vector against specified normal.
@@ -159,7 +159,7 @@ slmath::vec3	refract( const slmath::vec3& i, const slmath::vec3& n, float eta );
  * @return i - 2*dot(n,i)*n
  * @ingroup vec_util
  */
-slmath::vec3	reflect( const slmath::vec3& i, const slmath::vec3& n );
+vec3	reflect( const vec3& i, const vec3& n );
 
 /**
  * Checks if vector points to specified direction.
@@ -169,49 +169,49 @@ slmath::vec3	reflect( const slmath::vec3& i, const slmath::vec3& n );
  * @return If dot(nref<i) < 0 return n, otherwise return -n;
  * @ingroup vec_util
  */
-slmath::vec3	faceforward( const slmath::vec3& n, const slmath::vec3& i, const slmath::vec3& nref );
+vec3	faceforward( const vec3& n, const vec3& i, const vec3& nref );
 
 /** 
  * Component wise scalar multiplication. 
  * @ingroup vec_util
  */
-vec3			operator*( float s, const slmath::vec3& v );
+vec3			operator*( float s, const vec3& v );
 
 /** 
  * Returns length of the vector. 
  * @ingroup vec_util
  */
-float			length( const slmath::vec3& v );
+float			length( const vec3& v );
 
 /** 
  * Returns dot product (inner product) of two vectors. 
  * @ingroup vec_util
  */
-float			dot( const slmath::vec3& a, const slmath::vec3& b );
+float			dot( const vec3& a, const vec3& b );
 
 /** 
  * Returns the vector normalized. 
  * @ingroup vec_util
  */
-vec3			normalize( const slmath::vec3& v );
+vec3			normalize( const vec3& v );
 
 /**
  * Returns component wise maximum of two vectors.
  * @ingroup vec_util
  */
-vec3			max( const slmath::vec3& a, const slmath::vec3& b );
+vec3			max( const vec3& a, const vec3& b );
 
 /**
  * Returns component wise minimum of two vectors.
  * @ingroup vec_util
  */
-vec3			min( const slmath::vec3& a, const slmath::vec3& b );
+vec3			min( const vec3& a, const vec3& b );
 
 /**
  * Returns component wise absolute of the vector.
  * @ingroup vec_util
  */
-vec3			abs( const slmath::vec3& v );
+vec3			abs( const vec3& v );
 
 /** 
  * Returns linear blend between two values. Formula is x*(1-a)+y*a.
@@ -221,7 +221,7 @@ vec3			abs( const slmath::vec3& v );
  * @return x*(1-a)+y*a
  * @ingroup vec_util
  */
-slmath::vec3	mix( const slmath::vec3& x, const slmath::vec3& y, float a );
+vec3	mix( const vec3& x, const vec3& y, float a );
 
 /** 
  * Returns distance between two values. 
@@ -230,57 +230,57 @@ slmath::vec3	mix( const slmath::vec3& x, const slmath::vec3& y, float a );
  * @return Distance between p0 and p1, i.e. length(p1-p0).
  * @ingroup vec_util
  */
-float			distance( const slmath::vec3& p0, const slmath::vec3& p1 );
+float			distance( const vec3& p0, const vec3& p1 );
 
 /**
  * Returns value with components clamped between [min,max].
  * @ingroup vec_util
  */
-slmath::vec3	clamp( const slmath::vec3& v, const slmath::vec3& min, const slmath::vec3& max );
+vec3	clamp( const vec3& v, const vec3& min, const vec3& max );
 
 /**
  * Returns value with components clamped between [0,1].
  * @ingroup vec_util
  */
-slmath::vec3	saturate( const slmath::vec3& v );
+vec3	saturate( const vec3& v );
 
 /**
  * Returns true if all components are valid numbers.
  * @ingroup vec_util
  */
-bool			check( const slmath::vec3& v );
+bool			check( const vec3& v );
 
 /**
  * Returns negated vector. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec3	neg( const slmath::vec3& a );
+vec3	neg( const vec3& a );
 
 /**
  * Adds two vectors together. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec3	add( const slmath::vec3& a, const slmath::vec3& b );
+vec3	add( const vec3& a, const vec3& b );
 
 /**
  * Subtracts two vectors together. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec3	sub( const slmath::vec3& a, const slmath::vec3& b );
+vec3	sub( const vec3& a, const vec3& b );
 
 /**
  * Multiplies vector by scalar. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec3	mul( const slmath::vec3& a, float b );
+vec3	mul( const vec3& a, float b );
 
 /**
  * Multiplies vector by scalar. This function is useful for scripting where overloaded operators are not available.
  * @ingroup vec_util
  */
-slmath::vec3	mul( float b, const slmath::vec3& a );
+vec3	mul( float b, const vec3& a );
 
-#include <slmath/vec3.inl>
+#include <slm/vec3.inl>
 
 SLMATH_END()
 

@@ -2,7 +2,7 @@
 #define SLMATH_SIMD_H
 
 #ifndef SLMATH_PP_H
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 #endif
 
 #undef SLMATH_ALIGN16

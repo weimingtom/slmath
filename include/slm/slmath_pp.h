@@ -4,7 +4,7 @@
 #include <math.h>
 #include <float.h>
 #include <assert.h>
-#include <slmath/slmath_configure.h>
+#include <slm/slmath_configure.h>
 
 // make sure <windows.h> does not define min and max as macros
 #undef min
@@ -15,10 +15,10 @@
 
 // Use this instead of namespaces directly to enable easier porting for platforms without namespace support
 #ifdef SLMATH_NAMESPACE
-	#define SLMATH_BEGIN() namespace slmath {
+	#define SLMATH_BEGIN() namespace slm {
 	#define SLMATH_END() }
-	#define SLMATH_USING() using namespace slmath;
-	#define SLMATH_NS(A) slmath::A
+	#define SLMATH_USING() using namespace slm;
+	#define SLMATH_NS(A) slm::A
 	namespace slmath {}
 #else
 	#define SLMATH_BEGIN()
@@ -50,7 +50,7 @@
 #endif
 
 // SIMD macros
-#include <slmath/simd.h>
+#include <slm/simd.h>
 
 #endif
 

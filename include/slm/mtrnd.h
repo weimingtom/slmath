@@ -50,7 +50,7 @@ January 1998, pp 3--30.
 #ifndef SLMATH_MTRND_H
 #define SLMATH_MTRND_H
 
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 
 SLMATH_BEGIN()
 
