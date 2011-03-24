@@ -49,6 +49,13 @@
 	#endif
 #endif
 
+// Assert used in vec-ops in _DEBUG build
+#ifdef SLMATH_VEC_ASSERTS
+	#define SLMATH_VEC_ASSERT(V) assert( V )
+#else
+	#define SLMATH_VEC_ASSERT(V)
+#endif
+
 // SIMD macros
 #include <slm/simd.h>
 

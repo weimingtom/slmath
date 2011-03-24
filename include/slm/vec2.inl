@@ -4,28 +4,28 @@ inline vec2::vec2()
 
 inline vec2::vec2( float v )
 {
-	assert( check(v) );
+	SLMATH_VEC_ASSERT( check(v) );
 	y = x = v;
 }
 
 inline vec2::vec2( float x0, float y0 ) : 
 	x(x0), y(y0)
 {
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 }
 
 inline void vec2::set( float x0, float y0 )
 {
 	x=x0;
 	y=y0;
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 }
 
 inline vec2& vec2::operator+=( const vec2& o )
 {
 	x += o.x;
 	y += o.y;
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return *this;
 }
 
@@ -33,7 +33,7 @@ inline vec2& vec2::operator-=( const vec2& o )
 {
 	x -= o.x;
 	y -= o.y;
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return *this;
 }
 
@@ -41,14 +41,14 @@ inline vec2& vec2::operator*=( float s )
 {
 	x *= s;
 	y *= s;
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return *this;
 }
 
 inline vec2& vec2::operator/=( float s )
 {
-	assert( check(*this) );
-	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	x *= sinv;
 	y *= sinv;
@@ -57,16 +57,16 @@ inline vec2& vec2::operator/=( float s )
 
 inline vec2 vec2::operator/( float s ) const
 {
-	assert( check(*this) );
-	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	return vec2( x*sinv, y*sinv );
 }
 
 inline vec2& vec2::operator*=( const vec2& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	x *= o.x;
 	y *= o.y;
 	return *this;
@@ -74,10 +74,10 @@ inline vec2& vec2::operator*=( const vec2& o )
 
 inline vec2& vec2::operator/=( const vec2& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
-	assert( fabsf(o.x) > FLT_MIN );
-	assert( fabsf(o.y) > FLT_MIN );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( fabsf(o.x) > FLT_MIN );
+	SLMATH_VEC_ASSERT( fabsf(o.y) > FLT_MIN );
 	x /= o.x;
 	y /= o.y;
 	return *this;
@@ -85,57 +85,57 @@ inline vec2& vec2::operator/=( const vec2& o )
 
 inline float& vec2::operator[]( size_t i )
 {
-	assert( i < 2 );
+	SLMATH_VEC_ASSERT( i < 2 );
 	return (&x)[i];
 }
 
 inline vec2 vec2::operator*( const vec2& o ) const
 {
-	assert( check(o) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(x*o.x,y*o.y);
 }
 
 inline vec2 vec2::operator/( const vec2& o ) const
 {
-	assert( check(o) );
-	assert( check(*this) );
-	assert( fabsf(o.x) > FLT_MIN );
-	assert( fabsf(o.y) > FLT_MIN );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( fabsf(o.x) > FLT_MIN );
+	SLMATH_VEC_ASSERT( fabsf(o.y) > FLT_MIN );
 	return vec2(x/o.x,y/o.y);
 }
 
 inline vec2 vec2::operator+( const vec2& o ) const
 {
-	assert( check(o) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(x+o.x,y+o.y);
 }
 
 inline vec2 vec2::operator-( const vec2& o ) const
 {
-	assert( check(o) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(x-o.x,y-o.y);
 }
 
 inline vec2 vec2::operator-() const
 {
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(-x,-y);
 }
 
 inline vec2 vec2::operator*( float s ) const
 {
-	assert( check(s) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(s) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(x*s,y*s);
 }
 
 inline const float& vec2::operator[]( size_t i ) const
 {
-	assert( check(*this) );
-	assert( i < 2 );
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( i < 2 );
 	return (&x)[i];
 }
 
@@ -151,29 +151,29 @@ inline bool vec2::operator!=( const vec2& o ) const
 
 inline float length( const vec2& v )
 {
-	assert( check(v) );
+	SLMATH_VEC_ASSERT( check(v) );
 
 	float res = sqrtf( v.x*v.x + v.y*v.y );
 
-	assert( res >= 0.f && res <= FLT_MAX );
+	SLMATH_VEC_ASSERT( res >= 0.f && res <= FLT_MAX );
 	return res;
 }
 
 inline float dot( const vec2& a, const vec2& b )
 {
-	assert( check(a) );
-	assert( check(b) );
+	SLMATH_VEC_ASSERT( check(a) );
+	SLMATH_VEC_ASSERT( check(b) );
 
 	float res = a.x*b.x + a.y*b.y;
 
-	assert( res >= -FLT_MAX && res <= FLT_MAX );
+	SLMATH_VEC_ASSERT( res >= -FLT_MAX && res <= FLT_MAX );
 	return res;
 }
 
 inline vec2	operator*( float s, const vec2& v )		
 {
-	assert( check(s) );
-	assert( check(v) ); 
+	SLMATH_VEC_ASSERT( check(s) );
+	SLMATH_VEC_ASSERT( check(v) ); 
 	return vec2(v.x*s,v.y*s);
 }
 

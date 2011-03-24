@@ -4,14 +4,14 @@ SLMATH_BEGIN()
 
 vec4 normalize( const vec4& v )
 {
-	assert( check(v) );
+	SLMATH_VEC_ASSERT( check(v) );
 
 	float len = length(v);
 	assert( len >= FLT_MIN );
 	
 	float invlen = 1.f / len;
 	vec4 res( v.x*invlen, v.y*invlen, v.z*invlen, v.w*invlen );
-	assert( check(res) );
+	SLMATH_VEC_ASSERT( check(res) );
 	return res;
 }
 

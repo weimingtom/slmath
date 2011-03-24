@@ -5,33 +5,33 @@ inline void mat4::set( size_t i, const vec4& v )
 
 inline const vec4& mat4::get( size_t i ) const
 {
-	assert( i < 4 );
+	SLMATH_VEC_ASSERT( i < 4 );
 	return v4()[i];
 }
 
 inline vec4& mat4::operator[]( size_t i )// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
 {
-	assert( i < 4 );
+	SLMATH_VEC_ASSERT( i < 4 );
 	return v4()[i];
 }
 
 inline const vec4& mat4::operator[]( size_t i ) const
 {
-	assert( i < 4 );
+	SLMATH_VEC_ASSERT( i < 4 );
 	return v4()[i];
 }
 
 inline vec4 operator*( const vec4& v, const mat4& m )
 {
-	assert( check(v) );
-	assert( check(m) );
+	SLMATH_VEC_ASSERT( check(v) );
+	SLMATH_VEC_ASSERT( check(m) );
 	return vec4( dot(v,m[0]), dot(v,m[1]), dot(v,m[2]), dot(v,m[3]) );
 }
 
 inline vec4 operator*( const mat4& m, const vec4& v )
 {
-	assert( check(v) );
-	assert( check(m) );
+	SLMATH_VEC_ASSERT( check(v) );
+	SLMATH_VEC_ASSERT( check(m) );
 	return m[0]*v.x + m[1]*v.y + m[2]*v.z + m[3]*v.w;
 }
 

@@ -24,7 +24,7 @@ mat4::mat4( float d )
 
 mat4::mat4( float a, const vec3& v )
 {
-	assert( length(v) > FLT_MIN );
+	SLMATH_VEC_ASSERT( length(v) > FLT_MIN );
 
 	float s, c;
 	sincos( a, &s, &c );
@@ -93,8 +93,8 @@ mat4& mat4::operator*=( float s )
 
 bool mat4::operator==( const mat4& o ) const
 {
-	assert( check(*this) );
-	assert( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
 
 	register const vec4* const m = v4();
 	for ( size_t i = 0 ; i < 4 ; ++i )
@@ -105,8 +105,8 @@ bool mat4::operator==( const mat4& o ) const
 
 bool mat4::operator!=( const mat4& o ) const
 {
-	assert( check(*this) );
-	assert( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
 
 	register const vec4* const m = v4();
 	for ( size_t i = 0 ; i < 4 ; ++i )
@@ -164,8 +164,8 @@ mat4& mat4::operator*=( const mat4& o )
 
 mat4 mat4::operator*( const mat4& o ) const
 {
-	assert( check(o) );
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(o) );
+	SLMATH_VEC_ASSERT( check(*this) );
 	mat4 res;
 
 	#define VTMP(i,j) SLMATH_MUL_PS( m_m128[i], SLMATH_LOAD_PS1(&o[j][i]) )
@@ -176,7 +176,7 @@ mat4 mat4::operator*( const mat4& o ) const
 	o128[3] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,3),VTMP(1,3)), SLMATH_ADD_PS(VTMP(2,3),VTMP(3,3)) );
 	#undef VTMP
 
-	assert( check(res) );
+	SLMATH_VEC_ASSERT( check(res) );
 	return res;
 }
 
@@ -214,13 +214,13 @@ mat4 transpose( const mat4& m )
 
 float det( const mat4& m )
 {
-	assert( check(m) );
+	SLMATH_VEC_ASSERT( check(m) );
 	return DET4( m[0][0],m[0][1],m[0][2],m[0][3], m[1][0],m[1][1],m[1][2],m[1][3], m[2][0],m[2][1],m[2][2],m[2][3], m[3][0],m[3][1],m[3][2],m[3][3] );
 }
 
 mat4 inverse( const mat4& m0 )
 {
-	assert( check(m0) );
+	SLMATH_VEC_ASSERT( check(m0) );
 
 	const float* const mp = &m0[0][0];
 	const float a = mp[0];	const float b = mp[1];	const float c = mp[2];	const float d = mp[3];
@@ -233,7 +233,7 @@ mat4 inverse( const mat4& m0 )
 	const float min_c = DET3(e,f,h,i,j,l,m,n,p);
 	const float min_d = DET3(e,f,g,i,j,k,m,n,o);
 	const float det_m = a*min_a - b*min_b + c*min_c - d*min_d;
-	assert( det_m > FLT_MIN || det_m < -FLT_MIN ); // invertible?
+	SLMATH_VEC_ASSERT( det_m > FLT_MIN || det_m < -FLT_MIN ); // invertible?
 
 	mat4 res;
 	res[0][0] = min_a;
@@ -275,7 +275,7 @@ mat4 inverse( const mat4& m0 )
 	res2 *= 1.f/det_m;
 	mat4 dres = res2-res;
 	float diff = length(dres[0])+length(dres[1])+length(dres[2])+length(dres[3]);
-	assert( diff < 1e-6f );
+	SLMATH_VEC_ASSERT( diff < 1e-6f );
 	return res;
 */
 }
@@ -288,7 +288,7 @@ mat4::mat4( const quat& q )
     const float sqz = q.z*q.z;
 	const float qlen = sqx + sqy + sqz + sqw;
 
-	assert( qlen > FLT_MIN );
+	SLMATH_VEC_ASSERT( qlen > FLT_MIN );
     const float invs = 1.f / qlen; // only needed if not normalized
 
 	register vec4* const m = v4();
@@ -319,7 +319,7 @@ mat4::mat4( const quat& q )
 
 mat4 translation( const vec3& t )
 {
-	assert( check(t) );
+	SLMATH_VEC_ASSERT( check(t) );
 	mat4 tm;
 	tm[0] = vec4(   1,   0,   0,  0 );
 	tm[1] = vec4(   0,   1,   0,  0 );
@@ -330,7 +330,7 @@ mat4 translation( const vec3& t )
 
 mat4 scaling( float s )
 {
-	assert( check(s) );
+	SLMATH_VEC_ASSERT( check(s) );
 	mat4 tm;
 	tm[0] = vec4(   s,   0,   0,  0 );
 	tm[1] = vec4(   0,   s,   0,  0 );
@@ -345,10 +345,10 @@ mat4 scaling( float s )
  */
 static mat4 perspectiveFov( float fovy, float aspect, float znear, float zfar, float handedness )
 {
-	assert( aspect > 0.001f );
-	assert( fabsf(zfar-znear) > 1e-6f );
-	assert( fovy >= radians(0.1f) );
-	assert( fovy <= radians(179.f) );
+	SLMATH_VEC_ASSERT( aspect > 0.001f );
+	SLMATH_VEC_ASSERT( fabsf(zfar-znear) > 1e-6f );
+	SLMATH_VEC_ASSERT( fovy >= radians(0.1f) );
+	SLMATH_VEC_ASSERT( fovy <= radians(179.f) );
 
 	const float y = cot( fovy * .5f );
 	const float x = y / aspect;
@@ -384,7 +384,7 @@ mat4 rotationX( float a )
 	m[2] = vec4( 0,-s, c, 0 );
 	m[3] = vec4( 0, 0, 0, 1 );
 
-	assert( det(m) != 0.f );
+	SLMATH_VEC_ASSERT( det(m) != 0.f );
 	return m;
 }
 
@@ -399,7 +399,7 @@ mat4 rotationY( float a )
 	m[2] = vec4( s, 0, c, 0 );
 	m[3] = vec4( 0, 0, 0, 1 );
 
-	assert( det(m) != 0.f );
+	SLMATH_VEC_ASSERT( det(m) != 0.f );
 	return m;
 }
 
@@ -414,14 +414,14 @@ mat4 rotationZ( float a )
 	m[2] = vec4( 0, 0, 1, 0 );
 	m[3] = vec4( 0, 0, 0, 1 );
 
-	assert( det(m) != 0.f );
+	SLMATH_VEC_ASSERT( det(m) != 0.f );
 	return m;
 }
 
 mat4 targetAtRH( const vec3& eye, const vec3& at, const vec3& up )
 {
-	assert( distance(eye,at) > FLT_MIN );
-	assert( length(up) > FLT_MIN );
+	SLMATH_VEC_ASSERT( distance(eye,at) > FLT_MIN );
+	SLMATH_VEC_ASSERT( length(up) > FLT_MIN );
 
 	vec3 zaxis = normalize(eye - at);
 	vec3 xaxis = normalize(cross(up, zaxis));
@@ -451,8 +451,8 @@ mat4 lookAtRH( const vec3& eye, const vec3& at, const vec3& up )
 
 mat4 cubeMapViewRH( size_t face, const vec3& worldpos )
 {
-	assert( face < 6 );
-	assert( check(worldpos) );
+	SLMATH_VEC_ASSERT( face < 6 );
+	SLMATH_VEC_ASSERT( check(worldpos) );
 
 	vec3 x,y;
 	switch ( face )
@@ -499,9 +499,9 @@ mat4 cubeMapViewRH( size_t face, const vec3& worldpos )
 
 mat4 cubeMapProjectionRH( float znear, float zfar )
 {
-	assert( znear > 1e-5f && znear < 1e6f );
-	assert( zfar > 1e-5f && zfar < 1e6f );
-	assert( zfar > znear );
+	SLMATH_VEC_ASSERT( znear > 1e-5f && znear < 1e6f );
+	SLMATH_VEC_ASSERT( zfar > 1e-5f && zfar < 1e6f );
+	SLMATH_VEC_ASSERT( zfar > znear );
 
 	mat4 m = perspectiveFovRH( radians(90.f), 1.f, znear, zfar );
 	m[1][1] = -m[1][1];
@@ -595,7 +595,7 @@ mat4 fromToRotation( const vec3& from, const vec3& to )
 
 mat4 frameFromNormal( const vec3& z )
 {
-	assert( fabsf(length(z)-1.f) < 1e-6f );
+	SLMATH_VEC_ASSERT( fabsf(length(z)-1.f) < 1e-6f );
 
 	vec3 y = vec3( -z.z, z.x, -z.y );
 	y = normalize( y - z*dot(z,y) );
@@ -607,9 +607,9 @@ mat4 frameFromNormal( const vec3& z )
 	m[2].xyz() = z; m[2].w = 0.f;
 	m[3] = vec4(0,0,0,1.f);
 
-	assert( dot(x,y) < 1e-6f );
-	assert( dot(y,z) < 1e-6f );
-	assert( dot(x,z) < 1e-6f );
+	SLMATH_VEC_ASSERT( dot(x,y) < 1e-6f );
+	SLMATH_VEC_ASSERT( dot(y,z) < 1e-6f );
+	SLMATH_VEC_ASSERT( dot(x,z) < 1e-6f );
 	return m;
 }
 
@@ -619,10 +619,10 @@ mat4 frameFromNormal( const vec3& z )
  */
 static inline mat4 ortho( float w, float h, float znear, float zfar, float sign )
 {
-	assert( w > FLT_MIN );
-	assert( h > FLT_MIN );
-	assert( znear > FLT_MIN );
-	assert( fabsf(znear-zfar) > FLT_MIN );
+	SLMATH_VEC_ASSERT( w > FLT_MIN );
+	SLMATH_VEC_ASSERT( h > FLT_MIN );
+	SLMATH_VEC_ASSERT( znear > FLT_MIN );
+	SLMATH_VEC_ASSERT( fabsf(znear-zfar) > FLT_MIN );
 
 	const float dz = (znear - zfar) * sign;
 	const float dzi = 1.f/dz;

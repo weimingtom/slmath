@@ -4,27 +4,27 @@ SLMATH_BEGIN()
 
 vec3 normalize( const vec3& v )
 {
-	assert( check(v) );
+	SLMATH_VEC_ASSERT( check(v) );
 
 	float len = length(v);
-	assert( len >= FLT_MIN );
+	SLMATH_VEC_ASSERT( len >= FLT_MIN );
 	
 	float invlen = 1.f / len;
 	vec3 res( v.x*invlen, v.y*invlen, v.z*invlen );
-	assert( check(res) );
+	SLMATH_VEC_ASSERT( check(res) );
 	return res;
 }
 
 vec3 cross( const vec3& a, const vec3& b )		
 {
-	assert( check(a) );
-	assert( check(b) );
+	SLMATH_VEC_ASSERT( check(a) );
+	SLMATH_VEC_ASSERT( check(b) );
 
 	// i    j     k
 	// a.x  a.y   a.z
 	// b.x  b.y   b.z
 	vec3 res( a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x );
-	assert( check(res) );
+	SLMATH_VEC_ASSERT( check(res) );
 	return res;
 }
 
@@ -34,7 +34,7 @@ vec3 facenormal_ccw( const vec3& v0, const vec3& v1, const vec3& v2 )
 	vec3 b( v2.x-v0.x, v2.y-v0.y, v2.z-v0.z );
 	vec3 res( a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x );
 	const float len = length(res);
-	assert( len >= FLT_MIN );
+	SLMATH_VEC_ASSERT( len >= FLT_MIN );
 	res *= 1.f/len;
 	return res;
 }

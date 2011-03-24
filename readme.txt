@@ -1,4 +1,4 @@
-slmath ver. 2.0.0
+slmath ver. 2.0.1
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -99,6 +99,21 @@ void __cdecl operator delete[]( void* p )
 }
 
 
+Asserts in Vector Ops (_DEBUG)
+------------------------------
+
+Vector operations have a lot of assert checks. 
+Those slow down _DEBUG build but are usually very useful to catch programming errors.
+However, if you want to disable those you can comment out line from slmath_configure:
+//#define SLMATH_VEC_ASSERTS
+
+You can also selectively uncomment per compilation unit using following trick:
+#include <slm/slmath_configure.h>
+#undef SLMATH_VEC_ASSERTS
+#include <slm/vec4.h>
+// ...
+
+
 Version Control (Subversion)
 ---------------------------
 
@@ -108,6 +123,10 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.0.1 (2011-03-24):
+* much faster _DEBUG build
+* vec-op asserts optional (comment out SLMATH_VEC_ASSERTS from slmath_configure.h before compiling)
 
 v2.0.0 (2011-03-19):
 * simplified naming conventions: slmath -> slm
