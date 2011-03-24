@@ -1,13 +1,10 @@
 inline vec2::vec2() 
 {
-#ifdef _DEBUG
-	const int nan = -1;
-	y = x = *(const float*)&nan;
-#endif
 }
 
 inline vec2::vec2( float v )
 {
+	assert( check(v) );
 	y = x = v;
 }
 
@@ -21,39 +18,36 @@ inline void vec2::set( float x0, float y0 )
 {
 	x=x0;
 	y=y0;
+	assert( check(*this) );
 }
 
 inline vec2& vec2::operator+=( const vec2& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	x += o.x;
 	y += o.y;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec2& vec2::operator-=( const vec2& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	x -= o.x;
 	y -= o.y;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec2& vec2::operator*=( float s )
 {
-	assert( check(*this) );
-	assert( check(s) );
 	x *= s;
 	y *= s;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec2& vec2::operator/=( float s )
 {
 	assert( check(*this) );
-	assert( check(s) );
 	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	x *= sinv;
@@ -64,7 +58,6 @@ inline vec2& vec2::operator/=( float s )
 inline vec2 vec2::operator/( float s ) const
 {
 	assert( check(*this) );
-	assert( check(s) );
 	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	return vec2( x*sinv, y*sinv );
@@ -221,7 +214,7 @@ inline vec2 saturate( const vec2& v )
 
 inline bool check( const vec2& v )
 {
-	return vecCheck( v );
+	return check( v.x ) && check( v.y );
 }
 
 inline vec2 neg( const vec2& a )

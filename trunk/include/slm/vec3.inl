@@ -8,6 +8,7 @@ inline vec3::vec3()
 
 inline vec3::vec3( float v )
 {
+	assert( check(v) );
 	z = y = x = v;
 }
 
@@ -28,77 +29,71 @@ inline void vec3::set( float x0, float y0, float z0 )
 	x=x0;
 	y=y0;
 	z=z0;
+	assert( check(*this) );
 }
 
 inline vec3& vec3::operator+=( const vec3& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	x+=o.x;
 	y+=o.y;
 	z+=o.z;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3& vec3::operator-=( const vec3& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	x-=o.x;
 	y-=o.y;
 	z-=o.z;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3& vec3::operator*=( float s )
 {
-	assert( check(s) );
-	assert( check(*this) );
 	x*=s;
 	y*=s;
 	z*=s;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3& vec3::operator*=( const vec3& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	x *= o.x;
 	y *= o.y;
 	z *= o.z;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3& vec3::operator/=( const vec3& o )
 {
-	assert( check(o) );
-	assert( check(*this) );
 	assert( fabsf(o.x) > FLT_MIN );
 	assert( fabsf(o.y) > FLT_MIN );
 	assert( fabsf(o.z) > FLT_MIN );
 	x /= o.x;
 	y /= o.y;
 	z /= o.z;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3& vec3::operator/=( float s )
 {
-	assert( check(*this) );
-	assert( check(s) );
 	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	x *= sinv;
 	y *= sinv;
 	z *= sinv;
+	assert( check(*this) );
 	return *this;
 }
 
 inline vec3 vec3::operator/( float s ) const
 {
 	assert( check(*this) );
-	assert( check(s) );
 	assert( fabsf(s) >= FLT_MIN ); // s must be != 0
 	const float sinv = 1.f/s;
 	return vec3( x*sinv, y*sinv, z*sinv );
@@ -124,7 +119,6 @@ inline vec3 vec3::operator*( const vec3& o ) const
 
 inline vec3 vec3::operator/( const vec3& o ) const
 {
-	assert( check(o) );
 	assert( check(*this) );
 	assert( fabsf(o.x) > FLT_MIN );
 	assert( fabsf(o.y) > FLT_MIN );
@@ -161,7 +155,6 @@ inline vec3 vec3::operator*( float s ) const
 
 inline const float& vec3::operator[]( size_t i ) const
 {
-	assert( check(*this) );
 	assert( i < 3 );
 	return (&x)[i];
 }
@@ -248,7 +241,7 @@ inline vec3 saturate( const vec3& v )
 
 inline bool check( const vec3& v )
 {
-	return vecCheck( v );
+	return check( v.x ) && check( v.y ) && check( v.z );
 }
 
 inline vec3 neg( const vec3& a )
