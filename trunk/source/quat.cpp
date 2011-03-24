@@ -1,7 +1,7 @@
 #include <slm/quat.h>
 
 #define UNIT_QUATERNION_EPS 1e-3f
-#define ASSERT_IS_UNIT(Q) assert( fabsf(norm(Q)-1.f) < UNIT_QUATERNION_EPS )
+#define ASSERT_IS_UNIT(Q) SLMATH_VEC_ASSERT( fabsf(norm(Q)-1.f) < UNIT_QUATERNION_EPS )
 
 SLMATH_BEGIN()
 
@@ -16,7 +16,7 @@ bool check( const quat& v )
 
 quat::quat( float a, const vec3& v )
 {
-	assert( fabsf(length(v)-1.f) < 1e-3f ); // axis must be normalized before calling this
+	SLMATH_VEC_ASSERT( fabsf(length(v)-1.f) < 1e-3f ); // axis must be normalized before calling this
 
 	float s,c;
 	sincos( a*.5f, &s, &c );
@@ -25,7 +25,7 @@ quat::quat( float a, const vec3& v )
 	z = v.z * s;
 	w = c;
 
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 }
 
 quat::quat( const mat4& m )
@@ -36,7 +36,7 @@ quat::quat( const mat4& m )
 	{
 		float root = sqrtf( trace + 1.f );
 		w = root * .5f;
-		assert( fabsf(root) >= FLT_MIN );
+		SLMATH_VEC_ASSERT( fabsf(root) >= FLT_MIN );
 		root = .5f / root;
         x = root * (m[1][2] - m[2][1]);
         y = root * (m[2][0] - m[0][2]);
@@ -55,14 +55,14 @@ quat::quat( const mat4& m )
 		float root = sqrtf( m[i][i] - m[j][j] - m[k][k] + 1.f );
 		float* v = &x;
 		v[i] = root * .5f;
-		assert( fabsf(root) >= FLT_MIN );
+		SLMATH_VEC_ASSERT( fabsf(root) >= FLT_MIN );
 		root = .5f / root;
 		v[j] = root * (m[i][j] + m[j][i]);
 		v[k] = root * (m[i][k] + m[k][i]);
 		w = root * (m[j][k] - m[k][j]);
 	}
 
-	assert( check(*this) );
+	SLMATH_VEC_ASSERT( check(*this) );
 }
 
 quat quat::operator*( const quat& o ) const
@@ -73,7 +73,7 @@ quat quat::operator*( const quat& o ) const
 	q.y = (w*o.y - x*o.z + y*o.w + z*o.x);
 	q.z = (w*o.z + x*o.y - y*o.x + z*o.w);
 
-	assert( check(q) );
+	SLMATH_VEC_ASSERT( check(q) );
 	return q;
 }
 
@@ -90,14 +90,14 @@ float norm( const quat& q )
 quat normalize( const quat& q )
 {
 	float n = norm(q);
-	assert( n > FLT_MIN );
+	SLMATH_VEC_ASSERT( n > FLT_MIN );
 	return q * (1.f/n);
 }
 
 quat inverse( const quat& q )
 {
 	float n = norm(q);
-	assert( n > FLT_MIN );
+	SLMATH_VEC_ASSERT( n > FLT_MIN );
 	n = 1.f/n; 
 	return quat( -q.x*n, -q.y*n, -q.z*n, q.w*n );
 }

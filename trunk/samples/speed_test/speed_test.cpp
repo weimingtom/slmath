@@ -1,4 +1,4 @@
-#include <slmath/slmath.h>
+#include <slm/slmath.h>
 #include <stdio.h>
 #include <vector>
 #include <new>
@@ -25,8 +25,8 @@ void __cdecl operator delete[]( void* p )
 
 struct A
 {
-	int				a;
-	slmath::vec4	x;
+	int			a;
+	slm::vec4	x;
 };
 
 // __rdtsc() in <intrin.h>
@@ -72,7 +72,7 @@ double opsM( double t, uint64_t n )
 	return double(n)/double(t)/1e6;
 }
 
-/** Helper determinant calculation for non-slmath libs */
+/** Helper determinant calculation for non-slm libs */
 template <class T> float det4( const T& m )
 {
 	return
@@ -94,7 +94,7 @@ SLMATH_USING()
 
 using namespace Eigen;
 
-inline Matrix4f toEigen( const slmath::mat4& m ) {Matrix4f b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
+inline Matrix4f toEigen( const slm::mat4& m ) {Matrix4f b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
 #endif
 
 // optional XNA Math benchmarking
@@ -102,8 +102,8 @@ inline Matrix4f toEigen( const slmath::mat4& m ) {Matrix4f b1; for ( int i = 0 ;
 #ifdef TEST_XNA
 #include <xnamath.h>
 
-inline XMMATRIX toXNA( const slmath::mat4& m ) {XMMATRIX b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
-inline XMVECTOR toXNA( const slmath::vec4& v ) {return *(XMVECTOR*)&v;}
+inline XMMATRIX toXNA( const slm::mat4& m ) {XMMATRIX b1; for ( int i = 0 ; i < 4 ; ++i ) for ( int j = 0 ; j < 4 ; ++j ) b1(i,j) = m[i][j];return b1;}
+inline XMVECTOR toXNA( const slm::vec4& v ) {return *(XMVECTOR*)&v;}
 #endif
 
 
@@ -146,7 +146,7 @@ void test1()
 				y0 += alpha0 * x0;
 			}
 			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), length(y0) );
+			printf( "  ops (slm) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), length(y0) );
 		}
 
 #ifdef TEST_EIGEN
@@ -210,7 +210,7 @@ void test2()
 					b0 = a0;
 			}
 			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), det(b0) );
+			printf( "  ops (slm) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), det(b0) );
 		}
 
 #ifdef TEST_EIGEN
@@ -275,7 +275,7 @@ void test3()
 				sumx += b0[0][0];
 			}
 			double time0 = tick();
-			printf( "  ops (slmath) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), sumx );
+			printf( "  ops (slm) = %.1fM (checksum=%g)\n", opsM(time0,n_reps), sumx );
 		}
 	}
 }
@@ -322,7 +322,7 @@ int main( int argc, char* argv[] )
 {
 	if ( !isValidCPU() )
 	{
-		printf( "slmath was compiled for CPU features not supported by this platform\n" );
+		printf( "slm was compiled for CPU features not supported by this platform\n" );
 		return 1;
 	}
 

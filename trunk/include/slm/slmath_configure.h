@@ -9,6 +9,9 @@
 /** Enable namespace support, everything placed inside 'slm' namespace */
 #define SLMATH_NAMESPACE
 
+/** Enable vec-op asserts on _DEBUG build */
+#define SLMATH_VEC_ASSERTS
+
 /** Uncomment this if you wish to use old slmath namespace instead of slm */
 //#define slmath slm
 
