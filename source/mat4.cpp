@@ -1,5 +1,6 @@
 #include <slm/mat4.h>
 #include <slm/quat.h>
+#include <slm/no_simd.h>
 
 // for computing matrix minors
 #define DET2(a,b,c,d) ( a*d-b*c )
@@ -164,10 +165,9 @@ mat4& mat4::operator*=( const mat4& o )
 
 mat4 mat4::operator*( const mat4& o ) const
 {
-	SLMATH_VEC_ASSERT( check(o) );
-	SLMATH_VEC_ASSERT( check(*this) );
 	mat4 res;
 
+#ifdef SLMATH_SIMD
 	#define VTMP(i,j) SLMATH_MUL_PS( m_m128[i], SLMATH_LOAD_PS1(&o[j][i]) )
 	m128_t* const o128 = res.m128();
 	o128[0] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,0),VTMP(1,0)), SLMATH_ADD_PS(VTMP(2,0),VTMP(3,0)) );
@@ -175,6 +175,10 @@ mat4 mat4::operator*( const mat4& o ) const
 	o128[2] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,2),VTMP(1,2)), SLMATH_ADD_PS(VTMP(2,2),VTMP(3,2)) );
 	o128[3] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,3),VTMP(1,3)), SLMATH_ADD_PS(VTMP(2,3),VTMP(3,3)) );
 	#undef VTMP
+#else
+	// note: even if above SIMD-macro version works also on non-SIMD platforms, this is much faster if there is no SIMD support
+	MAT4_MUL_MAT4( res, m, o );
+#endif
 
 	SLMATH_VEC_ASSERT( check(res) );
 	return res;
@@ -214,8 +218,9 @@ mat4 transpose( const mat4& m )
 
 float det( const mat4& m )
 {
-	SLMATH_VEC_ASSERT( check(m) );
-	return DET4( m[0][0],m[0][1],m[0][2],m[0][3], m[1][0],m[1][1],m[1][2],m[1][3], m[2][0],m[2][1],m[2][2],m[2][3], m[3][0],m[3][1],m[3][2],m[3][3] );
+	const float res = DET4( m[0][0],m[0][1],m[0][2],m[0][3], m[1][0],m[1][1],m[1][2],m[1][3], m[2][0],m[2][1],m[2][2],m[2][3], m[3][0],m[3][1],m[3][2],m[3][3] );
+	SLMATH_VEC_ASSERT( check(res) );
+	return res;
 }
 
 mat4 inverse( const mat4& m0 )
