@@ -265,4 +265,11 @@ inline vec3 mul( float b, const vec3& a )
 	return a*b;
 }
 
+inline vec3 cross( const vec3& a, const vec3& b )		
+{
+	vec3 res( a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x );
+	SLMATH_VEC_ASSERT( check(res) );
+	return res;
+}
+
 // This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/

@@ -176,7 +176,7 @@ mat4 mat4::operator*( const mat4& o ) const
 	o128[3] = SLMATH_ADD_PS( SLMATH_ADD_PS(VTMP(0,3),VTMP(1,3)), SLMATH_ADD_PS(VTMP(2,3),VTMP(3,3)) );
 	#undef VTMP
 #else
-	// note: even if above SIMD-macro version works also on non-SIMD platforms, this is much faster if there is no SIMD support
+	// note: above SIMD-macro version works also on non-SIMD platforms, this is much faster if there is no SIMD support
 	MAT4_MUL_MAT4( res, m, o );
 #endif
 
