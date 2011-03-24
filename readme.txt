@@ -127,6 +127,7 @@ Changes
 v2.0.1 (2011-03-24):
 * much faster _DEBUG build
 * vec-op asserts optional (comment out SLMATH_VEC_ASSERTS from slmath_configure.h before compiling)
+* optimized version of mat4*mat4 for non-SIMD platforms
 
 v2.0.0 (2011-03-19):
 * simplified naming conventions: slmath -> slm
