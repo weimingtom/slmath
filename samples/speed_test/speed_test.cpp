@@ -98,7 +98,9 @@ inline Matrix4f toEigen( const slm::mat4& m ) {Matrix4f b1; for ( int i = 0 ; i 
 #endif
 
 // optional XNA Math benchmarking
+#ifdef _M_X64
 #define TEST_XNA
+#endif
 #ifdef TEST_XNA
 #include <xnamath.h>
 
