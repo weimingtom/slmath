@@ -58,7 +58,7 @@ public:
 	void			set( size_t i, const vec4& v );
 
 	/** Returns specified column vector (0-based index). */
-	vec4&	operator[]( size_t i );
+	vec4&			operator[]( size_t i );
 
 	/** Component wise addition. */
 	mat4&			operator+=( const mat4& o );

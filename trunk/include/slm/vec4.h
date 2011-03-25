@@ -101,7 +101,7 @@ public:
 	vec4&		operator/=( const vec4& o );
 
 	/** Returns component at specified index. */
-	float&		operator[]( size_t i );
+	float&		operator[]( size_t i )				{SLMATH_VEC_ASSERT( i < 4 ); return (&x)[i];}
 
 	/** Returns sub-vector. */
 	vec3&		xyz();
@@ -133,7 +133,7 @@ public:
 	vec4		operator/( float s ) const;
 
 	/** Returns component at specified index. */
-	const float& operator[]( size_t i ) const;
+	const float& operator[]( size_t i ) const			{SLMATH_VEC_ASSERT( i < 4 ); return (&x)[i];}
 
 	/** Returns true if vectors are bitwise equal. */
 	bool		operator==( const vec4& o ) const;

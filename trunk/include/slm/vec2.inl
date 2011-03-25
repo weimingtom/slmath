@@ -83,12 +83,6 @@ inline vec2& vec2::operator/=( const vec2& o )
 	return *this;
 }
 
-inline float& vec2::operator[]( size_t i )
-{
-	SLMATH_VEC_ASSERT( i < 2 );
-	return (&x)[i];
-}
-
 inline vec2 vec2::operator*( const vec2& o ) const
 {
 	SLMATH_VEC_ASSERT( check(o) );
@@ -130,13 +124,6 @@ inline vec2 vec2::operator*( float s ) const
 	SLMATH_VEC_ASSERT( check(s) );
 	SLMATH_VEC_ASSERT( check(*this) );
 	return vec2(x*s,y*s);
-}
-
-inline const float& vec2::operator[]( size_t i ) const
-{
-	SLMATH_VEC_ASSERT( check(*this) );
-	SLMATH_VEC_ASSERT( i < 2 );
-	return (&x)[i];
 }
 
 inline bool vec2::operator==( const vec2& o ) const

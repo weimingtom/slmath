@@ -177,8 +177,10 @@ mat4 mat4::operator*( const mat4& o ) const
 	#undef VTMP
 #else
 	// note: above SIMD-macro version works also on non-SIMD platforms, this is much faster if there is no SIMD support
-	const vec4* const m = &get(0);
-	MAT4_MUL_MAT4( res, m, o );
+	const vec4* const mp = &get(0);
+	const vec4* const op = &o.get(0);
+	vec4* resp = &res.get(0);
+	MAT4_MUL_MAT4( resp, mp, op );
 #endif
 
 	SLMATH_VEC_ASSERT( check(res) );

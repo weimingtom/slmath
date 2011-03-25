@@ -86,12 +86,6 @@ inline vec4 vec4::operator/( float s ) const
 	return vec4( SLMATH_MUL_PS( m128(), SLMATH_LOAD_PS1(&invs) ) );
 }
 
-inline float& vec4::operator[]( size_t i )
-{
-	SLMATH_VEC_ASSERT( i < 4 );
-	return (&x)[i];
-}
-
 inline vec3& vec4::xyz()
 {
 	return *(vec3*)&x;
@@ -144,12 +138,6 @@ inline vec4 vec4::operator*( float s ) const
 	SLMATH_VEC_ASSERT( check(s) );
 	SLMATH_VEC_ASSERT( check(*this) );
 	return vec4( SLMATH_MUL_PS( m128(), SLMATH_LOAD_PS1(&s) ) );
-}
-
-inline const float& vec4::operator[]( size_t i ) const
-{
-	SLMATH_VEC_ASSERT( i < 4 );
-	return (&x)[i];
 }
 
 inline bool vec4::operator==( const vec4& o ) const

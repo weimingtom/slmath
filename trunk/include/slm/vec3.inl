@@ -95,12 +95,6 @@ inline vec3 vec3::operator/( float s ) const
 	return vec3( x*sinv, y*sinv, z*sinv );
 }
 
-inline float& vec3::operator[]( size_t i )
-{
-	SLMATH_VEC_ASSERT( i < 3 );
-	return (&x)[i];
-}
-
 inline vec2& vec3::xy()
 {
 	return *(vec2*)&x;
@@ -147,12 +141,6 @@ inline vec3 vec3::operator*( float s ) const
 	SLMATH_VEC_ASSERT( check(s) );
 	SLMATH_VEC_ASSERT( check(*this) );
 	return vec3(x*s,y*s,z*s);
-}
-
-inline const float& vec3::operator[]( size_t i ) const
-{
-	SLMATH_VEC_ASSERT( i < 3 );
-	return (&x)[i];
 }
 
 inline bool vec3::operator==( const vec3& o ) const
