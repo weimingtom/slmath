@@ -366,6 +366,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\include\slm\no_simd.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\include\slm\quat.h"
 				>
 			</File>

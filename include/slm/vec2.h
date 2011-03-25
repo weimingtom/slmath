@@ -69,7 +69,7 @@ public:
 	vec2&		operator/=( float s );
 
 	/** Returns component at specified index. */
-	float&		operator[]( size_t i );
+	float&		operator[]( size_t i )				{SLMATH_VEC_ASSERT( i < 3 ); return (&x)[i];}
 
 	/** Component wise multiplication. */
 	vec2		operator*( const vec2& o ) const;
@@ -93,7 +93,7 @@ public:
 	vec2		operator/( float s ) const;
 
 	/** Returns component at specified index. */
-	const float& operator[]( size_t i ) const;
+	const float& operator[]( size_t i ) const			{SLMATH_VEC_ASSERT( i < 3 ); return (&x)[i];}
 
 	/** Returns true if vectors are bitwise equal. */
 	bool		operator==( const vec2& o ) const;
