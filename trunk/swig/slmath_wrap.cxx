@@ -1507,20 +1507,18 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_float swig_types[0]
-#define SWIGTYPE_p_slm__MersenneTwist swig_types[1]
-#define SWIGTYPE_p_slm__intersectLineBox_Line swig_types[2]
-#define SWIGTYPE_p_slm__m128_emu swig_types[3]
-#define SWIGTYPE_p_slm__mat4 swig_types[4]
-#define SWIGTYPE_p_slm__quat swig_types[5]
-#define SWIGTYPE_p_slm__random swig_types[6]
-#define SWIGTYPE_p_slm__vec2 swig_types[7]
-#define SWIGTYPE_p_slm__vec3 swig_types[8]
-#define SWIGTYPE_p_slm__vec4 swig_types[9]
-#define SWIGTYPE_p_unsigned_long swig_types[10]
-#define SWIGTYPE_p_vec3 swig_types[11]
-#define SWIGTYPE_p_vec4 swig_types[12]
-static swig_type_info *swig_types[14];
-static swig_module_info swig_module = {swig_types, 13, 0, 0, 0, 0};
+#define SWIGTYPE_p_slm__intersectLineBox_Line swig_types[1]
+#define SWIGTYPE_p_slm__m128_emu swig_types[2]
+#define SWIGTYPE_p_slm__mat4 swig_types[3]
+#define SWIGTYPE_p_slm__quat swig_types[4]
+#define SWIGTYPE_p_slm__random swig_types[5]
+#define SWIGTYPE_p_slm__vec2 swig_types[6]
+#define SWIGTYPE_p_slm__vec3 swig_types[7]
+#define SWIGTYPE_p_slm__vec4 swig_types[8]
+#define SWIGTYPE_p_vec3 swig_types[9]
+#define SWIGTYPE_p_vec4 swig_types[10]
+static swig_type_info *swig_types[12];
+static swig_module_info swig_module = {swig_types, 11, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1543,8 +1541,6 @@ typedef struct{} LANGUAGE_OBJ;
 #include <slm/float_util.h>
 #include <slm/intersect_util.h>
 #include <slm/mat4.h>
-#include <slm/mtrnd.h>
-#include <slm/no_simd.h>
 #include <slm/quat.h>
 #include <slm/random.h>
 #include <slm/runtime_checks.h>
@@ -3604,306 +3600,6 @@ fail:
   return SWIG_arg;
 }
 
-
-static int _wrap_new_MersenneTwist__SWIG_0(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *result = 0 ;
-  
-  SWIG_check_num_args("slm::MersenneTwist",0,0)
-  result = (slm::MersenneTwist *)new slm::MersenneTwist();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_slm__MersenneTwist,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_init_genrand(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  unsigned long arg2 ;
-  
-  SWIG_check_num_args("init_genrand",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("init_genrand",1,"slm::MersenneTwist *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("init_genrand",2,"unsigned long");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_init_genrand",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (unsigned long)lua_tonumber(L, 2);
-  (arg1)->init_genrand(arg2);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_init_by_array(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  unsigned long *arg2 ;
-  int arg3 ;
-  
-  SWIG_check_num_args("init_by_array",3,3)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("init_by_array",1,"slm::MersenneTwist *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("init_by_array",2,"unsigned long []");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("init_by_array",3,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_init_by_array",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_unsigned_long,0))){
-    SWIG_fail_ptr("MersenneTwist_init_by_array",2,SWIGTYPE_p_unsigned_long);
-  }
-  
-  arg3 = (int)lua_tonumber(L, 3);
-  (arg1)->init_by_array(arg2,arg3);
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_int32(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  unsigned long result;
-  
-  SWIG_check_num_args("genrand_int32",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_int32",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_int32",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (unsigned long)(arg1)->genrand_int32();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_int31(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  long result;
-  
-  SWIG_check_num_args("genrand_int31",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_int31",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_int31",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (long)(arg1)->genrand_int31();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_real1(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  double result;
-  
-  SWIG_check_num_args("genrand_real1",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_real1",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_real1",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (double)(arg1)->genrand_real1();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_real2(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  double result;
-  
-  SWIG_check_num_args("genrand_real2",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_real2",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_real2",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (double)(arg1)->genrand_real2();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_real3(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  double result;
-  
-  SWIG_check_num_args("genrand_real3",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_real3",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_real3",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (double)(arg1)->genrand_real3();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_MersenneTwist_genrand_res53(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = (slm::MersenneTwist *) 0 ;
-  double result;
-  
-  SWIG_check_num_args("genrand_res53",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("genrand_res53",1,"slm::MersenneTwist *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("MersenneTwist_genrand_res53",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (double)(arg1)->genrand_res53();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_MersenneTwist__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  slm::MersenneTwist *arg1 = 0 ;
-  slm::MersenneTwist *result = 0 ;
-  
-  SWIG_check_num_args("slm::MersenneTwist::MersenneTwist",1,1)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("slm::MersenneTwist::MersenneTwist",1,"slm::MersenneTwist const &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_slm__MersenneTwist,0))){
-    SWIG_fail_ptr("new_MersenneTwist",1,SWIGTYPE_p_slm__MersenneTwist);
-  }
-  
-  result = (slm::MersenneTwist *)new slm::MersenneTwist((slm::MersenneTwist const &)*arg1);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_slm__MersenneTwist,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_MersenneTwist(lua_State* L) {
-  int argc;
-  int argv[2]={
-    1,2
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 0) {
-    return _wrap_new_MersenneTwist__SWIG_0(L);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      void *ptr;
-      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_slm__MersenneTwist, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      return _wrap_new_MersenneTwist__SWIG_1(L);
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_MersenneTwist'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    slm::MersenneTwist()\n"
-    "    slm::MersenneTwist::MersenneTwist(slm::MersenneTwist const &)\n");
-  lua_error(L);return 0;
-}
-
-
-static void swig_delete_MersenneTwist(void *obj) {
-slm::MersenneTwist *arg1 = (slm::MersenneTwist *) obj;
-delete arg1;
-}
-static swig_lua_method swig_slm_MersenneTwist_methods[] = {
-    {"init_genrand", _wrap_MersenneTwist_init_genrand}, 
-    {"init_by_array", _wrap_MersenneTwist_init_by_array}, 
-    {"genrand_int32", _wrap_MersenneTwist_genrand_int32}, 
-    {"genrand_int31", _wrap_MersenneTwist_genrand_int31}, 
-    {"genrand_real1", _wrap_MersenneTwist_genrand_real1}, 
-    {"genrand_real2", _wrap_MersenneTwist_genrand_real2}, 
-    {"genrand_real3", _wrap_MersenneTwist_genrand_real3}, 
-    {"genrand_res53", _wrap_MersenneTwist_genrand_res53}, 
-    {0,0}
-};
-static swig_lua_attribute swig_slm_MersenneTwist_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_slm_MersenneTwist_bases[] = {0};
-static const char *swig_slm_MersenneTwist_base_names[] = {0};
-static swig_lua_class _wrap_class_slm_MersenneTwist = { "MersenneTwist", &SWIGTYPE_p_slm__MersenneTwist,_wrap_new_MersenneTwist, swig_delete_MersenneTwist, swig_slm_MersenneTwist_methods, swig_slm_MersenneTwist_attributes, swig_slm_MersenneTwist_bases, swig_slm_MersenneTwist_base_names };
 
 static int _wrap_quat_x_set(lua_State* L) {
   int SWIG_arg = 0;
@@ -11720,7 +11416,6 @@ static swig_lua_const_info swig_constants[] = {
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_slm__MersenneTwist = {"_p_slm__MersenneTwist", "slm::MersenneTwist *", 0, 0, (void*)&_wrap_class_slm_MersenneTwist, 0};
 static swig_type_info _swigt__p_slm__intersectLineBox_Line = {"_p_slm__intersectLineBox_Line", "slm::intersectLineBox_Line *", 0, 0, (void*)&_wrap_class_slm_intersectLineBox_Line, 0};
 static swig_type_info _swigt__p_slm__m128_emu = {"_p_slm__m128_emu", "slm::m128_t *|slm::m128_emu *", 0, 0, (void*)&_wrap_class_slm_m128_emu, 0};
 static swig_type_info _swigt__p_slm__mat4 = {"_p_slm__mat4", "slm::mat4 *", 0, 0, (void*)&_wrap_class_slm_mat4, 0};
@@ -11729,13 +11424,11 @@ static swig_type_info _swigt__p_slm__random = {"_p_slm__random", "slm::random *"
 static swig_type_info _swigt__p_slm__vec2 = {"_p_slm__vec2", "slm::vec2 *", 0, 0, (void*)&_wrap_class_slm_vec2, 0};
 static swig_type_info _swigt__p_slm__vec3 = {"_p_slm__vec3", "slm::vec3 *", 0, 0, (void*)&_wrap_class_slm_vec3, 0};
 static swig_type_info _swigt__p_slm__vec4 = {"_p_slm__vec4", "slm::vec4 *", 0, 0, (void*)&_wrap_class_slm_vec4, 0};
-static swig_type_info _swigt__p_unsigned_long = {"_p_unsigned_long", "unsigned long *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_vec3 = {"_p_vec3", "vec3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_vec4 = {"_p_vec4", "vec4 *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_float,
-  &_swigt__p_slm__MersenneTwist,
   &_swigt__p_slm__intersectLineBox_Line,
   &_swigt__p_slm__m128_emu,
   &_swigt__p_slm__mat4,
@@ -11744,13 +11437,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_slm__vec2,
   &_swigt__p_slm__vec3,
   &_swigt__p_slm__vec4,
-  &_swigt__p_unsigned_long,
   &_swigt__p_vec3,
   &_swigt__p_vec4,
 };
 
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_slm__MersenneTwist[] = {  {&_swigt__p_slm__MersenneTwist, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_slm__intersectLineBox_Line[] = {  {&_swigt__p_slm__intersectLineBox_Line, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_slm__m128_emu[] = {  {&_swigt__p_slm__m128_emu, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_slm__mat4[] = {  {&_swigt__p_slm__mat4, 0, 0, 0},{0, 0, 0, 0}};
@@ -11759,13 +11450,11 @@ static swig_cast_info _swigc__p_slm__random[] = {  {&_swigt__p_slm__random, 0, 0
 static swig_cast_info _swigc__p_slm__vec2[] = {  {&_swigt__p_slm__vec2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_slm__vec3[] = {  {&_swigt__p_slm__vec3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_slm__vec4[] = {  {&_swigt__p_slm__vec4, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_unsigned_long[] = {  {&_swigt__p_unsigned_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_vec3[] = {  {&_swigt__p_vec3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_vec4[] = {  {&_swigt__p_vec4, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_float,
-  _swigc__p_slm__MersenneTwist,
   _swigc__p_slm__intersectLineBox_Line,
   _swigc__p_slm__m128_emu,
   _swigc__p_slm__mat4,
@@ -11774,7 +11463,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_slm__vec2,
   _swigc__p_slm__vec3,
   _swigc__p_slm__vec4,
-  _swigc__p_unsigned_long,
   _swigc__p_vec3,
   _swigc__p_vec4,
 };
