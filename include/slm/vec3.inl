@@ -225,7 +225,7 @@ inline vec3 saturate( const vec3& v )
 
 inline bool check( const vec3& v )
 {
-	return check( v.x ) && check( v.y ) && check( v.z );
+	return v.x<=FLT_MAX && v.x>=-FLT_MAX && v.y<=FLT_MAX && v.y>=-FLT_MAX && v.z<=FLT_MAX && v.z>=-FLT_MAX;
 }
 
 inline vec3 neg( const vec3& a )
@@ -260,4 +260,4 @@ inline vec3 cross( const vec3& a, const vec3& b )
 	return res;
 }
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

@@ -83,4 +83,4 @@ bool intersectLineBox( const vec3& o, const vec3& d, const vec3& boxmin, const v
 
 SLMATH_END()
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

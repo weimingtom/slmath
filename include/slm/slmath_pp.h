@@ -19,7 +19,7 @@
 	#define SLMATH_END() }
 	#define SLMATH_USING() using namespace slm;
 	#define SLMATH_NS(A) slm::A
-	namespace slmath {}
+	namespace slm {}
 #else
 	#define SLMATH_BEGIN()
 	#define SLMATH_END()
@@ -61,4 +61,4 @@
 
 #endif
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

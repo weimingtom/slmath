@@ -54,6 +54,14 @@ inline bool check( float v )
 	return v <= FLT_MAX && v >= -FLT_MAX;
 }
 
+inline bool check( const float* v, size_t n )
+{
+	for ( size_t i = 0 ; i < n ; ++i )
+		if ( !(v[i] <= FLT_MAX && v[i] >= -FLT_MAX) )
+			return false;
+	return true;
+}
+
 inline float length( float v )
 {
 	return v < 0.f ? -v : v;
@@ -89,4 +97,4 @@ inline size_t clamp( size_t v, size_t vmin, size_t vmax )
 	return v < vmin ? v : (v > vmax ? vmax : v);
 }
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

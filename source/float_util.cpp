@@ -60,14 +60,6 @@ void getGaussianBlurKernel2D( int s, float o, float* kernel )
 	getGaussianBlurKernel( s, s, o, kernel );
 }
 
-bool check( const float* v, size_t n )
-{
-	for ( size_t i = 0 ; i < n ; ++i )
-		if ( !check(v[i]) )
-			return false;
-	return true;
-}
-
 SLMATH_END()
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

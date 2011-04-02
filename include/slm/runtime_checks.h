@@ -7,7 +7,7 @@ SLMATH_BEGIN()
 
 /**
  * \defgroup runtime_checks Runtime CPU/environment information.
- * @ingroup slmath
+ * @ingroup slm
  */
 /*@{*/
 
@@ -25,4 +25,4 @@ SLMATH_END()
 
 #endif
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

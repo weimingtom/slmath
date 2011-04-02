@@ -9,7 +9,7 @@ inline const vec4& mat4::get( size_t i ) const
 	return v4()[i];
 }
 
-inline vec4& mat4::operator[]( size_t i )// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+inline vec4& mat4::operator[]( size_t i )// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
 {
 	SLMATH_VEC_ASSERT( i < 4 );
 	return v4()[i];
@@ -45,4 +45,9 @@ inline vec4 mul( const vec4& v, const mat4& m )
 	return v*m;
 }
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+inline bool check( const mat4& v )
+{
+	return check( &v[0][0], 4*4 );
+}
+
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
