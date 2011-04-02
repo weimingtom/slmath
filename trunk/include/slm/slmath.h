@@ -2,7 +2,7 @@
 #define SLMATH_SLMATH_H
 
 /**
- * @defgroup slmath Mathematics library.
+ * @defgroup slm Mathematics library.
  * 
  * Shading Language Math for C++. 
  * C++ math lib for game and 3D-graphics programming with GPU shading language-like classes 
@@ -11,7 +11,7 @@
  *
  * Author: Jani Kajala (kajala@gmail.com)
  *
- * @see https://sourceforge.net/projects/slmath/
+ * @see https://sourceforge.net/projects/slm/
  */
 
 #include <slm/slmath_configure.h>
@@ -32,4 +32,4 @@
 
 #endif
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

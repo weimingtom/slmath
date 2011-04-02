@@ -10,11 +10,8 @@
 #define SLMATH_NAMESPACE
 
 /** Enable vec-op asserts on _DEBUG build */
-#define SLMATH_VEC_ASSERTS
-
-/** Uncomment this if you wish to use old slmath namespace instead of slm */
-//#define slmath slm
+//#define SLMATH_VEC_ASSERTS
 
 #endif // SLMATH_CONFIGURE_H
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

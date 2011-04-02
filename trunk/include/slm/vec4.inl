@@ -211,7 +211,7 @@ inline bool check( const vec4& v )
 #ifdef SLMATH_SIMD
 	SLMATH_VEC_ASSERT( 0 == (reinterpret_cast<size_t>(&v.x)&0xF) ); // 16B aligned?
 #endif
-	return check(v.x) && check(v.y) && check(v.z) && check(v.w);
+	return v.x<=FLT_MAX && v.x>=-FLT_MAX && v.y<=FLT_MAX && v.y>=-FLT_MAX && v.z<=FLT_MAX && v.z>=-FLT_MAX && v.w<=FLT_MAX && v.w>=-FLT_MAX;
 }
 
 inline vec4 neg( const vec4& a )
@@ -239,4 +239,4 @@ inline vec4 mul( float b, const vec4& a )
 	return a*b;
 }
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

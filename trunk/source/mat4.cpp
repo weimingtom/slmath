@@ -9,11 +9,6 @@
 
 SLMATH_BEGIN()
 
-bool check( const mat4& v )
-{
-	return check( &v[0][0], 4*4 );
-}
-
 mat4::mat4( float d )
 {
 	register vec4* const m = v4();
@@ -179,7 +174,7 @@ mat4 mat4::operator*( const mat4& o ) const
 	// note: above SIMD-macro version works also on non-SIMD platforms, this is much faster if there is no SIMD support
 	const vec4* const mp = &get(0);
 	const vec4* const op = &o.get(0);
-	vec4* resp = &res.get(0);
+	vec4* const resp = res.v4();
 	MAT4_MUL_MAT4( resp, mp, op );
 #endif
 
@@ -666,4 +661,4 @@ mat4 outerProduct( const vec4& a, const vec4& b )
 
 SLMATH_END()
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

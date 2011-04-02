@@ -201,7 +201,7 @@ inline vec2 saturate( const vec2& v )
 
 inline bool check( const vec2& v )
 {
-	return check( v.x ) && check( v.y );
+	return v.x<=FLT_MAX && v.x>=-FLT_MAX && v.y<=FLT_MAX && v.y>=-FLT_MAX;
 }
 
 inline vec2 neg( const vec2& a )
@@ -229,4 +229,4 @@ inline vec2 mul( float b, const vec2& a )
 	return a*b;
 }
 
-// This file is part of 'slmath' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slmath/
+// This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
