@@ -1,4 +1,4 @@
-slmath ver. 2.0.1
+slmath ver. 2.1.0
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -123,6 +123,11 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.1.0 (2011-04-01):
+* much faster _DEBUG build
+* SSE2 needs to be enabled from project settings to be enabled for 32-bit builds (too confusing if forced since requires care!)
+* non-SIMD optimizations
 
 v2.0.1 (2011-03-24):
 * much faster _DEBUG build
