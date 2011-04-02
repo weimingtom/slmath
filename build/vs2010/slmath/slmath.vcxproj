@@ -139,7 +139,6 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>"$(ProjectDir)\..\..\..\include"</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(ProjectDir)\..\..\..\lib\vs2010\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb</ProgramDataBaseFileName>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -179,7 +178,6 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>"$(ProjectDir)\..\..\..\include"</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(ProjectDir)\..\..\..\lib\vs2010\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb</ProgramDataBaseFileName>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
