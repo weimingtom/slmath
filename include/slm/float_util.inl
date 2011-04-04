@@ -54,9 +54,9 @@ inline bool check( float v )
 	return v <= FLT_MAX && v >= -FLT_MAX;
 }
 
-inline bool check( const float* v, int n )
+inline bool check( const float* v, size_t n )
 {
-	for ( int i = 0 ; i < n ; ++i )
+	for ( size_t i = 0 ; i < n ; ++i )
 		if ( !(v[i] <= FLT_MAX && v[i] >= -FLT_MAX) )
 			return false;
 	return true;
