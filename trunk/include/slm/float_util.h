@@ -80,7 +80,7 @@ bool	check( float v );
  * @param n Number of values to check.
  * @return true if for each v[i] -FLT_MAX <= v[i] <= FLT_MAX
  */
-bool	check( const float* v, int n );
+bool	check( const float* v, size_t n );
 
 /**
  * Returns minimum of two values.

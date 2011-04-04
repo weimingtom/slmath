@@ -4,6 +4,7 @@
 #include <math.h>
 #include <float.h>
 #include <assert.h>
+#include <stddef.h>
 #include <slm/slmath_configure.h>
 
 // make sure <windows.h> does not define min and max as macros
