@@ -1,4 +1,4 @@
-slmath ver. 2.1.0
+slmath ver. 2.1.1
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -123,6 +123,9 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.1.1 (2011-04-04):
+* size_t dependency removed
 
 v2.1.0 (2011-04-01):
 * much faster _DEBUG build
