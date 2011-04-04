@@ -125,7 +125,7 @@ Changes
 --------
 
 v2.1.1 (2011-04-04):
-* size_t dependency removed
+* added <stddef.h> include to make sure size_t is defined
 
 v2.1.0 (2011-04-01):
 * much faster _DEBUG build
