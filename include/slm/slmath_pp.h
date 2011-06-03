@@ -41,12 +41,15 @@
 	#endif
 #endif
 
-// Auto-link library on MSVC
-#ifdef _MSC_VER
-	#ifdef _DEBUG
-		#pragma comment( lib, "slmath-Debug.lib" )
-	#else
-		#pragma comment( lib, "slmath-Release.lib" )
+// Auto-link library on MSVC if SLMATH_AUTOLINK defined
+// Note: Disabled by default to avoid forcing user to link to this if e.g. user just adds sources to his project
+#ifdef SLMATH_AUTOLINK
+	#ifdef _MSC_VER
+		#ifdef _DEBUG
+			#pragma comment( lib, "slmath-Debug.lib" )
+		#else
+			#pragma comment( lib, "slmath-Release.lib" )
+		#endif
 	#endif
 #endif
 

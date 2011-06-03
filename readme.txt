@@ -124,6 +124,8 @@ svn co https://slmath.googlecode.com/svn/trunk/
 Changes
 --------
 
+* added SLMATH_AUTOLINK directive and disabled autolink by default
+
 v2.1.1 (2011-04-04):
 * added <stddef.h> include to make sure size_t is defined
 
