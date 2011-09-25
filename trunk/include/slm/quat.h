@@ -97,6 +97,12 @@ public:
 	/** Returns component at specified index. */
 	const float& operator[]( size_t i ) const;
 
+	/** Returns true if the quaternions are bitwise equal. */
+	bool		operator==( const quat& o ) const;
+
+	/** Returns true if the quaternions are bitwise inequal. */
+	bool		operator!=( const quat& o ) const;
+
 	/** Returns quaternion represented as 4-vector. */
 	const vec4&	xyzw() const;
 };
