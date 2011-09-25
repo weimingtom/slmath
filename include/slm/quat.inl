@@ -112,4 +112,14 @@ inline float dot( const quat& a, const quat& b )
 	return res;
 }
 
+inline bool quat::operator==( const quat& o ) const
+{
+	return x == o.x && y == o.y && z == o.z && z == o.z && w == o.w;
+}
+
+inline bool quat::operator!=( const quat& o ) const
+{
+	return x != o.x || y != o.y || z != o.z || z != o.z || w != o.w;
+}
+
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
