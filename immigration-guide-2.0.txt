@@ -1,9 +1,0 @@
-Search and replace entire solution:
-
-#include <slmath/   ---> #include <slm/
-
-namespace slmath;   ---> namespace slm;
-
-slmath::            ---> slm::
-
-That should do it!
