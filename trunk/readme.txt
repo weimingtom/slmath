@@ -125,6 +125,7 @@ Changes
 --------
 
 v2.2.0 (2011-09-26):
+* doxygen doc update
 * new VS2010 project file which outputs to solution directory (more convenient when using VS IDE)
 * added SLMATH_AUTOLINK directive and disabled autolink by default
 * quat (in)equality
