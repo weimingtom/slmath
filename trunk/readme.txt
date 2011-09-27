@@ -1,4 +1,4 @@
-slmath ver. 2.1.1
+slmath ver. 2.2.0
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -124,6 +124,8 @@ svn co https://slmath.googlecode.com/svn/trunk/
 Changes
 --------
 
+v2.2.0 (2011-09-26):
+* new VS2010 project file which outputs to solution directory (more convenient when using VS IDE)
 * added SLMATH_AUTOLINK directive and disabled autolink by default
 * quat (in)equality
 
