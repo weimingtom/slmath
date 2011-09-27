@@ -86,8 +86,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
+			IntermediateDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
