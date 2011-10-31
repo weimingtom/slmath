@@ -1,6 +1,6 @@
 inline float clamp( float v, float min, float max )
 {
-	return v < min ? v : (v > max ? max : v);
+	return v < min ? min : (v > max ? max : v);
 }
 
 inline float saturate( float v )

@@ -1,4 +1,4 @@
-slmath ver. 2.2.0
+slmath ver. 2.2.1
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -123,6 +123,9 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.2.1 (2011-10-30):
+* fixed bug in float_util.inl clamp (thanks to Brad Johnston!)
 
 v2.2.0 (2011-09-26):
 * doxygen doc update
