@@ -25,15 +25,16 @@ static void getGaussianBlurKernel( int s, int rows, float o, float* kernel )
 
 	if ( 0.f == o )
 		o = ((float(s)-1.f)*.5f - 1.f)*.3f + .8f;
-	const int r = (rows-1)/2;
+	const int ry = (rows-1)/2;
+	const int rx = (s-1)/2;
 	float sum = 0.f;
 
 	for ( int j = 0 ; j < rows ; ++j )
 	{
-		const float dy = float(j-r);
+		const float dy = float(j-ry);
 		for ( int i = 0 ; i < s ; ++i )
 		{
-			const float dx = float(i-r);
+			const float dx = float(i-rx);
 			const float f = 1.f/(6.283185307179586476925286766559f*o*o) * exp( -(dx*dx + dy*dy)/(2.f*o*o) );
 			kernel[i+j*s] = f;
 			sum += f;
