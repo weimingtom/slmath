@@ -150,7 +150,8 @@ v2.3.0 (2011-11-23):
 * In _DEBUG uninitialized vectors are set to NaN
 * Added in-place vec2, vec3, vec4 and quat normalize() (as method to avoid confusion to free function)
 * Fixed 1D Gaussian blur kernel
-* Added VS2010 test project
+* Added VS2010 test project and rotation tests (only in svn version, not release)
+* Added vec3::rotateX, vec3::rotateY, vec3::rotateZ and vec2::rotate
 
 v2.2.1 (2011-10-30):
 * fixed bug in float_util.inl clamp (thanks to Brad Johnston!)
