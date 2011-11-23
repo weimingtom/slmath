@@ -242,6 +242,12 @@ vec2	mul( const vec2& a, float b );
  */
 vec2	mul( float b, const vec2& a );
 
+/**
+ * Rotates vector v by specified angle a (in radians).
+ * @ingroup vec_util
+ */
+vec2	rotate( const vec2& v, float a );
+
 #include <slm/vec2.inl>
 
 SLMATH_END()

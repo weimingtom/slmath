@@ -114,6 +114,26 @@ You can also selectively uncomment per compilation unit using following trick:
 // ...
 
 
+About some design decisions (free functions vs member functions)
+-------------------------------------------------------------------
+The choice between member function vs free function depends on case.
+There are different things to consider:
+
+Compatibility/similarity with GLSL has always been one of the project goals.
+So if GLSL specs have a function done in one way, this lib most likely follows it.
+That explains a large number of free functions.
+
+Enabling const-usage. For example, if normalize() would be a modifier member function
+use like this:
+v.normalize()
+then you cannot use const expressions like this:
+const vec3 v = normalize( vec3(1,2,3) );
+(actually, there is both now, but that's just an example)
+
+Minimizing sources of errors. If one form reduces errors and other form
+increases them, the error-reducing form is used.
+
+
 Version Control (Subversion)
 ---------------------------
 
