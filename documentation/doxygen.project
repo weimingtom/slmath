@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = slmath
-PROJECT_NUMBER         = 2.2
+PROJECT_NUMBER         = 2.3
 OUTPUT_DIRECTORY       = $(SLMATH)\documentation
 CREATE_SUBDIRS         = YES
 OUTPUT_LANGUAGE        = English
