@@ -119,7 +119,7 @@ vec2	operator*( float s, const vec2& v );
  * Returns length of the vector. 
  * @ingroup vec_util
  */
-float			length( const vec2& v );
+float	length( const vec2& v );
 
 /** 
  * Returns dot product (inner product) of two vectors. 
@@ -128,7 +128,7 @@ float			length( const vec2& v );
  * @return a dot b
  * @ingroup vec_util
  */
-float			dot( const vec2& a, const vec2& b );
+float	dot( const vec2& a, const vec2& b );
 
 /** 
  * Returns the vector normalized to unit (1) length.
@@ -140,7 +140,7 @@ vec2	normalize( const vec2& v );
  * Returns true if all components of the vector are valid numbers. 
  * @ingroup vec_util
  */
-bool			check( const vec2& v );
+bool	check( const vec2& v );
 
 /**
  * Returns component wise maximum of two vectors.
@@ -177,7 +177,7 @@ vec2	mix( const vec2& x, const vec2& y, float a );
  * @return Distance between p0 and p1, i.e. length(p1-p0).
  * @ingroup vec_util
  */
-float			distance( const vec2& p0, const vec2& p1 );
+float	distance( const vec2& p0, const vec2& p1 );
 
 /**
  * Returns value with components clamped between [min,max].
@@ -195,7 +195,7 @@ vec2	saturate( const vec2& v );
  * Returns true if all components are valid numbers.
  * @ingroup vec_util
  */
-bool			check( const vec2& v );
+bool	check( const vec2& v );
 
 /**
  * Returns negated vector. This function is useful for scripting where overloaded operators are not available.

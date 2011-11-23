@@ -161,13 +161,13 @@ public:
  * Component wise scalar multiplication. 
  * @ingroup vec_util
  */
-vec4			operator*( float s, const vec4& v );
+vec4	operator*( float s, const vec4& v );
 
 /** 
  * Returns length of the vector. 
  * @ingroup vec_util
  */
-float			length( const vec4& v );
+float	length( const vec4& v );
 
 /** 
  * Returns dot product (inner product) of two vectors. 
@@ -176,31 +176,31 @@ float			length( const vec4& v );
  * @return a dot b
  * @ingroup vec_util
  */
-float			dot( const vec4& a, const vec4& b );
+float	dot( const vec4& a, const vec4& b );
 
 /** 
  * Returns the vector normalized to unit (1) length.
  * @ingroup vec_util
  */
-vec4			normalize( const vec4& v );
+vec4	normalize( const vec4& v );
 
 /**
  * Returns component wise maximum of two vectors.
  * @ingroup vec_util
  */
-vec4			max( const vec4& a, const vec4& b );
+vec4	max( const vec4& a, const vec4& b );
 
 /**
  * Returns component wise minimum of two vectors.
  * @ingroup vec_util
  */
-vec4			min( const vec4& a, const vec4& b );
+vec4	min( const vec4& a, const vec4& b );
 
 /**
  * Returns component wise absolute of the vector.
  * @ingroup vec_util
  */
-vec4			abs( const vec4& v );
+vec4	abs( const vec4& v );
 
 /** 
  * Returns linear blend between two values. Formula is x*(1-a)+y*a.
@@ -219,7 +219,7 @@ vec4	mix( const vec4& x, const vec4& y, float a );
  * @return Distance between p0 and p1, i.e. length(p1-p0).
  * @ingroup vec_util
  */
-float			distance( const vec4& p0, const vec4& p1 );
+float	distance( const vec4& p0, const vec4& p1 );
 
 /**
  * Returns value with components clamped between [min,max].
@@ -237,7 +237,7 @@ vec4	saturate( const vec4& v );
  * Returns true if all components are valid numbers.
  * @ingroup vec_util
  */
-bool			check( const vec4& v );
+bool	check( const vec4& v );
 
 /**
  * Returns negated vector. This function is useful for scripting where overloaded operators are not available.

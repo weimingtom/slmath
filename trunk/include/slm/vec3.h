@@ -181,43 +181,43 @@ vec3	faceforward( const vec3& n, const vec3& i, const vec3& nref );
  * Component wise scalar multiplication. 
  * @ingroup vec_util
  */
-vec3			operator*( float s, const vec3& v );
+vec3	operator*( float s, const vec3& v );
 
 /** 
  * Returns length of the vector. 
  * @ingroup vec_util
  */
-float			length( const vec3& v );
+float	length( const vec3& v );
 
 /** 
  * Returns dot product (inner product) of two vectors. 
  * @ingroup vec_util
  */
-float			dot( const vec3& a, const vec3& b );
+float	dot( const vec3& a, const vec3& b );
 
 /** 
  * Returns the vector normalized. 
  * @ingroup vec_util
  */
-vec3			normalize( const vec3& v );
+vec3	normalize( const vec3& v );
 
 /**
  * Returns component wise maximum of two vectors.
  * @ingroup vec_util
  */
-vec3			max( const vec3& a, const vec3& b );
+vec3	max( const vec3& a, const vec3& b );
 
 /**
  * Returns component wise minimum of two vectors.
  * @ingroup vec_util
  */
-vec3			min( const vec3& a, const vec3& b );
+vec3	min( const vec3& a, const vec3& b );
 
 /**
  * Returns component wise absolute of the vector.
  * @ingroup vec_util
  */
-vec3			abs( const vec3& v );
+vec3	abs( const vec3& v );
 
 /** 
  * Returns linear blend between two values. Formula is x*(1-a)+y*a.
@@ -236,7 +236,7 @@ vec3	mix( const vec3& x, const vec3& y, float a );
  * @return Distance between p0 and p1, i.e. length(p1-p0).
  * @ingroup vec_util
  */
-float			distance( const vec3& p0, const vec3& p1 );
+float	distance( const vec3& p0, const vec3& p1 );
 
 /**
  * Returns value with components clamped between [min,max].
@@ -254,7 +254,7 @@ vec3	saturate( const vec3& v );
  * Returns true if all components are valid numbers.
  * @ingroup vec_util
  */
-bool			check( const vec3& v );
+bool	check( const vec3& v );
 
 /**
  * Returns negated vector. This function is useful for scripting where overloaded operators are not available.
