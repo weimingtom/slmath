@@ -121,5 +121,6 @@
     <None Include="..\..\..\include\slm\vec4.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="..\..\..\readme.txt" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,9 @@
 inline vec4::vec4()
 {
+#ifdef _DEBUG
+	const int nan = 0x7F800001;
+	x = y = z = w = *(float*)&nan;
+#endif
 }
 
 inline vec4::vec4( float v )

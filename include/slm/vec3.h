@@ -33,7 +33,7 @@ public:
 	float z;
 
 	/** 
-	 * Constructs undefined 3-vector. 
+	 * Constructs undefined 3-vector. In _DEBUG build the vector is initialized to NaN.
 	 */
 	vec3();
 

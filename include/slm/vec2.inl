@@ -1,5 +1,9 @@
 inline vec2::vec2() 
 {
+#ifdef _DEBUG
+	const int nan = 0x7F800001;
+	x = y = *(float*)&nan;
+#endif
 }
 
 inline vec2::vec2( float v )
