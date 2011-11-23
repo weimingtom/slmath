@@ -30,7 +30,7 @@ public:
 	float y;
 
 	/** 
-	 * Constructs undefined 2-vector. 
+	 * Constructs undefined 2-vector. In _DEBUG build the vector is initialized to NaN.
 	 */
 	vec2();
 

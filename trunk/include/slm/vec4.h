@@ -39,7 +39,7 @@ public:
 	/** The fourth component of the vector. */
 	float w;
 
-	/** Constructs undefined 4-vector. */
+	/** Constructs undefined 4-vector. In _DEBUG build the vector is initialized to NaN. */
 	vec4();
 
 	/** 

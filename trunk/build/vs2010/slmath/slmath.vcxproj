@@ -57,6 +57,7 @@
     <None Include="..\..\..\include\slm\vec2.inl" />
     <None Include="..\..\..\include\slm\vec3.inl" />
     <None Include="..\..\..\include\slm\vec4.inl" />
+    <None Include="..\..\..\readme.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C6684A9A-4B6C-4EC3-9FC8-CA380B38C12C}</ProjectGuid>
