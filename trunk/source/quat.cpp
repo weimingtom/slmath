@@ -5,6 +5,13 @@
 
 SLMATH_BEGIN()
 
+void quat::normalize()
+{
+	float n = norm(q);
+	SLMATH_VEC_ASSERT( n > FLT_MIN );
+	*this *= (1.f/n);
+}
+
 bool check( const quat& v )
 {
 	return 

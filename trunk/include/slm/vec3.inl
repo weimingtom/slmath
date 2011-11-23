@@ -2,7 +2,7 @@ inline vec3::vec3()
 {
 #ifdef _DEBUG
 	const int nan = 0x7F800001;
-	x = y = z = *(float*)&nan;
+	x = y = z = *(const float*)&nan;
 #endif
 }
 

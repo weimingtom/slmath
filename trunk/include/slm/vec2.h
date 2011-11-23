@@ -77,6 +77,15 @@ public:
 	/** Returns component at specified index. */
 	float&		operator[]( size_t i )				{SLMATH_VEC_ASSERT( i < 3 ); return (&x)[i];}
 
+	/** Returns pointer to the first float. */
+	float*		begin()								{return &x;}
+
+	/** Returns pointer to one beyond the last float. */
+	float*		end()								{return &x+SIZE;}
+
+	/** Normalizes this vector. */
+	void		normalize();
+
 	/** Component wise multiplication. */
 	vec2		operator*( const vec2& o ) const;
 
@@ -106,6 +115,12 @@ public:
 
 	/** Returns true if vectors are bitwise inequal. */
 	bool		operator!=( const vec2& o ) const;
+
+	/** Returns const pointer to the first float. */
+	const float*	begin() const	{return &x;}
+
+	/** Returns const pointer to one beyond the last float. */
+	const float*	end() const		{return &x+SIZE;}
 };
 
 

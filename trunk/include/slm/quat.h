@@ -24,7 +24,7 @@ public:
 	/** Constants related to the class. */
 	enum Constants
 	{
-		/** Number of dimensions in quaternion interepreted as quaternion. */
+		/** Number of dimensions in quaternion interepreted as floats. */
 		SIZE = 4,
 	};
 
@@ -40,7 +40,7 @@ public:
 	/** The fourth component of the quaternion. */
 	float w;
 
-	/** Constructs undefined quaternion. */
+	/** Constructs undefined quaternion. In _DEBUG build the vector is initialized to NaN. */
 	quat();
 
 	/** 
@@ -79,6 +79,15 @@ public:
 	/** Returns component at specified index. */
 	float&		operator[]( size_t i );
 
+	/** Returns pointer to the first float. */
+	float*		begin()			{return &x;}
+
+	/** Returns pointer to one beyond the last float. */
+	float*		end()			{return &x+SIZE;}
+
+	/** Normalizes this quaternion. */
+	void		normalize();
+
 	/** Quaternion multiplication. */
 	quat		operator*( const quat& o ) const;
 
@@ -105,6 +114,12 @@ public:
 
 	/** Returns quaternion represented as 4-vector. */
 	const vec4&	xyzw() const;
+
+	/** Returns const pointer to the first float. */
+	const float*	begin() const	{return &x;}
+
+	/** Returns const pointer to one beyond the last float. */
+	const float*	end() const		{return &x+SIZE;}
 };
 
 /** 

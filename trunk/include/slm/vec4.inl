@@ -2,7 +2,7 @@ inline vec4::vec4()
 {
 #ifdef _DEBUG
 	const int nan = 0x7F800001;
-	x = y = z = w = *(float*)&nan;
+	x = y = z = w = *(const float*)&nan;
 #endif
 }
 

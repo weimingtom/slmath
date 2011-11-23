@@ -28,8 +28,15 @@ SLMATH_ALIGN16 class mat4
 #endif
 {
 public:
-	/** Constructs undefined matrix. */
-	mat4() {}
+	/** Constants related to the class. */
+	enum Constants
+	{
+		/** Number of floats. */
+		SIZE = 16,
+	};
+
+	/** Constructs undefined matrix. In _DEBUG build the vector is initialized to NaN. */
+	mat4();
 
 	/** 
 	 * Constructs diagonal matrix. All diagonal elements specified value, rest 0. 
@@ -72,6 +79,12 @@ public:
 	/** Matrix multiplication. */
 	mat4&			operator*=( const mat4& o );
 
+	/** Returns pointer to the first float. */
+	float*			begin()			{return reinterpret_cast<float*>(m_m128);}
+
+	/** Returns pointer to one beyond the last float. */
+	float*			end()			{return reinterpret_cast<float*>(m_m128)+SIZE;}
+
 #ifndef SWIG
 	/** 128-bit 4-vector storage access. */
 	m128_t*			m128()		{return m_m128;}
@@ -108,6 +121,12 @@ public:
 	/** 128-bit 4-vector storage access. */
 	const m128_t*	m128() const	{return m_m128;}
 #endif
+
+	/** Returns const pointer to the first float. */
+	const float*	begin() const	{return reinterpret_cast<const float*>(m_m128);}
+
+	/** Returns const pointer to one beyond the last float. */
+	const float*	end() const		{return reinterpret_cast<const float*>(m_m128)+SIZE;}
 
 private:
 	/** Column vectors. */
@@ -170,13 +189,13 @@ mat4	inverse( const mat4& m );
  * Returns determinant of the matrix.
  * @ingroup mat_util
  */
-float			det( const mat4& m );
+float	det( const mat4& m );
 
 /** 
  * Returns true if all components of the matrix are valid numbers. 
  * @ingroup mat_util
  */
-bool			check( const mat4& v );
+bool	check( const mat4& v );
 
 /** 
  * Returns right-handed perspective projection transform.

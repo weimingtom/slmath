@@ -2,6 +2,13 @@
 
 SLMATH_BEGIN()
 
+void vec2::normalize()
+{
+	float len = length( *this );
+	SLMATH_VEC_ASSERT( len >= FLT_MIN );
+	*this *= 1.f / len;
+}
+
 vec2 normalize( const vec2& v )
 {
 	assert( check(v) );

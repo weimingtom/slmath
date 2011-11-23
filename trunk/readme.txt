@@ -125,8 +125,10 @@ Changes
 --------
 
 v2.3.0 (2011-11-23):
-* added component wise scalar -= and += vec2, vec3 and vec4
-* in _DEBUG uninitialized vectors are set to NaN
+* Thanks Wouter van Oortmerssen for feedback and suggestions!
+* Added component wise scalar -= and += vec2, vec3 and vec4
+* In _DEBUG uninitialized vectors are set to NaN
+* Added in-place vec2, vec3, vec4 and quat normalize() (as method to avoid confusion to free function)
 
 v2.2.1 (2011-10-30):
 * fixed bug in float_util.inl clamp (thanks to Brad Johnston!)

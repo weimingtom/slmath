@@ -91,6 +91,15 @@ public:
 	/** Returns sub-vector. */
 	vec2&		xy();
 
+	/** Returns pointer to the first float. */
+	float*		begin()			{return &x;}
+
+	/** Returns pointer to one beyond the last float. */
+	float*		end()			{return &x+SIZE;}
+
+	/** Normalizes this vector. */
+	void		normalize();
+
 	/** Component wise multiplication. */
 	vec3		operator*( const vec3& o ) const;
 
@@ -123,6 +132,12 @@ public:
 
 	/** Returns sub-vector. */
 	const vec2&	xy() const;
+
+	/** Returns const pointer to the first float. */
+	const float*	begin() const	{return &x;}
+
+	/** Returns const pointer to one beyond the last float. */
+	const float*	end() const		{return &x+SIZE;}
 };
 
 

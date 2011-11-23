@@ -1,8 +1,8 @@
 inline quat::quat()
 {
 #ifdef _DEBUG
-	const int nan = -1;
-	w = z = y = x = *(const float*)&nan;
+	const int nan = 0x7F800001;
+	x = y = z = w = *(const float*)&nan;
 #endif
 }
 
