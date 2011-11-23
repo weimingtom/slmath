@@ -62,6 +62,12 @@ public:
 	/** Component wise division. */
 	vec2&		operator/=( const vec2& o );
 
+	/** Component wise scalar subtract */
+    vec2&        operator-=( float s );
+
+	/** Component wise scalar addition */
+	vec2&        operator+=( float s );
+
 	/** Component wise scalar multiplication. */
 	vec2&		operator*=( float s );
 

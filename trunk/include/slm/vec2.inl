@@ -229,4 +229,18 @@ inline vec2 mul( float b, const vec2& a )
 	return a*b;
 }
 
+inline vec2& vec2::operator-=( float s )
+{
+	x -= s; 
+	y -= s; 
+	return *this;
+}
+
+inline vec2& vec2::operator+=( float s )
+{
+	x += s;
+	y += s;
+	return *this;
+}
+
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

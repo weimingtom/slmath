@@ -67,6 +67,12 @@ public:
 	/** Component wise subtraction. */
 	vec3&		operator-=( const vec3& o );
 
+	/** Component wise scalar subtract */
+    vec3&        operator-=( float s );
+
+	/** Component wise scalar addition */
+	vec3&        operator+=( float s );
+
 	/** Component wise scalar multiplication. */
 	vec3&		operator*=( float s );
 
