@@ -226,6 +226,22 @@ bool test_gaussian( char* testid )
 	return true;
 }
 
+bool test_rotations( char* testid )
+{
+	float a = radians(45.f);
+	vec4 v = vec4(10,10,0,0);
+	vec3 r1 = rotateZ( v.xyz(), a );
+	vec3 r2 = (rotationZ(a) * v).xyz();
+	TEST( length(r1-r2) < 1e-5f );
+	r1 = rotateX( v.xyz(), a );
+	r2 = (rotationX(a) * v).xyz();
+	TEST( length(r1-r2) < 1e-5f );
+	r1 = rotateY( v.xyz(), a );
+	r2 = (rotationY(a) * v).xyz();
+	TEST( length(r1-r2) < 1e-5f );
+	return true;
+}
+
 bool test_slmath( char* testid )
 {
 	TEST( test_vec2(testid) );
@@ -234,6 +250,7 @@ bool test_slmath( char* testid )
 	TEST( test_rand(testid) );
 	TEST( test_quat(testid) );
 	TEST( test_gaussian(testid) );
+	TEST( test_rotations(testid) );
 	return true;
 }
 

@@ -22,6 +22,13 @@ vec2 normalize( const vec2& v )
 	return res;
 }
 
+vec2 rotate( const vec2& v, float a )
+{
+	float s,c;
+	sincos( -a, &s, &c );
+	return vec2(v.x * c + v.y * s, v.y * c - v.x * s);
+}
+
 SLMATH_END()
 
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

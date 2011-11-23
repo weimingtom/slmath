@@ -53,6 +53,27 @@ vec3 refract( const vec3& i, const vec3& n, float eta )
 		return i*eta - n*(eta*ndoti+sqrtf(k));
 }
 
+vec3 rotateZ( const vec3& v, float a )
+{
+	float s,c;
+	sincos( -a, &s, &c );
+	return vec3(v.x * c + v.y * s, v.y * c - v.x * s, v.z);
+}
+
+vec3 rotateY( const vec3& v, float a )
+{
+	float s,c;
+	sincos( a, &s, &c );
+	return vec3(v.z * s + v.x * c, v.y, v.z * c - v.x * s);
+}
+
+vec3 rotateX( const vec3& v, float a )
+{
+	float s,c;
+	sincos( a, &s, &c );
+	return vec3(v.x, v.y * c - v.z * s, v.y * s + v.z * c);
+}
+
 SLMATH_END()
 
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
