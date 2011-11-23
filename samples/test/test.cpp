@@ -4,7 +4,7 @@
  */
 #include "test_slmath.h"
 #include "testframework.h"
-#include <slmath/slmath.h>
+#include <slm/slmath.h>
 #include <stdio.h>
 #include <string.h>
 

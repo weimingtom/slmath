@@ -1,7 +1,7 @@
 #ifndef SLMATH_TESTS_H
 #define SLMATH_TESTS_H
 
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 
 /**
  * The slmath library regression/unit testing.

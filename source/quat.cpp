@@ -7,9 +7,9 @@ SLMATH_BEGIN()
 
 void quat::normalize()
 {
-	float n = norm(q);
+	float n = norm(*this);
 	SLMATH_VEC_ASSERT( n > FLT_MIN );
-	*this *= (1.f/n);
+	*this *= 1.f/n;
 }
 
 bool check( const quat& v )

@@ -1,7 +1,7 @@
 #include "test_slmath.h"
 #include "testframework.h"
-#include <slmath/slmath.h>
-#include <slmath/random.h>
+#include <slm/slmath.h>
+#include <slm/random.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -197,11 +197,11 @@ bool test_gaussian( char* testid )
 	const int r = 3;
 	const int s = (2*r+1);
 	float kernel[s*s];
-	getGaussianBlurKernel2D( s, 0.84089642f, &kernel[0], s*s );
+	getGaussianBlurKernel2D( s, 0.84089642f, &kernel[0] );
 	for ( size_t i = 0 ; i < size_t(s*s) ; ++i )
 		TEST( fabsf(OK_KERNEL_2D[i]-kernel[i]) < 1e-5f );
 
-	getGaussianBlurKernel1D( s, 0.84089642f, &kernel[0], s );
+	getGaussianBlurKernel1D( s, 0.84089642f, &kernel[0] );
 	for ( size_t i = 0 ; i < size_t(s) ; ++i )
 		TEST( fabsf(OK_KERNEL_1D[i]-kernel[i]) < 1e-5f );
 

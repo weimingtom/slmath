@@ -30,7 +30,7 @@
 #pragma warning( disable : 4996 )
 #endif
 
-#include <slmath/slmath_pp.h>
+#include <slm/slmath_pp.h>
 
 /**
  * Pointer to the user-defined test function.
