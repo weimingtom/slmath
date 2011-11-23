@@ -2,7 +2,7 @@ inline vec2::vec2()
 {
 #ifdef _DEBUG
 	const int nan = 0x7F800001;
-	x = y = *(float*)&nan;
+	x = y = *(const float*)&nan;
 #endif
 }
 

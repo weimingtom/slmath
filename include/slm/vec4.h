@@ -112,6 +112,15 @@ public:
 	/** Returns sub-vector. */
 	vec3&		xyz();
 
+	/** Returns pointer to the first float. */
+	float*		begin()			{return &x;}
+
+	/** Returns pointer to one beyond the last float. */
+	float*		end()			{return &x+SIZE;}
+
+	/** Normalizes this vector. */
+	void		normalize();
+
 #ifndef SWIG
 	/** Returns 128bit scalar type. Internal use only. */
 	m128_t&		m128()			{return *(m128_t*)&x;}
@@ -149,6 +158,12 @@ public:
 
 	/** Returns sub-vector. */
 	const vec3&	xyz() const;
+
+	/** Returns const pointer to the first float. */
+	const float*	begin() const	{return &x;}
+
+	/** Returns const pointer to one beyond the last float. */
+	const float*	end() const		{return &x+SIZE;}
 
 #ifndef SWIG
 	/** Returns 128bit scalar type. Internal use only. */

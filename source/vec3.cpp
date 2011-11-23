@@ -2,6 +2,13 @@
 
 SLMATH_BEGIN()
 
+void vec3::normalize()
+{
+	float len = length( *this );
+	SLMATH_VEC_ASSERT( len >= FLT_MIN );
+	*this *= 1.f / len;
+}
+
 vec3 normalize( const vec3& v )
 {
 	float len = length(v);

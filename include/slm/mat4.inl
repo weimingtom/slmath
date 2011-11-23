@@ -1,3 +1,13 @@
+inline mat4::mat4()
+{
+#ifdef _DEBUG
+	const int nan = 0x7F800001;
+	float* p = (float*)&m_m128;
+	for ( size_t i = 0 ; i < 16 ; ++i ) 
+		p[i] = *(const float*)&nan;
+#endif
+}
+
 inline void mat4::set( size_t i, const vec4& v )
 {
 	v4()[i] = v;
