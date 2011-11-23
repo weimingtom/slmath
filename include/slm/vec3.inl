@@ -260,4 +260,20 @@ inline vec3 cross( const vec3& a, const vec3& b )
 	return res;
 }
 
+inline vec3& vec3::operator-=( float s )
+{
+	x -= s; 
+	y -= s; 
+	z -= s; 
+	return *this;
+}
+
+inline vec3& vec3::operator+=( float s )
+{
+	x += s;
+	y += s;
+	z += s;
+	return *this;
+}
+
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/

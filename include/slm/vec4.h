@@ -88,6 +88,12 @@ public:
 	/** Component wise subtraction. */
 	vec4&		operator-=( const vec4& o );
 
+	/** Component wise scalar subtract */
+    vec4&        operator-=( float s );
+
+	/** Component wise scalar addition */
+	vec4&        operator+=( float s );
+
 	/** Component wise scalar multiplication. */
 	vec4&		operator*=( float s );
 

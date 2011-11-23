@@ -239,4 +239,22 @@ inline vec4 mul( float b, const vec4& a )
 	return a*b;
 }
 
+inline vec4& vec4::operator-=( float s )
+{
+	x -= s; 
+	y -= s; 
+	z -= s; 
+	z -= s;
+	return *this;
+}
+
+inline vec4& vec4::operator+=( float s )
+{
+	x += s;
+	y += s;
+	z += s;
+	w += s;
+	return *this;
+}
+
 // This file is part of 'slm' C++ library. Copyright (C) 2009 Jani Kajala (kajala@gmail.com). See http://sourceforge.net/projects/slm/
