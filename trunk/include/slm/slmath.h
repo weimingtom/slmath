@@ -29,7 +29,7 @@
 #include <slm/vec2.h>
 #include <slm/vec3.h>
 #include <slm/vec4.h>
-#include <slm/vector_sse.h>
+#include <slm/vector_simd.h>
 
 #endif
 

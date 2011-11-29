@@ -243,7 +243,7 @@ bool test_rotations( char* testid )
 
 bool test_vector_sse( char* testid )
 {
-	vector_sse<vec4> buf;
+	vector_simd<vec4> buf;
 	TEST( buf.size() == 0 );
 	TEST( buf.empty() );
 	buf.push_back( vec4(1,2,3,4) );
