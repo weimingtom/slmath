@@ -45,7 +45,7 @@ private:
  * Finds intersection between line segment and triangle.
  *
  * See: 'Fast, Minimum Storage Ray-Triangle Intersection' algorithm, 
- * Tomas Mäller & Ben Trumbore, Volume 2, Number 1. Journal of Graphics Tools.
+ * Tomas Möller & Ben Trumbore, Volume 2, Number 1. Journal of Graphics Tools.
  *
  * @param o Starting point of the line segment.
  * @param d Vector from starting point of the line segment to the end point.
