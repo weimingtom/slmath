@@ -145,7 +145,7 @@ Changes
 --------
 
 v2.4.0 (2011-11-28):
-* added vector_sse for 32-bit SSE builds -- thanks to Wouter van Oortmerssents for the code!
+* added vector_sse for 32-bit SSE builds -- thanks to Wouter van Oortmerssen for the code!
 * setsize -> resize, drop -> pop_back (as in std::vector), and added support for resizing the buffer bigger
 * added const-methods and fixed couple of const-correctness issues
 * added assert() about malloc alignment assumption
