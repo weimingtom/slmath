@@ -16,6 +16,8 @@ namespace slm
  * so it is NOT suitable to store anything else than "plain old datastructures" to these.
  * If more correct semantics of constructors/destructors are needed then std::vector should be used.
  * For documentation of the methods, please see std::vector.
+ *
+ * @ingroup vec_util
  */
 template <class T> class vector_sse
 {
