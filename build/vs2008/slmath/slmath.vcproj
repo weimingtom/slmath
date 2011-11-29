@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
+			IntermediateDirectory="$(PlatformName)\$(Configuration)\"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -50,7 +50,8 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb"
+				ProgramDataBaseFileName="$(IntDir)vc$(PlatformToolsetVersion).pdb"
+				BrowseInformationFile="$(IntDir)"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="4"
@@ -66,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).lib"
+				OutputFile="$(OutDir)$(TargetName)$(TargetExt)"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -87,7 +88,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
-			IntermediateDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
+			IntermediateDirectory="$(PlatformName)\$(Configuration)\"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -116,7 +117,8 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb"
+				ProgramDataBaseFileName="$(IntDir)vc$(PlatformToolsetVersion).pdb"
+				BrowseInformationFile="$(IntDir)"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
@@ -132,7 +134,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).lib"
+				OutputFile="$(OutDir)$(TargetName)$(TargetExt)"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -152,8 +154,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
+			IntermediateDirectory="$(PlatformName)\$(Configuration)\"
 			ConfigurationType="4"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -183,7 +185,8 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb"
+				ProgramDataBaseFileName="$(IntDir)vc$(PlatformToolsetVersion).pdb"
+				BrowseInformationFile="$(IntDir)"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
@@ -199,7 +202,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).lib"
+				OutputFile="$(OutDir)$(TargetName)$(TargetExt)"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -219,8 +222,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(ProjectDir)$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)\$(PlatformName)\$(Configuration)\"
+			IntermediateDirectory="$(PlatformName)\$(Configuration)\"
 			ConfigurationType="4"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -250,7 +253,8 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).pdb"
+				ProgramDataBaseFileName="$(IntDir)vc$(PlatformToolsetVersion).pdb"
+				BrowseInformationFile="$(IntDir)"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
@@ -266,7 +270,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(ProjectDir)\..\..\..\lib\vs2008\$(PlatformName)\$(ProjectName)-$(ConfigurationName).lib"
+				OutputFile="$(OutDir)$(TargetName)$(TargetExt)"
 			/>
 			<Tool
 				Name="VCALinkTool"
