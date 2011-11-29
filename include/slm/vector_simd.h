@@ -8,23 +8,23 @@
 SLMATH_BEGIN()
 
 /**
- * Very minimal but very efficient std::vector clone for plain data SSE contents like vec4.
+ * Very minimal but very efficient std::vector clone for plain data SSE/SIMD contents like vec4.
  * This is useful for using SSE support on 32-bit Visual Studio builds,
  * which suffer from the memory allocation alignment problem (std::vector memory not aligned to vec4).
- * NOTE: vector_sse does NOT call constructors/destructors of the contained elements correctly,
+ * NOTE: vector_simd does NOT call constructors/destructors of the contained elements correctly,
  * so it is NOT suitable to store anything else than "plain old datastructures" to these.
  * If more correct semantics of constructors/destructors are needed then std::vector should be used.
  * For documentation of the methods, please see std::vector.
  *
  * @ingroup vec_util
  */
-template <class T> class vector_sse
+template <class T> class vector_simd
 {
 public:
 	/** Constructs empty vector. */
-	vector_sse()								: m_buf(0), m_actualBuf(0), m_cap(0), m_size(0) {reallocate(8);}
+	vector_simd()								: m_buf(0), m_actualBuf(0), m_cap(0), m_size(0) {reallocate(8);}
 
-	~vector_sse()								{resize(0); free(m_actualBuf);}
+	~vector_simd()								{resize(0); free(m_actualBuf);}
 
 	// Modifiers
 

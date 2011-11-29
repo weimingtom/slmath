@@ -95,7 +95,7 @@
     <ClInclude Include="..\..\..\include\slm\vec4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\slm\vector_sse.h">
+    <ClInclude Include="..\..\..\include\slm\vector_simd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
