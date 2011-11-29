@@ -1,12 +1,11 @@
 #ifndef SLMATH_VECTOR_SSE_H
 #define SLMATH_VECTOR_SSE_H
 
-#include <assert.h>
+#include <slm/slmath_pp.h>
 #include <stdlib.h> // for malloc and free
 #include <string.h> // for memcpy
 
-namespace slm
-{
+SLMATH_BEGIN()
 
 /**
  * Very minimal but very efficient std::vector clone for plain data SSE contents like vec4.
@@ -84,6 +83,6 @@ private:
 	}
 };
 
-} // slm
+SLMATH_END()
 
 #endif // SLMATH_VECTOR_SSE_H
