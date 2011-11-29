@@ -1,4 +1,4 @@
-slmath ver. 2.4.0
+slmath ver. 2.4.1
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -143,6 +143,9 @@ svn co https://slmath.googlecode.com/svn/trunk/
 
 Changes
 --------
+
+v2.4.1 (2011-11-28):
+* new VS2008 project files
 
 v2.4.0 (2011-11-28):
 * added vector_simd for 32-bit SSE builds -- thanks to Wouter van Oortmerssen for the code!
