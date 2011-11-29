@@ -95,6 +95,9 @@
     <ClInclude Include="..\..\..\include\slm\vec4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\slm\vector_sse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\slm\float_util.inl">

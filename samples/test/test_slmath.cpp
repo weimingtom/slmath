@@ -1,7 +1,6 @@
 #include "test_slmath.h"
 #include "testframework.h"
 #include <slm/slmath.h>
-#include <slm/random.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -242,6 +241,23 @@ bool test_rotations( char* testid )
 	return true;
 }
 
+bool test_vector_sse( char* testid )
+{
+	vector_sse<vec4> buf;
+	TEST( buf.size() == 0 );
+	TEST( buf.empty() );
+	buf.push_back( vec4(1,2,3,4) );
+	TEST( buf.front() == buf.back() );
+	TEST( buf[0] == buf.back() );
+	TEST( buf[0] == *buf.begin() );
+	buf.resize( 2 );
+	TEST( buf.size() == 2 );
+	buf[1] = vec4(5,6,7,8);
+	buf.pop_back();
+	TEST( buf.size() == 1 );
+	return true;
+}
+
 bool test_slmath( char* testid )
 {
 	TEST( test_vec2(testid) );
@@ -251,6 +267,7 @@ bool test_slmath( char* testid )
 	TEST( test_quat(testid) );
 	TEST( test_gaussian(testid) );
 	TEST( test_rotations(testid) );
+	TEST( test_vector_sse(testid) );
 	return true;
 }
 

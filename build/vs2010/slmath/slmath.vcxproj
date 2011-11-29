@@ -46,6 +46,7 @@
     <ClInclude Include="..\..\..\include\slm\vec2.h" />
     <ClInclude Include="..\..\..\include\slm\vec3.h" />
     <ClInclude Include="..\..\..\include\slm\vec4.h" />
+    <ClInclude Include="..\..\..\include\slm\vector_sse.h" />
     <ClInclude Include="..\..\..\include\slm\vec_impl.h" />
   </ItemGroup>
   <ItemGroup>
