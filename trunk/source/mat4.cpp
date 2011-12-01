@@ -331,14 +331,25 @@ mat4 translation( const vec3& t )
 	return tm;
 }
 
+mat4 scaling( const vec3& v )
+{
+	SLMATH_VEC_ASSERT( check(v) );
+	mat4 tm;
+	tm[0] = vec4(   s.x,   0,   0,     0 );
+	tm[1] = vec4(   0,   s.y,   0,     0 );
+	tm[2] = vec4(   0,     0,   s.z,   0 );
+	tm[3] = vec4(   0,     0,   0,   1.f );
+	return tm;
+}
+
 mat4 scaling( float s )
 {
 	SLMATH_VEC_ASSERT( check(s) );
 	mat4 tm;
-	tm[0] = vec4(   s,   0,   0,  0 );
-	tm[1] = vec4(   0,   s,   0,  0 );
-	tm[2] = vec4(   0,   0,   s,  0 );
-	tm[3] = vec4(   0,   0,   0,  1 );
+	tm[0] = vec4(   s,   0,   0,   0 );
+	tm[1] = vec4(   0,   s,   0,   0 );
+	tm[2] = vec4(   0,   0,   s,   0 );
+	tm[3] = vec4(   0,   0,   0, 1.f );
 	return tm;
 }
 

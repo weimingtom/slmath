@@ -144,6 +144,8 @@ svn co https://slmath.googlecode.com/svn/trunk/
 Changes
 --------
 
+* added scaling(vec3) (thanks to Wouter van Oortmersssen for improvement suggestions!)
+
 v2.4.1 (2011-11-28):
 * new VS2008 project files
 

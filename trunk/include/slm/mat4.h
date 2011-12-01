@@ -268,11 +268,18 @@ mat4	rotationY( float a );
 mat4	rotationZ( float a );
 
 /**
- * Returns uniform scaling matrix.
+ * Returns uniform scaling matrix with last column set to (0,0,0,1).
  * @param s Uniform scale factor.
  * @ingroup mat_util
  */
 mat4	scaling( float s );
+
+/**
+ * Returns non-uniform scaling matrix with last column set to (0,0,0,1).
+ * @param s Non-uniform scale per axis.
+ * @ingroup mat_util
+ */
+mat4	scaling( const vec3& v );
 
 /**
  * Builds a right-handed inverse look-at (view-to-world) transformation matrix
