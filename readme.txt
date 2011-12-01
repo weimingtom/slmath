@@ -141,6 +141,13 @@ To checkout from Google Code:
 svn co https://slmath.googlecode.com/svn/trunk/
 
 
+To-do
+-----
+* Enable vector-asserts by default
+* Check projection functions, now not possible to make non-origin centere orthogonal projection easily
+* Include build files for OSX, Linux, Android and iOS
+
+
 Changes
 --------
 
