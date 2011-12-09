@@ -335,9 +335,9 @@ mat4 scaling( const vec3& v )
 {
 	SLMATH_VEC_ASSERT( check(v) );
 	mat4 tm;
-	tm[0] = vec4(   s.x,   0,   0,     0 );
-	tm[1] = vec4(   0,   s.y,   0,     0 );
-	tm[2] = vec4(   0,     0,   s.z,   0 );
+	tm[0] = vec4(   v.x,   0,   0,     0 );
+	tm[1] = vec4(   0,   v.y,   0,     0 );
+	tm[2] = vec4(   0,     0,   v.z,   0 );
 	tm[3] = vec4(   0,     0,   0,   1.f );
 	return tm;
 }
