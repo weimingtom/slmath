@@ -1,4 +1,4 @@
-slmath ver. 2.4.1
+slmath ver. 2.5.0
 ********************
 
 Mathematics library with GLSL shading language style classes. 
@@ -31,9 +31,11 @@ Only basic C/C++ is required, so should be relatively easy to compile this on an
 
 Primary development platform:
 
-* Windows 7 64bit / Visual Studio 2008
+* Windows 7 64bit / Visual Studio 2012
 
 Platforms which have project files included:
+
+* VS2012
 
 * VS2010
 
@@ -152,18 +154,21 @@ To-do
 Changes
 --------
 
-* added scaling(vec3) (thanks to Wouter van Oortmersssen for improvement suggestions!)
+v2.5.0 (2013-09-02):
+* Visual Studio 2012 project files included
+* Mersenne twister / gcc compiling warning fixes (thanks to Loren Hoffman!)
+* Added scaling(vec3) (thanks to Wouter van Oortmersssen for improvement suggestions!)
 
 v2.4.1 (2011-11-28):
-* new VS2008 project files
+* New VS2008 project files
 
 v2.4.0 (2011-11-28):
-* added vector_simd for 32-bit SSE builds -- thanks to Wouter van Oortmerssen for the code!
+* Added vector_simd for 32-bit SSE builds -- thanks to Wouter van Oortmerssen for the code!
 * setsize -> resize, drop -> pop_back (as in std::vector), and added support for resizing the buffer bigger
-* added const-methods and fixed couple of const-correctness issues
-* added assert() about malloc alignment assumption
-* added some comments to vector_simd
-* added a few unit tests for vector_simd (not in release package but in svn)
+* Added const-methods and fixed couple of const-correctness issues
+* Added assert() about malloc alignment assumption
+* Added some comments to vector_simd
+* Added a few unit tests for vector_simd (not in release package but in svn)
 
 v2.3.0 (2011-11-23):
 * Thanks Wouter van Oortmerssen for feedback and suggestions!
