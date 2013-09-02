@@ -9,6 +9,9 @@
 /** Enable namespace support, everything placed inside 'slm' namespace */
 #define SLMATH_NAMESPACE
 
+/** Disable pragma messages */
+#define SLMATH_NO_PRAGMA_MESSAGES
+
 /** Enable vec-op asserts on _DEBUG build */
 //#define SLMATH_VEC_ASSERTS
 

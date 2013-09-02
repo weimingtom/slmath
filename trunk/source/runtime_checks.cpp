@@ -1,18 +1,20 @@
 #include <slm/runtime_checks.h>
 
-// print some info messages about build settings
-#ifdef SLMATH_SSE2_MSVC
-	#pragma message( "slm: Using SSE2 SIMD instructions" )
-#else
-	#pragma message( "slm: Not SSE2 SIMD instructions" )
-#endif
-#ifdef SLMATH_MSVC_HAS_INTRIN_H
-	#pragma message( "slm: Using <intrin.h>" )
-#else
-	#pragma message( "slm: Not using <intrin.h>" )
-#endif
-#if (defined(SLMATH_MSVC_HAS_INTRIN_H) || defined(SLMATH_SSE2_MSVC)) && !defined(_M_X64)
-	#pragma message( "slm: WARNING: 32-bit build, remember to use _aligned_malloc / _aligned_free" )
+#ifndef SLMATH_NO_PRAGMA_MESSAGES
+	// print some info messages about build settings
+	#ifdef SLMATH_SSE2_MSVC
+		#pragma message( "slm: Using SSE2 SIMD instructions" )
+	#else
+		#pragma message( "slm: Not SSE2 SIMD instructions" )
+	#endif
+	#ifdef SLMATH_MSVC_HAS_INTRIN_H
+		#pragma message( "slm: Using <intrin.h>" )
+	#else
+		#pragma message( "slm: Not using <intrin.h>" )
+	#endif
+	#if (defined(SLMATH_MSVC_HAS_INTRIN_H) || defined(SLMATH_SSE2_MSVC)) && !defined(_M_X64)
+		#pragma message( "slm: WARNING: 32-bit build, remember to use _aligned_malloc / _aligned_free" )
+	#endif
 #endif
 
 #ifdef SLMATH_SSE2_MSVC

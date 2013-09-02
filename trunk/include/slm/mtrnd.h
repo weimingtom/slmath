@@ -77,7 +77,7 @@ public:
     void init_genrand(unsigned long s)
     {
         mt[0]= s & 0xffffffffUL;
-        for (mti=1; mti<N; mti++) {
+        for (mti=1; mti<(int)N; mti++) {
             mt[mti] = 
                 (1812433253UL * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti); 
             /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
@@ -98,13 +98,13 @@ public:
         int i, j, k;
         init_genrand(19650218UL);
         i=1; j=0;
-        k = (N>key_length ? N : key_length);
+        k = ((int)N>key_length ? (int)N : key_length);
         for (; k; k--) {
             mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525UL))
                 + init_key[j] + j; /* non linear */
             mt[i] &= 0xffffffffUL; /* for WORDSIZE > 32 machines */
             i++; j++;
-            if (i>=N) { mt[0] = mt[N-1]; i=1; }
+            if (i>=(int)N) { mt[0] = mt[N-1]; i=1; }
             if (j>=key_length) j=0;
         }
         for (k=N-1; k; k--) {
@@ -112,7 +112,7 @@ public:
                 - i; /* non linear */
             mt[i] &= 0xffffffffUL; /* for WORDSIZE > 32 machines */
             i++;
-            if (i>=N) { mt[0] = mt[N-1]; i=1; }
+            if (i>=(int)N) { mt[0] = mt[N-1]; i=1; }
         }
 
         mt[0] = 0x80000000UL; /* MSB is 1; assuring non-zero initial array */ 
@@ -125,17 +125,17 @@ public:
         static unsigned long mag01[2]={0x0UL, (unsigned long)MATRIX_A};
         /* mag01[x] = x * MATRIX_A  for x=0,1 */
 
-        if (mti >= N) { /* generate N words at one time */
+        if (mti >= (int)N) { /* generate N words at one time */
             int kk;
 
             if (mti == N+1)   /* if init_genrand() has not been called, */
                 init_genrand(5489UL); /* a default initial seed is used */
 
-            for (kk=0;kk<N-M;kk++) {
+            for (kk=0;kk<(int)(N-M);kk++) {
                 y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
                 mt[kk] = mt[kk+M] ^ (y >> 1) ^ mag01[y & 0x1UL];
             }
-            for (;kk<N-1;kk++) {
+            for (;kk<(int)(N-1);kk++) {
                 y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
                 mt[kk] = mt[kk+(M-N)] ^ (y >> 1) ^ mag01[y & 0x1UL];
             }
