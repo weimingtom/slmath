@@ -468,7 +468,7 @@ mat4 cubeMapViewRH( size_t face, const vec3& worldpos )
 	SLMATH_VEC_ASSERT( face < 6 );
 	SLMATH_VEC_ASSERT( check(worldpos) );
 
-	vec3 x,y;
+	vec3 x,y; 
 	switch ( face )
 	{
 	case 0: // X+
@@ -499,6 +499,11 @@ mat4 cubeMapViewRH( size_t face, const vec3& worldpos )
 	case 5: // Z-
 		x = vec3(-1,0,0);
 		y = vec3(0,-1,0);
+		break;
+		
+	default:
+		x = y = vec3(0.f,0.f,0.f);
+		SLMATH_VEC_ASSERT( false );
 		break;
 	}
 
